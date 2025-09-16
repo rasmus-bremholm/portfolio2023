@@ -1,0 +1,36 @@
+// Surfaces
+$color-surface-main: #121212;
+$color-surface-light: #171717;
+
+// Text
+$color-text-primary: #fafafa;
+$color-text-secondary: #898989;
+$color-text-disabled: #686666;
+$color-text-hint: $color-text-disabled;
+
+//Borders Dividers
+// Theese needs to be updated to work on dark background.
+$color-border: rgba(255, 255, 255, 0.2);
+$color-divider: rgba(255, 255, 255, 0.12);
+
+// Theming colors
+$color-primary-default: #03a678;
+$color-primary-container: #333; //needs update
+$color-primary-oncontainer: #333; // needs update
+
+// Secondary (Interaction color)
+// - all theese needs to be redone.
+$color-secondary-default: #1c6bba;
+$color-secondary-hover: #4083c528;
+$color-secondary-pressed: #4083c528;
+$color-secondary-selected: #4083c528;
+$color-secondary-active: #4083c528;
+$color-secondary-disabled: #4083c528;
+$color-secondary-error-hover: #4083c528;
+$color-secondary-error-pressed: #4083c528;
+
+// Semantic Colors
+$color-error-default: #bf2012;
+$color-warning-default: #ffa200;
+$color-sucess-default: #1a6b31;
+$color-info-default: #0b66d5;
