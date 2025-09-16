@@ -1,0 +1,43 @@
+// Breakpoint Vars
+$breakpoint-xs: 320px;
+$breakpoint-sm: 600px;
+$breakpoint-md: 900px;
+$breakpoint-lg: 1200px;
+$breakpoint-xl: 1535px;
+
+// Breakpoint Mixins
+@mixin mobile-xs {
+	//gap: 16px (1rem)
+	//padding: 16px (1rem)
+	@media (max-width: #{$breakpoint-sm - 1px}) {
+		@content;
+	}
+}
+
+@mixin mobile-sm {
+	//padding: 24px (1.5rem)
+	@media (max-width: #{$breakpoint-md - 1px}) {
+		@content;
+	}
+}
+
+@mixin tablet {
+	//padding 24px (1.5rem)
+	@media (max-width: #{$breakpoint-lg - 1px}) {
+		@content;
+	}
+}
+
+@mixin desktop {
+	//padding:32px (2rem)
+	@media (min-width: $breakpoint-lg) {
+		@content;
+	}
+}
+
+@mixin desktop-xl {
+	//padding: 32px (2rem)
+	@media (min-width: $breakpoint-xl) {
+		@content;
+	}
+}
