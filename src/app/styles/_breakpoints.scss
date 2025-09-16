@@ -30,6 +30,7 @@ $breakpoint-xl: 1535px;
 
 @mixin desktop {
 	//padding:32px (2rem)
+	// fixed content area 960px
 	@media (min-width: $breakpoint-lg) {
 		@content;
 	}
@@ -37,6 +38,7 @@ $breakpoint-xl: 1535px;
 
 @mixin desktop-xl {
 	//padding: 32px (2rem)
+	// fixed content area 1240px
 	@media (min-width: $breakpoint-xl) {
 		@content;
 	}

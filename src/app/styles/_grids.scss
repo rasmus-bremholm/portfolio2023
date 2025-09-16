@@ -1,0 +1,32 @@
+@use "breakpoints" as *;
+@use "spacing" as *;
+
+$grid-cols: 12;
+$grid-gap: $spacing-m;
+$grid-padding: $spacing-m;
+$grid-max-width-lg: 960px;
+$grid-max-width-xl: 1240px;
+
+@mixin grid-container {
+	display: grid;
+	grid-template-columns: repeat($grid-cols, 1fr);
+	column-gap: $spacing-m;
+	width: 100%;
+	max-width: $grid-max-width-lg;
+	margin: 0 auto;
+	padding: 0 $grid-padding;
+
+	@include tablet {
+		column-gap: $spacing-mr;
+		padding: 0 $spacing-mr;
+	}
+
+	@include desktop {
+		column-gap: $spacing-l;
+		padding: 0 $spacing-l;
+	}
+}
+
+@mixin grid-span($span) {
+	grid-column: span #{$span};
+}
