@@ -18,6 +18,7 @@ $grid-max-width-xl: 1240px;
 
 	@include tablet {
 		column-gap: $spacing-mr;
+
 		padding: 0 $spacing-mr;
 	}
 
@@ -29,4 +30,13 @@ $grid-max-width-xl: 1240px;
 
 @mixin grid-span($span) {
 	grid-column: span #{$span};
+}
+
+@mixin grid-center($span: 8) {
+	$start: math.div($grid-cols - $span, 2) + 1;
+	grid-column: #{$start} / span #{$span};
+}
+
+@mixin grid-start($start) {
+	grid-column-start: #{$start};
 }
