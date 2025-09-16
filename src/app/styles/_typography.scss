@@ -1,0 +1,53 @@
+@mixin heading1 {
+	font-size: 4.5rem;
+	line-height: 6.75rem;
+	letter-spacing: -1, 1px;
+	font-weight: 500;
+}
+
+@mixin heading2 {
+	font-size: 3.5rem;
+	font-weight: 300;
+}
+
+@mixin heading4 {
+	font-size: 2rem;
+	line-height: 2.5rem;
+	letter-spacing: 0.3px;
+	font-weight: 500;
+}
+
+@mixin body1 {
+	font-size: 1rem; // 16px
+	line-height: 1.5rem;
+	letter-spacing: 0.5px;
+	font-weight: 400;
+}
+
+@mixin body2 {
+	font-size: 0.875rem; // 14px
+	line-height: 1rem;
+	letter-spacing: 0.3px;
+	font-weight: 400;
+}
+
+@mixin subtitle1 {
+	font-size: 1rem;
+	line-height: 1.5rem;
+	letter-spacing: 0.3px;
+	font-weight: 500;
+}
+
+@mixin subtitle2 {
+	font-size: 0.875rem; // 14px
+	line-height: 1rem;
+	letter-spacing: 0.3px;
+	font-weight: 500;
+}
+
+@mixin button {
+	font-size: 0.75rem; // 12px
+	line-height: 1rem;
+	letter-spacing: 1px;
+	font-weight: 400;
+}
