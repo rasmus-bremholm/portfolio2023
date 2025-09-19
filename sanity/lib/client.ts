@@ -1,14 +1,6 @@
 import { createClient } from "next-sanity";
 import { homepageSectionsQuery } from "./queries";
-import { TypedObject } from "sanity";
-
-interface ContentSection {
-	_id: string;
-	title: string;
-	content: TypedObject | TypedObject[];
-	alignment: string;
-	order: number;
-}
+import type { ContentSection } from "@/types/sanity/homepage";
 
 export const client = createClient({
 	projectId: process.env.SANITY_PROJECT_ID,
