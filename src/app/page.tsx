@@ -9,7 +9,7 @@ export default async function Home() {
 	return (
 		<main>
 			{sections &&
-				sections.map((section) => <HomepageSection key={section._id} title={section.title} content={section.text} alignment={section.alignment} />)}
+				sections.map((section) => <HomepageSection key={section._id} title={section.title} content={section.content} alignment={section.alignment} />)}
 		</main>
 	);
 }
