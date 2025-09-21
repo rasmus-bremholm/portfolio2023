@@ -1,0 +1,66 @@
+@use "styles/typography" as *;
+@use "styles/colors" as *;
+@use "styles/spacing" as *;
+
+// Reset and base styles
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 16px;
+	/* 1rem = 16px, 0.5rem = 8px */
+}
+
+body {
+	background-color: $color-surface-main;
+	color: $color-text-primary;
+	@include body1;
+}
+
+// Typography defaults
+h1 {
+	@include heading1;
+	color: $color-text-primary;
+	margin-bottom: $spacing-m;
+}
+
+h2 {
+	@include heading2;
+	color: $color-text-primary;
+}
+
+h3,
+h4 {
+	@include heading4;
+	color: $color-text-primary;
+}
+
+p {
+	@include body1;
+	color: $color-text-secondary;
+}
+
+small {
+	@include caption;
+	color: $color-text-secondary;
+}
+
+// Interactive elements
+a {
+	color: $color-primary-default;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+button {
+	@include button;
+	background: none;
+	border: none;
+	cursor: pointer;
+}

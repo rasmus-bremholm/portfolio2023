@@ -3,5 +3,6 @@ export interface ContentSection {
 	title: string;
 	alignment: "left" | "right";
 	content: string;
+	cta: string;
 	order: number;
 }

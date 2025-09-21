@@ -1,4 +1,9 @@
+// Font families
+$font-heading: var(--font-bebas-neue);
+$font-body: var(--font-lato);
+
 @mixin heading1 {
+	font-family: $font-heading;
 	font-size: 4.5rem;
 	line-height: 6.75rem;
 	letter-spacing: -1, 1px;
@@ -6,11 +11,13 @@
 }
 
 @mixin heading2 {
+	font-family: $font-heading;
 	font-size: 3.5rem;
 	font-weight: 300;
 }
 
 @mixin heading4 {
+	font-family: $font-heading;
 	font-size: 2rem;
 	line-height: 2.5rem;
 	letter-spacing: 0.3px;
@@ -18,6 +25,7 @@
 }
 
 @mixin body1 {
+	font-family: $font-body;
 	font-size: 1rem; // 16px
 	line-height: 1.5rem;
 	letter-spacing: 0.5px;
@@ -25,6 +33,7 @@
 }
 
 @mixin body2 {
+	font-family: $font-body;
 	font-size: 0.875rem; // 14px
 	line-height: 1rem;
 	letter-spacing: 0.3px;
@@ -32,6 +41,7 @@
 }
 
 @mixin subtitle1 {
+	font-family: $font-body;
 	font-size: 1rem;
 	line-height: 1.5rem;
 	letter-spacing: 0.3px;
@@ -39,6 +49,7 @@
 }
 
 @mixin subtitle2 {
+	font-family: $font-body;
 	font-size: 0.875rem; // 14px
 	line-height: 1rem;
 	letter-spacing: 0.3px;
@@ -46,6 +57,7 @@
 }
 
 @mixin button {
+	font-family: $font-body;
 	font-size: 0.75rem; // 12px
 	line-height: 1rem;
 	letter-spacing: 1px;
@@ -53,6 +65,7 @@
 }
 
 @mixin caption {
+	font-family: $font-body;
 	font-size: 0.75rem;
 	line-height: 1rem;
 	letter-spacing: 0.5;
