@@ -19,6 +19,16 @@ export default defineType({
 			validation: (Rule) => Rule.required(),
 		}),
 		defineField({
+			name: "slug",
+			title: "Section ID",
+			type: "slug",
+			options: {
+				source: "title",
+				maxLength: 30,
+			},
+			description: "Used for scroll-to-section navigation",
+		}),
+		defineField({
 			name: "cta",
 			title: "CTA Text",
 			type: "text",
