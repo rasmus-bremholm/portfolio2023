@@ -1,0 +1,27 @@
+@use "../../../styles/mixins" as *;
+@use "../../../styles/spacing" as *;
+@use "../../../styles/breakpoints" as *;
+@use "../../../styles/grids" as *;
+
+.navbar {
+	width: 100%;
+	min-height: 80px;
+	max-height: $spacing-xxl;
+	margin-bottom: $spacing-m;
+}
+
+.mobileMenu {
+	@include grid-container;
+	display: block;
+	@include desktop {
+		display: none;
+	}
+}
+
+.desktopMenu {
+	@include grid-container;
+	display: none;
+	@include desktop {
+		display: block;
+	}
+}
