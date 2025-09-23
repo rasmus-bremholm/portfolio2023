@@ -12,7 +12,7 @@
 
 .mobileMenu {
 	@include grid-container;
-	display: block;
+	display: grid;
 	@include desktop {
 		display: none;
 	}
@@ -22,6 +22,10 @@
 	@include grid-container;
 	display: none;
 	@include desktop {
-		display: block;
+		display: grid;
 	}
+}
+
+.logoSection {
+	grid-column: span 11;
 }

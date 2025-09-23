@@ -26,7 +26,7 @@ export default function Navbar() {
 	return (
 		<nav className={styles.navbar}>
 			<div id='Mobile Menu' className={styles.mobileMenu}>
-				<div id='Logo Section'></div>
+				<div id='Logo Section' className={styles.logoSection}></div>
 				<div id='Hamburger Container'>
 					<button onClick={toggleMenu} aria-label={menuOpen ? "Close Menu" : "Open Menu"} aria-expanded={menuOpen} aria-controls='mobile-menu'>
 						{menuOpen ?
@@ -47,7 +47,7 @@ export default function Navbar() {
 				)}
 			</div>
 			<div id='Desktop Menu' className={styles.desktopMenu}>
-				<div id='Logo Section'></div>
+				<div id='Logo Section' className={styles.logoSection}></div>
 				<div id='Links Section' role='navigation'>
 					{menuItems.map((item, index) => (
 						<Link key={index} href={item.link}>
