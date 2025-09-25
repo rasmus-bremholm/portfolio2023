@@ -18,7 +18,8 @@ body {
 	background-color: $color-surface-main;
 	color: $color-text-primary;
 	@include body1;
-	padding-bottom: 80px;
+	line-height: 2.5rem;
+	padding-top: 80px;
 }
 
 // Typography defaults
