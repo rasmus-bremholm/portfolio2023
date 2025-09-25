@@ -48,13 +48,11 @@ export default function Navbar() {
 			</div>
 			<div id='Desktop Menu' className={styles.desktopMenu}>
 				<div id='Logo Section'></div>
-				<div id='Links Section' role='navigation'>
-					{menuItems.map((item, index) => (
-						<Link key={index} href={item.link}>
-							{item.title}
-						</Link>
-					))}
-				</div>
+				{menuItems.map((item, index) => (
+					<Link key={index} href={item.link}>
+						{item.title}
+					</Link>
+				))}
 			</div>
 		</nav>
 	);
