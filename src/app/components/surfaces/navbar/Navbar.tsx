@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Menu, Close } from "@mui/icons-material";
 import Link from "next/link";
-import { motion, AnimatePresence, animate } from "framer-motion";
+import { motion, AnimatePresence, animate, easeOut, easeInOut } from "framer-motion";
 import styles from "./Navbar.module.scss";
 
 interface MenuItems {
@@ -11,7 +11,7 @@ interface MenuItems {
 }
 
 export default function Navbar() {
-	const [menuOpen, setMenuOpen] = useState(false);
+	const [menuOpen, setMenuOpen] = useState(true); // Change to false in prod!
 
 	const menuItems: MenuItems[] = [
 		{ title: "Blog", link: "/blog" },
@@ -31,14 +31,23 @@ export default function Navbar() {
 					<button onClick={toggleMenu} aria-label={menuOpen ? "Close Menu" : "Open Menu"} aria-expanded={menuOpen} aria-controls='mobile-menu'>
 						{menuOpen ?
 							<Close />
-						:	<Menu />}
+						:	<Menu color='secondary' />}
 					</button>
 				</div>
 				{menuOpen && (
 					<AnimatePresence>
-						<motion.div id='Hamburger Menu' role='menu' aria-label='mobile-menu'>
+						<motion.div
+							id='Hamburger Menu'
+							role='menu'
+							aria-label='mobile-menu'
+							className={styles.hamburgerMenu}
+							initial={{ height: 0, opacity: 0 }}
+							animate={{ height: "auto", opacity: 1 }}
+							exit={{ height: 0, opacity: 0 }}
+							transition={{ duration: 0.2, ease: easeInOut }}
+							style={{ overflow: "hidden" }}>
 							{menuItems.map((item, index) => (
-								<Link key={index} href={item.link} onClick={() => setMenuOpen(false)}>
+								<Link key={index} href={item.link} onClick={() => setMenuOpen(false)} className={styles.hamburgerMenuItem}>
 									{item.title}
 								</Link>
 							))}
