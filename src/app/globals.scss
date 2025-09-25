@@ -24,13 +24,12 @@ body {
 
 // Typography defaults
 h1 {
-	@include heading1;
+	@include heading1-grid;
 	color: $color-text-primary;
-	margin-bottom: $spacing-m;
 }
 
 h2 {
-	@include heading2;
+	@include heading2-grid;
 	color: $color-text-secondary;
 }
 

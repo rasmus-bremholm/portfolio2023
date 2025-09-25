@@ -5,15 +5,19 @@ $font-body: var(--font-lato);
 @mixin heading1 {
 	font-family: $font-heading;
 	font-size: 4.5rem;
-	line-height: 6.75rem;
-	letter-spacing: -1, 1px;
-	font-weight: 500;
+	line-height: 4.5rem; // 1:1 ratio for tight grid alignment
+	letter-spacing: -1.1px;
+	font-weight: 400;
+	margin: 0; // Remove default margins for precise control
 }
 
 @mixin heading2 {
 	font-family: $font-heading;
 	font-size: 2.8rem;
-	font-weight: 300;
+	line-height: 2.8rem; // 1:1 ratio for grid alignment
+	letter-spacing: -0.5px;
+	font-weight: 400;
+	margin: 0;
 }
 
 @mixin heading4 {
@@ -70,4 +74,23 @@ $font-body: var(--font-lato);
 	line-height: 1rem;
 	letter-spacing: 0.5;
 	font-weight: 300;
+}
+
+// Baseline grid alignment utilities
+$baseline-unit: 1.5rem; // 24px baseline grid
+
+@mixin baseline-align($lines: 1) {
+	line-height: $baseline-unit * $lines;
+	margin-bottom: $baseline-unit * $lines;
+}
+
+// Grid-aligned heading variants
+@mixin heading1-grid {
+	@include heading1;
+	@include baseline-align(3); // 3 baseline units
+}
+
+@mixin heading2-grid {
+	@include heading2;
+	@include baseline-align(2); // 2 baseline units
 }
