@@ -4,6 +4,7 @@ import { Menu, Close } from "@mui/icons-material";
 import Link from "next/link";
 import { motion, AnimatePresence, animate, easeOut, easeInOut } from "framer-motion";
 import styles from "./Navbar.module.scss";
+import LogoButton from "../../buttons/logoButton";
 
 interface MenuItems {
 	title: string;
@@ -11,7 +12,7 @@ interface MenuItems {
 }
 
 export default function Navbar() {
-	const [menuOpen, setMenuOpen] = useState(true); // Change to false in prod!
+	const [menuOpen, setMenuOpen] = useState(false); // Change to false in prod!
 
 	const menuItems: MenuItems[] = [
 		{ title: "Blog", link: "/blog" },
@@ -26,8 +27,10 @@ export default function Navbar() {
 	return (
 		<nav className={styles.navbar}>
 			<div id='Mobile Menu' className={styles.mobileMenu}>
-				<div id='Logo Section' className={styles.logoSection}></div>
-				<div id='Hamburger Container'>
+				<div id='Logo Section' className={styles.logoSection}>
+					<LogoButton />
+				</div>
+				<div id='Hamburger Container' className={styles.hamburgerIconContainer}>
 					<button onClick={toggleMenu} aria-label={menuOpen ? "Close Menu" : "Open Menu"} aria-expanded={menuOpen} aria-controls='mobile-menu'>
 						{menuOpen ?
 							<Close />
@@ -56,7 +59,9 @@ export default function Navbar() {
 				)}
 			</div>
 			<div id='Desktop Menu' className={styles.desktopMenu}>
-				<div id='Logo Section'></div>
+				<div id='Logo Section'>
+					<LogoButton />
+				</div>
 				{menuItems.map((item, index) => (
 					<Link key={index} href={item.link}>
 						{item.title}

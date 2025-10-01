@@ -16,6 +16,14 @@
 	right: 0;
 	padding-top: 1rem;
 	padding-bottom: 1rem;
+	--logo-accent: #03a678;
+	.logoSection {
+		grid-column: 1;
+		color: $color-text-primary;
+	}
+	.hamburgerIconContainer {
+		grid-column: 12;
+	}
 	svg {
 		color: $color-text-secondary;
 		&:hover {
