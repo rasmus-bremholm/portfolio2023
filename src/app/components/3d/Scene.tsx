@@ -6,34 +6,50 @@ import { OrbitControls } from '@react-three/drei'
 import ThreeShape from './ThreeShape'
 
 interface SceneProps {
-  position?: [number, number, number]
+  contentType?: 'skills' | 'about' | 'projects' | 'contact' | 'default'
   enableOrbitControls?: boolean
+  autoRotate?: boolean
+  className?: string
 }
 
-export default function Scene({ position = [0, 0, 0], enableOrbitControls = true }: SceneProps) {
+export default function Scene({
+  contentType = 'default',
+  enableOrbitControls = false,
+  autoRotate = true,
+  className
+}: SceneProps) {
   return (
-    <Canvas
-      camera={{
-        position: [0, 0, 5],
-        fov: 45
-      }}
-      style={{
-        width: '100%',
-        height: '100%',
-        background: 'transparent',
-      }}
-    >
-      <Suspense fallback={null}>
-        {/* Basic lighting setup */}
-        <ambientLight intensity={0.4} />
-        <directionalLight position={[5, 5, 5]} intensity={0.6} />
+    <div className={className} style={{ width: '100%', height: '100%' }}>
+      <Canvas
+        camera={{
+          position: [0, 0, 4],
+          fov: 50
+        }}
+        style={{
+          width: '100%',
+          height: '100%',
+          background: 'transparent',
+        }}
+      >
+        <Suspense fallback={null}>
+          {/* Ambient lighting for bento cells */}
+          <ambientLight intensity={0.6} />
+          <directionalLight position={[3, 3, 3]} intensity={0.8} />
 
-        {/* Orbit controls for development/header */}
-        {enableOrbitControls && <OrbitControls enableZoom={false} />}
+          {/* Optional orbit controls */}
+          {enableOrbitControls && (
+            <OrbitControls
+              enableZoom={false}
+              enablePan={false}
+              autoRotate={autoRotate}
+              autoRotateSpeed={1}
+            />
+          )}
 
-        {/* Main 3D shape */}
-        <ThreeShape position={position} />
-      </Suspense>
-    </Canvas>
+          {/* Content-specific 3D shape */}
+          <ThreeShape contentType={contentType} autoRotate={autoRotate && !enableOrbitControls} />
+        </Suspense>
+      </Canvas>
+    </div>
   )
 }

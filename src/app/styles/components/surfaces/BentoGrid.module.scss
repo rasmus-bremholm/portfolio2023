@@ -1,0 +1,24 @@
+@use "../../grids" as *;
+@use "../../breakpoints" as *;
+@use "../../spacing" as *;
+
+.bentoGrid {
+  @include grid-container;
+  grid-template-columns: repeat(12, 1fr);
+  gap: $spacing-m;
+  padding: $spacing-l 0;
+
+  @include mobile-sm {
+    gap: $spacing-sm;
+    padding: $spacing-m 0;
+  }
+
+  @include tablet {
+    gap: $spacing-mr;
+  }
+
+  @include desktop {
+    gap: $spacing-l;
+    padding: $spacing-xl 0;
+  }
+}

@@ -5,42 +5,71 @@ import { useFrame } from '@react-three/fiber'
 import { Mesh } from 'three'
 
 interface ThreeShapeProps {
-  position?: [number, number, number]
-  morphTarget?: 'default' | 'about' | 'projects' | 'contact'
+  contentType?: 'skills' | 'about' | 'projects' | 'contact' | 'default'
+  autoRotate?: boolean
 }
 
-export default function ThreeShape({ position = [0, 0, 0], morphTarget = 'default' }: ThreeShapeProps) {
+export default function ThreeShape({ contentType = 'default', autoRotate = true }: ThreeShapeProps) {
   const meshRef = useRef<Mesh>(null)
 
-  // Gentle rotation animation
+  // Auto-rotation animation (can be disabled for orbit controls)
   useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.2) * 0.1
-      meshRef.current.rotation.y += 0.005
+    if (meshRef.current && autoRotate) {
+      meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.3) * 0.1
+      meshRef.current.rotation.y += 0.008
     }
   })
 
-  // Different shapes based on morph target (extendable for your content sections)
-  const getGeometry = () => {
-    switch (morphTarget) {
+  // Content-specific shapes and materials
+  const getShapeConfig = () => {
+    switch (contentType) {
+      case 'skills':
+        return {
+          geometry: <icosahedronGeometry args={[1.2, 1]} />,
+          color: "#03a678",
+          roughness: 0.2,
+          metalness: 0.8
+        }
       case 'about':
-        return <sphereGeometry args={[1.2, 16, 16]} />
+        return {
+          geometry: <sphereGeometry args={[1.1, 24, 16]} />,
+          color: "#1c6bba",
+          roughness: 0.4,
+          metalness: 0.6
+        }
       case 'projects':
-        return <boxGeometry args={[1.5, 1.5, 1.5]} />
+        return {
+          geometry: <boxGeometry args={[1.4, 1.4, 1.4]} />,
+          color: "#ffa200",
+          roughness: 0.3,
+          metalness: 0.7
+        }
       case 'contact':
-        return <cylinderGeometry args={[1, 1, 2, 8]} />
+        return {
+          geometry: <cylinderGeometry args={[1, 1, 1.8, 8]} />,
+          color: "#bf2012",
+          roughness: 0.5,
+          metalness: 0.4
+        }
       default:
-        return <torusGeometry args={[1, 0.3, 8, 16]} />
+        return {
+          geometry: <torusGeometry args={[1, 0.4, 12, 24]} />,
+          color: "#03a678",
+          roughness: 0.3,
+          metalness: 0.7
+        }
     }
   }
 
+  const shapeConfig = getShapeConfig()
+
   return (
-    <mesh ref={meshRef} position={position}>
-      {getGeometry()}
+    <mesh ref={meshRef} position={[0, 0, 0]}>
+      {shapeConfig.geometry}
       <meshStandardMaterial
-        color="#03a678"
-        roughness={0.3}
-        metalness={0.7}
+        color={shapeConfig.color}
+        roughness={shapeConfig.roughness}
+        metalness={shapeConfig.metalness}
       />
     </mesh>
   )

@@ -1,0 +1,110 @@
+@use "../../colors" as *;
+@use "../../breakpoints" as *;
+@use "../../spacing" as *;
+
+.bentoCell {
+  background-color: $color-surface-light;
+  border: 1px solid $color-border;
+  border-radius: 12px;
+  padding: $spacing-m;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+
+  @include mobile-sm {
+    padding: $spacing-sm;
+    min-height: 150px;
+  }
+
+  // Size variants
+  &.small {
+    grid-column: span 3;
+    min-height: 200px;
+
+    @include mobile-sm {
+      grid-column: span 6;
+    }
+
+    @include tablet {
+      grid-column: span 4;
+    }
+  }
+
+  &.medium {
+    grid-column: span 6;
+    min-height: 250px;
+
+    @include mobile-sm {
+      grid-column: span 12;
+    }
+
+    @include tablet {
+      grid-column: span 6;
+    }
+  }
+
+  &.large {
+    grid-column: span 8;
+    min-height: 300px;
+
+    @include mobile-sm {
+      grid-column: span 12;
+    }
+  }
+
+  &.xl {
+    grid-column: span 12;
+    min-height: 400px;
+
+    @include mobile-sm {
+      min-height: 300px;
+    }
+  }
+}
+
+.threeDContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 100%;
+  z-index: 1;
+
+  @include mobile-sm {
+    width: 100%;
+    height: 50%;
+    position: relative;
+  }
+}
+
+.threeScene {
+  width: 100%;
+  height: 100%;
+}
+
+.threeDFallback {
+  width: 100%;
+  height: 100%;
+  background-color: rgba($color-primary-default, 0.1);
+  border-radius: 8px;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  // When 3D is present, make room for it
+  .bentoCell:has(.threeDContainer) & {
+    width: 60%;
+
+    @include mobile-sm {
+      width: 100%;
+    }
+  }
+}
