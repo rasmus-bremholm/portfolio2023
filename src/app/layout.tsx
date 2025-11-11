@@ -1,20 +1,7 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Lato } from "next/font/google";
-import "./globals.scss";
 import Footer from "./components/surfaces/footer/Footer";
 import Navbar from "./components/surfaces/navbar/Navbar";
-
-const bebasNeue = Bebas_Neue({
-	subsets: ["latin"],
-	weight: "400",
-	variable: "--font-bebas-neue",
-});
-
-const lato = Lato({
-	subsets: ["latin"],
-	weight: ["300", "400", "700"],
-	variable: "--font-lato",
-});
+import ThemeRegistry from "./ThemeRegistry";
 
 export const metadata = {
 	title: "Rasmus Bremholm | Portfolio",
@@ -58,10 +45,12 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en'>
-			<body className={`${bebasNeue.variable} ${lato.variable}`}>
-				<Navbar />
-				{children}
-				<Footer />
+			<body>
+				<ThemeRegistry>
+					<Navbar />
+					{children}
+					<Footer />
+				</ThemeRegistry>
 			</body>
 		</html>
 	);

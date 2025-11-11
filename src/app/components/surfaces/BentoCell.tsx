@@ -1,5 +1,4 @@
 import { Suspense, lazy } from 'react'
-import styles from "@/app/styles/components/surfaces/BentoCell.module.scss"
 
 // Lazy load Scene component for performance
 const Scene = lazy(() => import('../3d/Scene'))
@@ -22,21 +21,20 @@ export default function BentoCell({
   className
 }: BentoCellProps) {
   return (
-    <div className={`${styles.bentoCell} ${styles[size]} ${className || ''}`} data-size={size}>
+    <div className={className} data-size={size}>
       {has3D && (
-        <div className={styles.threeDContainer}>
-          <Suspense fallback={<div className={styles.threeDFallback}></div>}>
+        <div>
+          <Suspense fallback={<div></div>}>
             <Scene
               contentType={contentType}
               enableOrbitControls={enableOrbitControls}
-              className={styles.threeScene}
             />
           </Suspense>
         </div>
       )}
 
       {children && (
-        <div className={styles.content}>
+        <div>
           {children}
         </div>
       )}

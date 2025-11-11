@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Menu, Close } from "@mui/icons-material";
 import Link from "next/link";
 import { motion, AnimatePresence, animate, easeOut, easeInOut } from "framer-motion";
-import styles from "./Navbar.module.scss";
 import LogoButton from "../../buttons/logoButton";
 
 interface MenuItems {
@@ -25,12 +24,12 @@ export default function Navbar() {
 	};
 
 	return (
-		<nav className={styles.navbar}>
-			<div id='Mobile Menu' className={styles.mobileMenu}>
-				<div id='Logo Section' className={styles.logoSection}>
+		<nav>
+			<div id='Mobile Menu'>
+				<div id='Logo Section'>
 					<LogoButton />
 				</div>
-				<div id='Hamburger Container' className={styles.hamburgerIconContainer}>
+				<div id='Hamburger Container'>
 					<button onClick={toggleMenu} aria-label={menuOpen ? "Close Menu" : "Open Menu"} aria-expanded={menuOpen} aria-controls='mobile-menu'>
 						{menuOpen ?
 							<Close />
@@ -43,14 +42,13 @@ export default function Navbar() {
 							id='Hamburger Menu'
 							role='menu'
 							aria-label='mobile-menu'
-							className={styles.hamburgerMenu}
 							initial={{ height: 0, opacity: 0 }}
 							animate={{ height: "auto", opacity: 1 }}
 							exit={{ height: 0, opacity: 0 }}
 							transition={{ duration: 0.2, ease: easeInOut }}
 							style={{ overflow: "hidden" }}>
 							{menuItems.map((item, index) => (
-								<Link key={index} href={item.link} onClick={() => setMenuOpen(false)} className={styles.hamburgerMenuItem}>
+								<Link key={index} href={item.link} onClick={() => setMenuOpen(false)}>
 									{item.title}
 								</Link>
 							))}
@@ -58,7 +56,7 @@ export default function Navbar() {
 					</AnimatePresence>
 				)}
 			</div>
-			<div id='Desktop Menu' className={styles.desktopMenu}>
+			<div id='Desktop Menu'>
 				<div id='Logo Section'>
 					<LogoButton />
 				</div>
