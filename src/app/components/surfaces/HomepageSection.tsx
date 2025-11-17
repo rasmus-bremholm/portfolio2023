@@ -21,7 +21,7 @@ export default function HomepageSection({ title, content, alignment, ctaText, ct
 			initial={{ opacity: 0, y: 30 }}
 			whileInView={{ opacity: 1, y: 0 }}
 			viewport={{ once: true }}
-			transition={{ duration: 0.6 }}
+			transition={{ duration: 0.6, delay: 0.5 }}
 			sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" }, gap: 4, py: 8 }}>
 			<Box sx={{ order: alignment === "left" ? 1 : 2, textAlign: alignment === "left" ? "left" : "right" }}>
 				<Typography variant='h4' sx={{ fontSize: 60, color: "text.primary" }}>
