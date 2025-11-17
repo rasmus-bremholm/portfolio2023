@@ -99,14 +99,18 @@ export default function Navbar() {
 						anchor='top'
 						open={menuOpen}
 						onClose={() => setMenuOpen(false)}
+						slotProps={{
+							paper: {
+								sx: {
+									backgroundColor: "#171717",
+									borderBottom: "1px solid",
+									borderColor: "divider",
+									mt: 8,
+								},
+							},
+						}}
 						sx={{
 							display: { xs: "block", md: "none" },
-							"& .MuiDrawer-paper": {
-								backgroundColor: "background.default",
-								borderBottom: "1px solid",
-								borderColor: "divider",
-								mt: 8,
-							},
 						}}>
 						<List sx={{ py: 2 }}>
 							{menuItems.map((item, index) => (
@@ -116,6 +120,7 @@ export default function Navbar() {
 										href={item.link}
 										onClick={() => setMenuOpen(false)}
 										sx={{
+											backgroundColor: "transparent",
 											py: 1.5,
 											"&:hover": {
 												backgroundColor: "rgba(3, 166, 120, 0.08)",
@@ -133,6 +138,7 @@ export default function Navbar() {
 											primaryTypographyProps={{
 												fontSize: "1.1rem",
 												fontWeight: 400,
+												color: "text.primary",
 											}}
 										/>
 									</ListItemButton>
