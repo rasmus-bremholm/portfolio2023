@@ -27,7 +27,9 @@ export default async function Home() {
 				<Typography sx={{ fontSize: "1.5rem" }}>Exploring areas where tech and artistry meet.</Typography>
 			</Box>
 			{sections &&
-				sections.map((section) => <HomepageSection key={section._id} title={section.title} content={section.content} alignment={section.alignment} />)}
+				sections.map((section) => (
+					<HomepageSection key={section._id} title={section.title} content={section.content} alignment={section.alignment} order={section.order} />
+				))}
 		</Container>
 	);
 }
