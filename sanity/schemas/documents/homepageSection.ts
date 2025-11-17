@@ -14,8 +14,34 @@ export default defineType({
 		defineField({
 			name: "content",
 			title: "Section Content",
-			type: "text",
-			rows: 4,
+			type: "array",
+			of: [
+				{
+					type: "block",
+					styles: [{ title: "Normal", value: "normal" }],
+					lists: [],
+					marks: {
+						decorators: [
+							{ title: "Bold", value: "strong" },
+							{ title: "Italic", value: "em" },
+						],
+						annotations: [
+							{
+								name: "link",
+								type: "object",
+								title: "Link",
+								fields: [
+									{
+										name: "href",
+										type: "url",
+										title: "URL",
+									},
+								],
+							},
+						],
+					},
+				},
+			],
 			validation: (Rule) => Rule.required(),
 		}),
 		defineField({
@@ -29,11 +55,17 @@ export default defineType({
 			description: "Used for scroll-to-section navigation",
 		}),
 		defineField({
-			name: "cta",
-			title: "CTA Text",
-			type: "text",
-			initialValue: "Read more",
-			validation: (Rule) => Rule.required(),
+			name: "ctaText",
+			title: "CTA Button Text",
+			type: "string",
+			description: "Leave empty to hide the CTA button",
+		}),
+		defineField({
+			name: "ctaLink",
+			title: "CTA Button Link",
+			type: "string",
+			description: "Where the CTA button should link to",
+			hidden: ({ parent }) => !parent?.ctaText,
 		}),
 		defineField({
 			name: "alignment",
