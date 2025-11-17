@@ -17,6 +17,7 @@
 		"@mui/material-nextjs": "^7.3.5",
 		"@react-three/drei": "^10.7.6",
 		"@react-three/fiber": "^9.3.0",
+		"@sanity/image-url": "^1.2.0",
 		"@sanity/vision": "^4.8.1",
 		"@types/three": "^0.180.0",
 		"framer-motion": "^12.23.24",

@@ -3,9 +3,16 @@ import { Typography, Box } from "@mui/material";
 import Link from "next/link";
 import imageUrlBuilder from "@sanity/image-url";
 import Image from "next/image";
-import { client } from "./client";
+import { createClient } from "next-sanity";
 
-const builder = imageUrlBuilder(client);
+const imageClient = createClient({
+	projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
+	dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
+	apiVersion: "2023-05-03",
+	useCdn: true,
+});
+
+const builder = imageUrlBuilder(imageClient);
 
 export const renderComponents: PortableTextComponents = {
 	block: {
