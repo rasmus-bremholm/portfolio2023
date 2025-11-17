@@ -1,4 +1,4 @@
-import { groq } from 'next-sanity'
+import { groq } from "next-sanity";
 
 // Get all homepage sections ordered by display order
 export const homepageSectionsQuery = groq`
@@ -7,9 +7,11 @@ export const homepageSectionsQuery = groq`
     title,
     content,
     alignment,
-    order
+    order,
+    ctaLink,
+    ctaText,
   }
-`
+`;
 
 // Get a single homepage section by ID
 export const homepageSectionByIdQuery = groq`
@@ -18,6 +20,8 @@ export const homepageSectionByIdQuery = groq`
     title,
     content,
     alignment,
-    order
+    order,
+    ctaLink,
+    ctaText,
   }
-`
+`;
