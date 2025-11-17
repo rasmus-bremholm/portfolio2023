@@ -101,6 +101,7 @@ export default function Navbar() {
 						onClose={() => setMenuOpen(false)}
 						slotProps={{
 							paper: {
+								elevation: 0,
 								sx: {
 									backgroundColor: "#171717",
 									borderBottom: "1px solid",
