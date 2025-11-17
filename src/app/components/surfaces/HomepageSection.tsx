@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { Box, Typography, Divider, Button } from "@mui/material";
 import Link from "next/link";
-import { PortableText } from "@portabletext/react";
+import { PortableText, PortableTextComponents } from "@portabletext/react";
 
 interface ContentSectionProps {
 	title: string;
@@ -13,18 +13,18 @@ interface ContentSectionProps {
 	ctaLink?: string;
 }
 
-const renderComponents = {
+const renderComponents: PortableTextComponents = {
 	block: {
-		normal: ({ children }: any) => (
+		normal: ({ children }) => (
 			<Typography component='div' sx={{ mb: 2 }}>
 				{children}
 			</Typography>
 		),
 	},
 	marks: {
-		strong: ({ children }: any) => <strong>{children}</strong>,
-		em: ({ children }: any) => <em>{children}</em>,
-		link: ({ children, value }: any) => (
+		strong: ({ children }) => <strong>{children}</strong>,
+		em: ({ children }) => <em>{children}</em>,
+		link: ({ children, value }) => (
 			<Link href={value.href} style={{ color: "inherit", textDecoration: "underline" }}>
 				{children}
 			</Link>
