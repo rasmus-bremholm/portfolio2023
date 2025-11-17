@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Menu, Close, Home, Book, AccountTree, ConnectWithoutContact } from "@mui/icons-material";
 import Link from "next/link";
 import { AppBar, Toolbar, Box, Button, IconButton, Drawer, List, ListItem, ListItemButton, ListItemText, ListItemIcon, Container } from "@mui/material";
-import LogoButton from "@/components/buttons/LogoButton";
+import LogoButton from "@/app/components/buttons/LogoButton";
 
 interface MenuItems {
 	title: string;
