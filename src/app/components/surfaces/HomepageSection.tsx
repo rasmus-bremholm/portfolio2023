@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Divider } from "@mui/material";
 
 interface ContentSectionProps {
 	title: string;
@@ -13,6 +13,7 @@ export default function HomepageSection({ title, content, alignment, order }: Co
 			<Box sx={{ order: alignment === "left" ? 1 : 2, textAlign: alignment === "left" ? "left" : "right" }}>
 				<Typography variant='h4'>{title}</Typography>
 				<Typography>{content}</Typography>
+				<Divider sx={{ mt: 4 }} />
 			</Box>
 			<Box
 				sx={{
