@@ -13,6 +13,25 @@ interface ContentSectionProps {
 	ctaLink?: string;
 }
 
+const renderComponents = {
+	block: {
+		normal: ({ children }: any) => (
+			<Typography component='div' sx={{ mb: 2 }}>
+				{children}
+			</Typography>
+		),
+	},
+	marks: {
+		strong: ({ children }: any) => <strong>{children}</strong>,
+		em: ({ children }: any) => <em>{children}</em>,
+		link: ({ children, value }: any) => (
+			<Link href={value.href} style={{ color: "inherit", textDecoration: "underline" }}>
+				{children}
+			</Link>
+		),
+	},
+};
+
 export default function HomepageSection({ title, content, alignment, order, ctaText, ctaLink }: ContentSectionProps) {
 	return (
 		<Box
@@ -26,9 +45,10 @@ export default function HomepageSection({ title, content, alignment, order, ctaT
 				<Typography variant='h4' sx={{ fontSize: 60, color: "text.primary" }}>
 					{title}
 				</Typography>
-				<Typography sx={{ mb: 3 }}>
-					<PortableText value={content} />
-				</Typography>
+				<Box>
+					<PortableText components={renderComponents} value={content} />
+				</Box>
+				{ctaText && ctaLink && <Button LinkComponent={Link} href={ctaLink} variant='contained' sx={{ mb: 2 }}></Button>}
 				<Divider sx={{ mt: 4 }} />
 			</Box>
 			<Box
