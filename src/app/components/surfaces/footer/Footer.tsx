@@ -1,3 +1,5 @@
+import { Typography, Container } from "@mui/material";
+
 export default function Footer() {
-	return <section>Footer</section>;
+	return <Container maxWidth='md'>Footer</Container>;
 }

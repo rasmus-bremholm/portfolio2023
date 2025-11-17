@@ -25,3 +25,17 @@ export const homepageSectionByIdQuery = groq`
     ctaText,
   }
 `;
+
+// Get Blog Posts
+export const blogPostsQuery = groq`
+*[_type == "blogPost"] | order(publishedAt desc) {
+  _id,
+  title,
+  slug,
+  excerpt,
+  publishedAt,
+  tags,
+  category,
+  "readTime": round(length(pt::text(content)) / 5 / 200)
+}
+`;

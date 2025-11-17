@@ -8,7 +8,7 @@ export default async function Home() {
 	const sections: ContentSection[] = await getAllContentSections();
 
 	return (
-		<Container component={"main"}>
+		<Container component='main'>
 			<HomePageHeader />
 			{sections &&
 				sections.map((section) => (
