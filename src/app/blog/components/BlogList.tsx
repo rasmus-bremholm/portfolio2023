@@ -42,12 +42,12 @@ export default function BlogList({ posts }: BlogListProps) {
 		<Box component={motion.div} variants={container} initial='hidden' animate='show'>
 			{posts.map((post) => (
 				<Card key={post._id} component={motion.div} variants={item} sx={{ mb: 3, px: 5, py: 5 }}>
-					<Box id='published'>
-						<Typography variant='body2' sx={{ mb: 1 }}>
-							{formatDate(post.publishedAt)}
-						</Typography>
-					</Box>
-					<Link href={`/blog/${post.slug.current}`}>
+					<Link href={`/blog/${post.slug.current}`} style={{ textDecoration: "none" }}>
+						<Box id='published'>
+							<Typography variant='body2' sx={{ mb: 1 }}>
+								{formatDate(post.publishedAt)}
+							</Typography>
+						</Box>
 						<Typography variant='h4' sx={{ color: "text.primary", textDecoration: "none" }}>
 							{post.title}
 						</Typography>
