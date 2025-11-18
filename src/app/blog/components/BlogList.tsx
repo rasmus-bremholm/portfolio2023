@@ -1,10 +1,9 @@
 "use client";
 import { BlogPostPreview } from "@/types/sanity/blogpage";
-import { Box, Card, Typography, Chip, IconButton } from "@mui/material";
+import { Box, Card, Typography, Chip } from "@mui/material";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import dayjs from "dayjs";
-import ShareIcon from "@mui/icons-material/Share";
 
 interface BlogListProps {
 	posts: BlogPostPreview[];
@@ -15,7 +14,8 @@ const container = {
 	show: {
 		opacity: 1,
 		transition: {
-			staggerChildren: 0.1,
+			staggerChildren: 0.2,
+			delay: 0.8,
 		},
 	},
 };
@@ -41,28 +41,80 @@ export default function BlogList({ posts }: BlogListProps) {
 	return (
 		<Box component={motion.div} variants={container} initial='hidden' animate='show'>
 			{posts.map((post) => (
-				<Card key={post._id} component={motion.div} variants={item} sx={{ mb: 3, px: 5, py: 5 }}>
-					<Link href={`/blog/${post.slug.current}`} style={{ textDecoration: "none" }}>
-						<Box id='published'>
-							<Typography variant='body2' sx={{ mb: 1 }}>
+				<Link href={`/blog/${post.slug.current}`} style={{ textDecoration: "none" }} key={post._id}>
+					<Card
+						component={motion.div}
+						variants={item}
+						sx={{
+							mb: 3,
+							px: 5,
+							py: 5,
+							border: "1px solid transparent",
+							transition: "border-color 0.2s",
+							"&:hover": {
+								borderColor: "primary.main",
+							},
+						}}>
+						<Box sx={{ display: "flex", justifyContent: "space-between" }}>
+							<Typography variant='body2' sx={{ mb: 1, color: "text.secondary" }}>
 								{formatDate(post.publishedAt)}
 							</Typography>
+							<Typography
+								variant='caption'
+								sx={{
+									color: "primary.main",
+									textTransform: "uppercase",
+									fontSize: "0.75rem",
+									fontWeight: 600,
+									letterSpacing: "0.5px",
+								}}>
+								{post.category}
+							</Typography>
 						</Box>
-						<Typography variant='h4' sx={{ color: "text.primary", textDecoration: "none" }}>
+
+						<Typography variant='h4' sx={{ color: "text.primary", fontSize: { xs: 48, sm: 56, md: 60 } }}>
 							{post.title}
 						</Typography>
-					</Link>
-					<Typography sx={{ color: "text.secondary", textDecoration: "none", mb: 1 }}>{post.excerpt}</Typography>
-					{post.tags.map((tag) => (
-						<Chip key={tag} label={tag} variant='outlined' color='primary' />
-					))}
-					<Box id='controls' sx={{ display: "flex", justifyContent: "flex-end", alignItems: "center", gap: 1 }}>
-						<Typography variant='body2'>{post.readTime} min read</Typography>
-						<IconButton size='small'>
-							<ShareIcon fontSize='inherit' />
-						</IconButton>
-					</Box>
-				</Card>
+
+						<Typography sx={{ color: "text.secondary", mb: 3 }}>{post.excerpt}</Typography>
+
+						<Box
+							sx={{
+								display: "flex",
+								justifyContent: "space-between",
+								alignItems: "center",
+								gap: 2,
+							}}>
+							<Box
+								sx={{
+									display: "flex",
+									gap: 1,
+									flexWrap: "wrap",
+								}}>
+								{post.tags.map((tag) => (
+									<Chip
+										key={tag}
+										label={tag.charAt(0).toUpperCase() + tag.slice(1)}
+										variant='outlined'
+										color='primary'
+										size='small'
+										sx={{ px: 1 }}
+									/>
+								))}
+							</Box>
+
+							<Typography
+								variant='body2'
+								sx={{
+									color: "text.secondary",
+									flexShrink: 0,
+									whiteSpace: "nowrap",
+								}}>
+								{post.readTime} min read
+							</Typography>
+						</Box>
+					</Card>
+				</Link>
 			))}
 		</Box>
 	);

@@ -59,7 +59,8 @@ export const blogPostQuery = groq`
         dimensions
       }
     },
-    alt
-  }
+    alt,
+  },
+  "readTime": round(length(pt::text(content)) / 5 / 200),
 }
 `;
