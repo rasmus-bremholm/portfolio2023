@@ -39,3 +39,17 @@ export const blogPostsQuery = groq`
   "readTime": round(length(pt::text(content)) / 5 / 200)
 }
 `;
+
+// Get single blogpost
+export const blogPostQuery = groq`
+*[_type == "blogPost" && slug.current == $slug][0]{
+  _id,
+  title,
+  slug,
+  content,
+  publishedAt,
+  tags,
+  category,
+  featuredImage,
+}
+`;
