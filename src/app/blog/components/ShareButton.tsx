@@ -18,18 +18,7 @@ export default function ShareButton() {
 
 	return (
 		<Tooltip title={copied ? "Link copied!" : "Copy Link"} arrow>
-			<IconButton
-				onClick={handleShare}
-				disableRipple
-				aria-label='Copy link to share this blogpost'
-				size='small'
-				sx={{
-					width: 32,
-					height: 32,
-					"&:hover": {
-						backgroundColor: "action.hover",
-					},
-				}}>
+			<IconButton onClick={handleShare} aria-label='Copy link to share this blogpost' size='small' sx={{ width: 32, height: 32 }}>
 				<Share aria-hidden='true' sx={{ fontSize: 18 }} />
 			</IconButton>
 		</Tooltip>

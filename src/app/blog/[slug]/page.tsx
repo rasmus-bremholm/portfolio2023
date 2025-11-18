@@ -20,7 +20,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
 	return (
 		<Container maxWidth='md' sx={{ py: 8 }}>
-			<Box sx={{ display: "flex", justifyContent: "space-between" }}>
+			<Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
 				<BackButton />
 				<ShareButton />
 			</Box>
