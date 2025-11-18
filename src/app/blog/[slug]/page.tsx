@@ -38,10 +38,12 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 					/>
 				</Box>
 			)}
-			<Box sx={{ display: "flex", alignItems: "center", gap: 2, color: "text.secondary" }}>
-				<Typography variant='caption' sx={{ textTransform: "uppercase", color: "primary.main", fontWeight: 600 }}>
-					{post.category}
-				</Typography>
+			<Box sx={{ display: "flex", alignItems: "center", gap: 2, justifyContent: "flex-end", color: "text.secondary" }}>
+				<Box sx={{ display: "flex", flexGrow: 1 }}>
+					<Typography variant='caption' sx={{ textTransform: "uppercase", color: "primary.main", fontWeight: 600 }}>
+						{post.category}
+					</Typography>
+				</Box>
 				<Typography variant='caption'>{formatDate(post.publishedAt)}</Typography>
 				<Typography variant='caption'>{post.readTime} min read</Typography>
 			</Box>

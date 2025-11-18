@@ -4,7 +4,12 @@ import { Box, Typography } from "@mui/material";
 
 export default function HomePageHeader() {
 	return (
-		<Box component={motion.header} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }} sx={{ my: 8 }}>
+		<Box
+			component={motion.header}
+			initial={{ opacity: 0, y: 20 }}
+			animate={{ opacity: 1, y: 0 }}
+			transition={{ duration: 0.8, delay: 0.5 }}
+			sx={{ my: { xs: 8, sm: 16, md: 32 } }}>
 			<Typography
 				variant='h1'
 				sx={{
