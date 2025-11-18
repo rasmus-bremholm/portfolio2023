@@ -50,6 +50,16 @@ export const blogPostQuery = groq`
   publishedAt,
   tags,
   category,
-  featuredImage,
+  featuredImage {
+    asset->{
+      _id,
+      url,
+      metadata {
+        lqip,
+        dimensions
+      }
+    },
+    alt
+  }
 }
 `;
