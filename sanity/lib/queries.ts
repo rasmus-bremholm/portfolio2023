@@ -64,3 +64,57 @@ export const blogPostQuery = groq`
   "readTime": round(length(pt::text(content)) / 5 / 200),
 }
 `;
+
+export const projectsQuery = groq`
+*[_type == "projectPost"] | order(
+  coalesce(customOrder, 9999) asc,
+  publishedAt desc
+) {
+  _id,
+  title,
+  slug,
+  description,
+  technologies,
+  liveUrl,
+  githubUrl,
+  publishedAt,
+  customOrder,
+  featured,
+  featuredImage {
+    asset->{
+      _id,
+      url,
+      metadata {
+        lqip,
+        dimensions
+      }
+    },
+    alt
+  }
+}
+`;
+
+export const projectPostQuery = groq`
+*[_type == "projectPost" && slug.current == $slug][0] {
+  _id,
+  title,
+  slug,
+  description,
+  content,
+  technologies,
+  liveUrl,
+  githubUrl,
+  publishedAt,
+  featuredImage {
+    asset->{
+      _id,
+      url,
+      metadata {
+        lqip,
+        dimensions
+      }
+    },
+    alt
+  }
+}
+`;
