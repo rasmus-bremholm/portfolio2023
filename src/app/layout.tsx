@@ -4,6 +4,7 @@ import Navbar from "./components/surfaces/navbar/Navbar";
 import ThemeRegistry from "./ThemeRegistry";
 
 export const metadata: Metadata = {
+	metadataBase: new URL("https://www.rasmusbremholm.com"),
 	title: {
 		default: "Rasmus Bremholm | Fullstack Developer",
 		template: "%s | Rasmus Bremholm",
@@ -14,10 +15,10 @@ export const metadata: Metadata = {
 		title: "Rasmus Bremholm | Fullstack Developer",
 		description: "Portfolio of Rasmus Bremholm, a fullstack developer based in Göteborg, Sweden who builds production-ready applications.",
 		url: "https://www.rasmusbremholm.com",
-		siteName: "Rasmus Bremholm Portfolio",
+		siteName: "Rasmus Bremholm",
 		images: [
 			{
-				url: "https://www.rasmusbremholm.com/og-image.jpg",
+				url: "/og-image.jpg",
 				width: 1200,
 				height: 630,
 				alt: "Rasmus Bremholm Portfolio",
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
 		card: "summary_large_image",
 		title: "Rasmus Bremholm | Fullstack Developer",
 		description: "Portfolio of Rasmus Bremholm, a fullstack developer based in Göteborg, Sweden who builds production-ready applications.",
-		images: ["https://www.rasmusbremholm.com/og-image.jpg"],
+		images: ["/og-image.jpg"],
 	},
 	robots: {
 		index: true,

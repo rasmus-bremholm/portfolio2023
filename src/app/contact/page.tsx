@@ -11,7 +11,8 @@ export const metadata: Metadata = {
 	openGraph: {
 		title: "Contact | Rasmus Bremholm",
 		description: "Get in touch with Rasmus Bremholm for freelance work, collaboration, or just to say hello.",
-		url: "https://www.rasmusbremholm.com/contact",
+		url: "/contact",
+		siteName: "Rasmus Bremholm",
 		type: "website",
 	},
 };

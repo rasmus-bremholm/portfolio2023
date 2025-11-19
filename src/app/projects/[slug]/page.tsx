@@ -24,8 +24,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 	}
 
 	const ogImageUrl = post.featuredImage
-		? `https://www.rasmusbremholm.com/api/og/project?title=${encodeURIComponent(post.title)}&tech=${encodeURIComponent(post.technologies?.slice(0, 3).join(", ") || "")}`
-		: "https://www.rasmusbremholm.com/og-image.jpg";
+		? `/api/og/project?title=${encodeURIComponent(post.title)}&tech=${encodeURIComponent(post.technologies?.slice(0, 3).join(", ") || "")}`
+		: "/og-image.jpg";
 
 	return {
 		title: post.title,
@@ -33,7 +33,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 		openGraph: {
 			title: post.title,
 			description: post.description,
-			url: `https://www.rasmusbremholm.com/projects/${slug}`,
+			url: `/projects/${slug}`,
+			siteName: "Rasmus Bremholm",
 			type: "article",
 			publishedTime: post.publishedAt,
 			images: [

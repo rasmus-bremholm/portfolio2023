@@ -11,7 +11,8 @@ export const metadata: Metadata = {
 	openGraph: {
 		title: "Rasmus Bremholm | Fullstack Developer",
 		description: "Fullstack developer specializing in Next.js, React, and modern web technologies.",
-		url: "https://www.rasmusbremholm.com",
+		url: "/",
+		siteName: "Rasmus Bremholm",
 		type: "website",
 	},
 };
