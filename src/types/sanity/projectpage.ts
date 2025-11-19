@@ -24,6 +24,6 @@ export interface ProjectPreview {
 	};
 }
 
-export interface ProjectPost extends ProjectPreview {
+export interface Project extends ProjectPreview {
 	content: PortableTextBlock[];
 }

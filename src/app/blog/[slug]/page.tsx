@@ -21,7 +21,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 	return (
 		<Container maxWidth='md' sx={{ py: 8 }}>
 			<Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-				<BackButton />
+				<BackButton href='/blog' label='Blog' ariaLabel='Return to blog list' />
 				<ShareButton />
 			</Box>
 
@@ -55,7 +55,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 				<PortableText value={post.content} components={renderComponents} />
 			</Box>
 			<Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-				<BackButton />
+				<BackButton href='/blog' label='Blog' ariaLabel='Return to blog list' />
 			</Box>
 		</Container>
 	);
