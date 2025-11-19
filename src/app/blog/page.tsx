@@ -1,7 +1,7 @@
 import { Container, Box } from "@mui/material";
 import BlogPageHeader from "../components/surfaces/header/BlogPageHeader";
-import { client } from "../../../sanity/lib/client";
-import { blogPostsQuery } from "../../../sanity/lib";
+import { client } from "@/sanity/lib/client";
+import { blogPostsQuery } from "@/sanity/lib";
 import BlogList from "./components/BlogList";
 
 export default async function Blog() {
