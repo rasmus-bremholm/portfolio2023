@@ -1,12 +1,45 @@
+import type { Metadata } from "next";
 import { Container, Box, Typography, Tooltip, IconButton } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import Link from "next/link";
 import { Phone, Person, LocationCity, Mail } from "@mui/icons-material";
 
+export const metadata: Metadata = {
+	title: "Contact",
+	description: "Get in touch with Rasmus Bremholm for freelance work, collaboration, or just to say hello.",
+	openGraph: {
+		title: "Contact | Rasmus Bremholm",
+		description: "Get in touch with Rasmus Bremholm for freelance work, collaboration, or just to say hello.",
+		url: "https://www.rasmusbremholm.com/contact",
+		type: "website",
+	},
+};
+
 export default function ContactPage() {
+	const jsonLd = {
+		"@context": "https://schema.org",
+		"@type": "ContactPage",
+		name: "Contact Rasmus Bremholm",
+		description: "Get in touch with Rasmus Bremholm",
+		url: "https://www.rasmusbremholm.com/contact",
+		mainEntity: {
+			"@type": "Person",
+			name: "Rasmus Bremholm",
+			email: "rasmus.brem@gmail.com",
+			telephone: "+46762693031",
+			address: {
+				"@type": "PostalAddress",
+				addressLocality: "Göteborg",
+				addressCountry: "SE",
+			},
+		},
+	};
+
 	return (
-		<Container maxWidth='md' sx={{ pt: 8 }}>
+		<>
+			<script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+			<Container maxWidth='md' sx={{ pt: 8 }}>
 			<Typography variant='h1' sx={{ mb: 1, fontSize: 120 }}>
 				Get in touch
 			</Typography>
@@ -127,5 +160,6 @@ export default function ContactPage() {
 				</Box>
 			</Box>
 		</Container>
+		</>
 	);
 }

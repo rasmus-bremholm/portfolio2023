@@ -3,13 +3,16 @@ import Footer from "./components/surfaces/footer/Footer";
 import Navbar from "./components/surfaces/navbar/Navbar";
 import ThemeRegistry from "./ThemeRegistry";
 
-export const metadata = {
-	title: "Rasmus Bremholm | Portfolio",
+export const metadata: Metadata = {
+	title: {
+		default: "Rasmus Bremholm | Fullstack Developer",
+		template: "%s | Rasmus Bremholm",
+	},
 	description:
-		"Rasmus Bremholm | Fullstack Developer from Gothenburg Sweden. I specialise in Web Development but im also a skilled 3D Artist, feel free to reach out to me!",
+		"Portfolio of Rasmus Bremholm, a fullstack developer based in Göteborg, Sweden who builds production-ready applications. Currently interning at Volvo Connected Solutions.",
 	openGraph: {
-		title: "Rasmus Bremholm | Frontend Portfolio",
-		description: "Fullstack developer from Göteborg, Sweden. I love exploring areas where technology and artistry meet.",
+		title: "Rasmus Bremholm | Fullstack Developer",
+		description: "Portfolio of Rasmus Bremholm, a fullstack developer based in Göteborg, Sweden who builds production-ready applications.",
 		url: "https://www.rasmusbremholm.com",
 		siteName: "Rasmus Bremholm Portfolio",
 		images: [
@@ -17,7 +20,7 @@ export const metadata = {
 				url: "https://www.rasmusbremholm.com/og-image.jpg",
 				width: 1200,
 				height: 630,
-				alt: "Rasmus Bremholm Portfolio Banner",
+				alt: "Rasmus Bremholm Portfolio",
 			},
 		],
 		locale: "en_US",
@@ -25,16 +28,17 @@ export const metadata = {
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Rasmus Bremholm | Frontend Developer",
-		description: "Fullstack developer from Göteborg, Sweden. I love exploring areas where technology and artistry meet.",
-		images: [
-			{
-				url: "https://www.rasmusbremholm.com/og-image.jpg",
-				width: 1200,
-				height: 630,
-				alt: "Rasmus Bremholm Portfolio Banner",
-			},
-		],
+		title: "Rasmus Bremholm | Fullstack Developer",
+		description: "Portfolio of Rasmus Bremholm, a fullstack developer based in Göteborg, Sweden who builds production-ready applications.",
+		images: ["https://www.rasmusbremholm.com/og-image.jpg"],
+	},
+	robots: {
+		index: true,
+		follow: true,
+		googleBot: {
+			index: true,
+			follow: true,
+		},
 	},
 };
 

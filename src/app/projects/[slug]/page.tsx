@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { client } from "@/sanity/lib/client";
 import { projectPostQuery } from "@/sanity/lib";
 import { Typography, Box, Container, Button, Chip } from "@mui/material";
@@ -12,6 +13,47 @@ import LaunchIcon from "@mui/icons-material/Launch";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { Project } from "@/types/sanity/projectpage";
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+	const { slug } = await params;
+	const post: Project = await client.fetch(projectPostQuery, { slug });
+
+	if (!post) {
+		return {
+			title: "Project Not Found",
+		};
+	}
+
+	const ogImageUrl = post.featuredImage
+		? `https://www.rasmusbremholm.com/api/og/project?title=${encodeURIComponent(post.title)}&tech=${encodeURIComponent(post.technologies?.slice(0, 3).join(", ") || "")}`
+		: "https://www.rasmusbremholm.com/og-image.jpg";
+
+	return {
+		title: post.title,
+		description: post.description || `View ${post.title} project by Rasmus Bremholm`,
+		openGraph: {
+			title: post.title,
+			description: post.description,
+			url: `https://www.rasmusbremholm.com/projects/${slug}`,
+			type: "article",
+			publishedTime: post.publishedAt,
+			images: [
+				{
+					url: ogImageUrl,
+					width: 1200,
+					height: 630,
+					alt: post.title,
+				},
+			],
+		},
+		twitter: {
+			card: "summary_large_image",
+			title: post.title,
+			description: post.description,
+			images: [ogImageUrl],
+		},
+	};
+}
+
 export default async function ProjectPost({ params }: { params: Promise<{ slug: string }> }) {
 	const { slug } = await params;
 	const post: Project = await client.fetch(projectPostQuery, { slug });
@@ -21,8 +63,25 @@ export default async function ProjectPost({ params }: { params: Promise<{ slug: 
 		return date.format("D MMMM YYYY");
 	};
 
+	const jsonLd = {
+		"@context": "https://schema.org",
+		"@type": "CreativeWork",
+		name: post.title,
+		description: post.description,
+		datePublished: post.publishedAt,
+		author: {
+			"@type": "Person",
+			name: "Rasmus Bremholm",
+			url: "https://www.rasmusbremholm.com",
+		},
+		url: `https://www.rasmusbremholm.com/projects/${slug}`,
+		keywords: post.technologies?.join(", "),
+	};
+
 	return (
-		<Container maxWidth='md' sx={{ py: 8 }}>
+		<>
+			<script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+			<Container maxWidth='md' sx={{ py: 8 }}>
 			<Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
 				<BackButton href='/projects' label='Projects' ariaLabel='Return to project list' />
 				<ShareButton />
@@ -84,5 +143,6 @@ export default async function ProjectPost({ params }: { params: Promise<{ slug: 
 				<BackButton href='/projects' label='Projects' ariaLabel='Return to project list' />
 			</Box>
 		</Container>
+		</>
 	);
 }
