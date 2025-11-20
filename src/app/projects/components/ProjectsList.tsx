@@ -31,7 +31,7 @@ export default function ProjectsList({ posts }: ProjectListProps) {
 	return (
 		<Container>
 			<Grid container spacing={2} component={motion.div} variants={container} initial='hidden' animate='show'>
-				{posts.map((post) => (
+				{posts?.map((post) => (
 					<Grid size={{ xs: 12, md: 6 }} key={post._id}>
 						<Card sx={{ border: "1px solid transparent", "&:hover": { borderColor: "primary.main" } }} component={motion.div} variants={item}>
 							{post.featuredImage && <CardMedia sx={{ height: 200 }} image={urlFor(post.featuredImage).width(600).url()} />}

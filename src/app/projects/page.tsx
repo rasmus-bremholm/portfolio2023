@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Container, Box } from "@mui/material";
+import { Container, Box, Typography } from "@mui/material";
 import { client } from "@/sanity/lib/client";
 import { projectsQuery } from "@/sanity/lib";
 import ProjectsList from "./components/ProjectsList";
@@ -26,7 +26,12 @@ export default async function Projects() {
 				<ProjectPageHeader />
 			</Box>
 			<Box>
-				<ProjectsList posts={posts} />
+				{posts && posts.length > 0 ?
+					<ProjectsList posts={posts} />
+				:	<Box sx={{ py: 8, textAlign: "center" }}>
+						<Typography>No projects available yet.</Typography>
+					</Box>
+				}
 			</Box>
 		</Container>
 	);
