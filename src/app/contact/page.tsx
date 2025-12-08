@@ -111,7 +111,7 @@ export default function ContactPage() {
 						</Box>
 					</Box>
 
-					<Avatar alt='Rasmus Bremholm Headshot' src='' sx={{ width: "100%" }} variant='rounded' />
+					<Avatar alt='Rasmus Bremholm Headshot' src='/rasmus-portrait.png' sx={{ width: "100%", height: "100%" }} variant='rounded' />
 					<Box
 						sx={{
 							border: "1px solid",
