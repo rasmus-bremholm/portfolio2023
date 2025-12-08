@@ -1,0 +1,61 @@
+"use client";
+import { motion } from "framer-motion";
+import { Box, Typography, Divider, Button } from "@mui/material";
+import Link from "next/link";
+import { PortableText, PortableTextBlock } from "@portabletext/react";
+import { renderComponents } from "../../../../sanity/lib/renderComponents";
+
+interface ContentSectionProps {
+	title: string;
+	content: PortableTextBlock[];
+	alignment: "left" | "right";
+	order: number;
+	ctaText?: string;
+	ctaLink?: string;
+}
+
+export default function HomepageSection({ title, content, alignment, ctaText, ctaLink }: ContentSectionProps) {
+	return (
+		<Box
+			component={motion.section}
+			initial={{ opacity: 0, y: 30 }}
+			whileInView={{ opacity: 1, y: 0 }}
+			viewport={{ once: true }}
+			transition={{ duration: 0.6, delay: 0.5 }}
+			sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" }, gap: 4, py: 8 }}>
+			<Box sx={{ order: alignment === "left" ? 1 : 2, textAlign: alignment === "left" ? "left" : "right" }}>
+				<Typography variant='h4' sx={{ fontSize: 60, color: "text.primary" }}>
+					{title}
+				</Typography>
+				<Box>
+					<PortableText components={renderComponents} value={content} />
+				</Box>
+				{ctaText && ctaLink && (
+					<Button
+						LinkComponent={Link}
+						href={ctaLink}
+						variant='outlined'
+						sx={{
+							mb: 2,
+							"&:hover": {
+								bgcolor: "primary.main",
+								color: "text.primary",
+								borderColor: "primary.main",
+							},
+						}}>
+						{ctaText}
+					</Button>
+				)}
+				<Divider sx={{ mt: 4 }} />
+			</Box>
+			<Box
+				sx={{
+					order: alignment === "left" ? 2 : 1,
+					textAlign: alignment === "left" ? "left" : "right",
+					display: { xs: "hidden", sm: "flex" },
+					justifyContent: "center",
+					alignItems: "center",
+				}}></Box>
+		</Box>
+	);
+}

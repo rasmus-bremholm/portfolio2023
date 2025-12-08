@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.rasmusbremholm.com/sitemap.xml
+
+# For AI crawlers
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: CCBot
+User-agent: anthropic-ai
+User-agent: Claude-Web
+Allow: /
+
+# Link to LLM-specific information
+# See: /llms.txt
