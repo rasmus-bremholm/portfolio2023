@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Footer from "./components/surfaces/footer/Footer";
 import Navbar from "./components/surfaces/navbar/Navbar";
 import ThemeRegistry from "./ThemeRegistry";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
 	metadataBase: new URL("https://www.rasmusbremholm.com"),
@@ -56,6 +57,7 @@ export default function RootLayout({
 					{children}
 					<Footer />
 				</ThemeRegistry>
+				<Analytics />
 			</body>
 		</html>
 	);

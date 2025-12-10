@@ -20,6 +20,7 @@
 		"@sanity/image-url": "^1.2.0",
 		"@sanity/vision": "^4.8.1",
 		"@types/three": "^0.180.0",
+		"@vercel/analytics": "^1.6.1",
 		"@vercel/og": "^0.8.5",
 		"dayjs": "^1.11.19",
 		"framer-motion": "^12.23.24",
