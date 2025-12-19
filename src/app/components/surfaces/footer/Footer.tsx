@@ -6,7 +6,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 export default function Footer() {
 	return (
-		<Container maxWidth={false} sx={{ bgcolor: "#111111", position: "fixed", bottom: 0 }}>
+		<Container maxWidth={false} sx={{ bgcolor: "#111111", position: "relative", mt: "auto" }}>
 			<Divider />
 			<Box sx={{ display: "flex", justifyContent: "space-between", p: 2 }}>
 				<Box>© 2025 Rasmus Bremholm</Box>
