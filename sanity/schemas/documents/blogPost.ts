@@ -31,7 +31,7 @@ export default defineType({
 			name: "featuredImage",
 			title: "Featured Image",
 			type: "image",
-			options: { hotspot: true, metadata: ['blurhash', 'lqip'] },
+			options: { hotspot: true, metadata: ["blurhash", "lqip"] },
 			description: "Used in blog post lists and as fallback for SEO image",
 		}),
 		defineField({
@@ -51,6 +51,8 @@ export default defineType({
 				},
 				{ type: "codeBlock" },
 				{ type: "imageBlock" },
+				{ type: "blockquote" },
+				{ type: "youtube" },
 			],
 		}),
 		defineField({
