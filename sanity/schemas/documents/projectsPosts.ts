@@ -63,6 +63,8 @@ export default defineType({
 				},
 				{ type: "codeBlock" },
 				{ type: "imageBlock" },
+				{ type: "blockquote" },
+				{ type: "youtube" },
 			],
 		}),
 		defineField({
