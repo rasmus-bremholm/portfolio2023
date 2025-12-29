@@ -61,5 +61,72 @@ export const renderComponents: PortableTextComponents = {
 				</Box>
 			);
 		},
+		blockquote: ({ value }) => {
+			return (
+				<blockquote
+					style={{
+						margin: "2rem 0",
+						padding: "1rem 1.5rem",
+						borderLeft: "4px solid",
+						fontStyle: "italic",
+						background: "rgba(255,255,255,0,05)",
+					}}>
+					<Typography component='p' sx={{ mb: 1 }}>
+						&quot;{value.quote}&quot;
+					</Typography>
+					{value.author && (
+						<Typography component='cite' sx={{ fontSize: "0.9rem", opacity: 0.8, fontStyle: "normal" }}>
+							- {value.author}
+							{value.source && `, ${value.source}`}
+						</Typography>
+					)}
+				</blockquote>
+			);
+		},
+		youtube: ({ value }) => {
+			if (!value?.url) return null;
+
+			const getVideoId = (url: string) => {
+				if (url.includes("youtu.be/")) {
+					return url.split("youtu.be/")[1].split("?")[0];
+				}
+				const match = url.match(/[?&]v=([^&]+)/);
+				return match ? match[1] : null;
+			};
+			const videoId = getVideoId(value.url);
+			if (!videoId) return null;
+
+			return (
+				<figure style={{ margin: "2rem 0" }}>
+					<div
+						style={{
+							position: "relative",
+							paddingBottom: "56.25%", // 16:9 aspect ratio
+							height: 0,
+							overflow: "hidden",
+						}}>
+						<iframe
+							src={`https://www.youtube-nocookie.com/embed/${videoId}`}
+							title='YouTube video'
+							allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+							allowFullScreen
+							style={{
+								position: "absolute",
+								top: 0,
+								left: 0,
+								width: "100%",
+								height: "100%",
+								border: 0,
+							}}
+						/>
+					</div>
+					{value.caption && (
+						<Typography component='figcaption' sx={{ mt: 1, fontStyle: "italic", textAlign: "center" }}>
+							{value.caption}
+						</Typography>
+					)}
+				</figure>
+			);
+		},
 	},
 };
