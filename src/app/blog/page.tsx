@@ -24,37 +24,38 @@ export default async function BlogPage() {
 				<Typography color='text.secondary'>No posts yet.</Typography>
 			)}
 
-			<Stack gap={6}>
+			<Stack sx={{ gap: 6 }}>
 				{posts.map((post) => (
-					<Box
+					<Link
 						key={post._id}
-						component={Link}
 						href={`/blog/${post.slug.current}`}
-						sx={{ textDecoration: "none", color: "inherit" }}>
-						<Typography variant='caption' color='text.secondary'>
-							{dayjs(post.publishedAt).format("MMM D, YYYY")}
-							{post.readTime ? ` · ${post.readTime} min read` : ""}
-							{post.category ? ` · ${post.category}` : ""}
-						</Typography>
-
-						<Typography variant='h4' sx={{ mt: 0.5, mb: 1 }}>
-							{post.title}
-						</Typography>
-
-						{post.excerpt && (
-							<Typography variant='body2' color='text.secondary' sx={{ mb: 1.5 }}>
-								{post.excerpt}
+						style={{ textDecoration: "none", color: "inherit" }}>
+						<Box>
+							<Typography variant='caption' color='text.secondary'>
+								{dayjs(post.publishedAt).format("MMM D, YYYY")}
+								{post.readTime ? ` · ${post.readTime} min read` : ""}
+								{post.category ? ` · ${post.category}` : ""}
 							</Typography>
-						)}
 
-						{post.tags?.length > 0 && (
-							<Stack direction='row' flexWrap='wrap' gap={0.5}>
-								{post.tags.map((tag) => (
-									<Chip key={tag} label={tag} size='small' variant='outlined' />
-								))}
-							</Stack>
-						)}
-					</Box>
+							<Typography variant='h4' sx={{ mt: 0.5, mb: 1 }}>
+								{post.title}
+							</Typography>
+
+							{post.excerpt && (
+								<Typography variant='body2' color='text.secondary' sx={{ mb: 1.5 }}>
+									{post.excerpt}
+								</Typography>
+							)}
+
+							{post.tags?.length > 0 && (
+								<Stack direction='row' sx={{ flexWrap: "wrap", gap: 0.5 }}>
+									{post.tags.map((tag) => (
+										<Chip key={tag} label={tag} size='small' variant='outlined' />
+									))}
+								</Stack>
+							)}
+						</Box>
+					</Link>
 				))}
 			</Stack>
 		</Container>

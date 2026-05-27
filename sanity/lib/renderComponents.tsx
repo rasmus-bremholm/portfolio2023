@@ -1,7 +1,7 @@
 import { PortableTextComponents } from "@portabletext/react";
 import { Typography, Box } from "@mui/material";
 import Link from "next/link";
-import imageUrlBuilder from "@sanity/image-url";
+import { createImageUrlBuilder } from "@sanity/image-url";
 import Image from "next/image";
 import { createClient } from "next-sanity";
 
@@ -12,7 +12,7 @@ const imageClient = createClient({
 	useCdn: true,
 });
 
-const builder = imageUrlBuilder(imageClient);
+const builder = createImageUrlBuilder(imageClient);
 
 export const renderComponents: PortableTextComponents = {
 	block: {

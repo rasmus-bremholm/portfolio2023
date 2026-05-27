@@ -5,7 +5,6 @@ import type { Project } from "@/types/sanity/projectpage";
 import { PortableText } from "@portabletext/react";
 import { Box, Container, Typography, Chip, Stack, Button } from "@mui/material";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
@@ -38,7 +37,7 @@ export default async function ProjectPage({ params }: PageProps) {
 
 	return (
 		<Container maxWidth='md' sx={{ py: 8 }}>
-			<Button component={Link} href='/projects' sx={{ mb: 4 }}>
+			<Button href='/projects' sx={{ mb: 4 }}>
 				← Back to projects
 			</Button>
 
@@ -73,14 +72,14 @@ export default async function ProjectPage({ params }: PageProps) {
 			</Typography>
 
 			{project.technologies.length > 0 && (
-				<Stack direction='row' flexWrap='wrap' gap={1} sx={{ mb: 4 }}>
+				<Stack direction='row' sx={{ flexWrap: 'wrap', gap: 1, mb: 4 }}>
 					{project.technologies.map((tech) => (
 						<Chip key={tech} label={tech} />
 					))}
 				</Stack>
 			)}
 
-			<Stack direction='row' gap={2} sx={{ mb: 6 }}>
+			<Stack direction='row' sx={{ gap: 2, mb: 6 }}>
 				{project.liveUrl && (
 					<Button
 						variant='contained'

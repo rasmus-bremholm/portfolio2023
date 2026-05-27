@@ -3,7 +3,6 @@ import type { ContentSection } from "@/types/sanity/homepage";
 import { PortableText } from "@portabletext/react";
 import { renderComponents } from "@/sanity/lib/renderComponents";
 import { Box, Container, Typography, Button } from "@mui/material";
-import Link from "next/link";
 
 export default async function HomePage() {
 	const sections: ContentSection[] = await getAllContentSections();
@@ -38,7 +37,6 @@ export default async function HomePage() {
 
 						{section.ctaText && section.ctaLink && (
 							<Button
-								component={Link}
 								href={section.ctaLink}
 								variant='contained'
 								sx={{ mt: 2 }}>

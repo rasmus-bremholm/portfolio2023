@@ -5,7 +5,6 @@ import { PortableText } from "@portabletext/react";
 import type { PortableTextBlock } from "@portabletext/types";
 import { Box, Container, Typography, Chip, Stack, Button } from "@mui/material";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import dayjs from "dayjs";
 import type { Metadata } from "next";
@@ -63,11 +62,11 @@ export default async function BlogPostPage({ params }: PageProps) {
 
 	return (
 		<Container maxWidth='md' sx={{ py: 8 }}>
-			<Button component={Link} href='/blog' sx={{ mb: 4 }}>
+			<Button href='/blog' sx={{ mb: 4 }}>
 				← Back to blog
 			</Button>
 
-			<Typography variant='caption' color='text.secondary' display='block' sx={{ mb: 1 }}>
+			<Typography variant='caption' color='text.secondary' sx={{ display: 'block', mb: 1 }}>
 				{dayjs(post.publishedAt).format("MMM D, YYYY")}
 				{post.readTime ? ` · ${post.readTime} min read` : ""}
 				{post.category ? ` · ${post.category}` : ""}
@@ -78,7 +77,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 			</Typography>
 
 			{post.tags?.length > 0 && (
-				<Stack direction='row' flexWrap='wrap' gap={0.5} sx={{ mb: 4 }}>
+				<Stack direction='row' sx={{ flexWrap: 'wrap', gap: 0.5, mb: 4 }}>
 					{post.tags.map((tag) => (
 						<Chip key={tag} label={tag} size='small' variant='outlined' />
 					))}

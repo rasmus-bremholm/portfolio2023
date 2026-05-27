@@ -31,41 +31,42 @@ export default async function ProjectsPage() {
 					gap: 4,
 				}}>
 				{projects.map((project) => (
-					<Box
+					<Link
 						key={project._id}
-						component={Link}
 						href={`/projects/${project.slug.current}`}
-						sx={{ textDecoration: "none", color: "inherit" }}>
-						{project.featuredImage?.asset?.url && (
-							<Box sx={{ position: "relative", aspectRatio: "16/9", mb: 2, borderRadius: 1, overflow: "hidden" }}>
-								<Image
-									src={project.featuredImage.asset.url}
-									alt={project.featuredImage.alt || project.title}
-									fill
-									style={{ objectFit: "cover" }}
-									placeholder={project.featuredImage.asset.metadata?.lqip ? "blur" : "empty"}
-									blurDataURL={project.featuredImage.asset.metadata?.lqip}
-									sizes='(max-width:600px) 100vw, (max-width:1200px) 50vw, 33vw'
-								/>
-							</Box>
-						)}
+						style={{ textDecoration: "none", color: "inherit" }}>
+						<Box>
+							{project.featuredImage?.asset?.url && (
+								<Box sx={{ position: "relative", aspectRatio: "16/9", mb: 2, borderRadius: 1, overflow: "hidden" }}>
+									<Image
+										src={project.featuredImage.asset.url}
+										alt={project.featuredImage.alt || project.title}
+										fill
+										style={{ objectFit: "cover" }}
+										placeholder={project.featuredImage.asset.metadata?.lqip ? "blur" : "empty"}
+										blurDataURL={project.featuredImage.asset.metadata?.lqip}
+										sizes='(max-width:600px) 100vw, (max-width:1200px) 50vw, 33vw'
+									/>
+								</Box>
+							)}
 
-						<Typography variant='h5' gutterBottom>
-							{project.title}
-						</Typography>
+							<Typography variant='h5' gutterBottom>
+								{project.title}
+							</Typography>
 
-						<Typography variant='body2' color='text.secondary' sx={{ mb: 1 }}>
-							{project.description}
-						</Typography>
+							<Typography variant='body2' color='text.secondary' sx={{ mb: 1 }}>
+								{project.description}
+							</Typography>
 
-						{project.technologies.length > 0 && (
-							<Stack direction='row' flexWrap='wrap' gap={0.5}>
-								{project.technologies.map((tech) => (
-									<Chip key={tech} label={tech} size='small' />
-								))}
-							</Stack>
-						)}
-					</Box>
+							{project.technologies.length > 0 && (
+								<Stack direction='row' sx={{ flexWrap: "wrap", gap: 0.5 }}>
+									{project.technologies.map((tech) => (
+										<Chip key={tech} label={tech} size='small' />
+									))}
+								</Stack>
+							)}
+						</Box>
+					</Link>
 				))}
 			</Box>
 		</Container>
