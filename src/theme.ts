@@ -1,91 +1,44 @@
 "use client";
-import { Bebas_Neue, Lato } from "next/font/google";
-import { createTheme, Components } from "@mui/material/styles";
 
-export const bebasNeue = Bebas_Neue({
-	subsets: ["latin"],
-	weight: "400",
-	display: "swap",
-});
+import { createTheme } from "@mui/material/styles";
 
-export const lato = Lato({
-	subsets: ["latin"],
-	weight: ["300", "400", "700"],
-	display: "swap",
-});
-
-const typography = {
-	fontFamily: lato.style.fontFamily,
-	body1: {
-		color: "#898989", // text.secondary value
-	},
-	body2: {
-		color: "#898989",
-	},
-	h1: {
-		fontFamily: bebasNeue.style.fontFamily,
-		color: "#FAFAFA",
-	},
-	h2: {
-		fontFamily: bebasNeue.style.fontFamily,
-	},
-	h3: {
-		fontFamily: bebasNeue.style.fontFamily,
-	},
-	h4: {
-		fontFamily: bebasNeue.style.fontFamily,
-	},
-	h5: {
-		fontFamily: bebasNeue.style.fontFamily,
-	},
-	h6: {
-		fontFamily: bebasNeue.style.fontFamily,
-	},
-};
-
-const components: Components = {
-	MuiButton: {
-		styleOverrides: {
-			root: {
-				textTransform: "none",
-			},
-		},
-	},
-};
-
+// Neutral placeholder theme — design this however you like.
+// Palette, typography, shape, and spacing are all here to override.
 const theme = createTheme({
-	typography,
 	palette: {
-		mode: "dark",
+		mode: "light",
 		primary: {
-			main: "#03a678",
+			main: "#1a1a1a",
 		},
 		secondary: {
-			main: "#1c6bba",
-		},
-		error: {
-			main: "#bf2012",
-		},
-		warning: {
-			main: "#ffa200",
-		},
-		success: {
-			main: "#1a6b31",
-		},
-		info: {
-			main: "#0b66d5",
+			main: "#666666",
 		},
 		background: {
-			default: "#121212",
-			paper: "#171717",
+			default: "#ffffff",
+			paper: "#f5f5f5",
 		},
 		text: {
-			primary: "#fafafa",
-			secondary: "#898989",
+			primary: "#1a1a1a",
+			secondary: "#555555",
 		},
-		divider: "rgba(255, 255, 255, 0.12)",
 	},
-	components,
+	typography: {
+		fontFamily: [
+			"system-ui",
+			"-apple-system",
+			"BlinkMacSystemFont",
+			'"Segoe UI"',
+			"sans-serif",
+		].join(","),
+		h1: { fontWeight: 700 },
+		h2: { fontWeight: 700 },
+		h3: { fontWeight: 600 },
+		h4: { fontWeight: 600 },
+	},
+	shape: {
+		borderRadius: 8,
+	},
+	spacing: 8,
 });
 
 export default theme;

@@ -1,61 +1,53 @@
-import type { Metadata } from "next";
-import HomepageSection from "./components/surfaces/HomepageSection";
-import { getAllContentSections } from "../../sanity/lib/client";
+import { getAllContentSections } from "@/sanity/lib/client";
 import type { ContentSection } from "@/types/sanity/homepage";
-import { Container } from "@mui/material";
-import HomePageHeader from "./components/surfaces/header/HomePageHeader";
+import { PortableText } from "@portabletext/react";
+import { renderComponents } from "@/sanity/lib/renderComponents";
+import { Box, Container, Typography, Button } from "@mui/material";
+import Link from "next/link";
 
-export const metadata: Metadata = {
-	title: "Home",
-	description: "Fullstack developer specializing in Next.js, React, and modern web technologies. Based in Göteborg, Sweden.",
-	openGraph: {
-		title: "Rasmus Bremholm | Fullstack Developer",
-		description: "Fullstack developer specializing in Next.js, React, and modern web technologies.",
-		url: "/",
-		siteName: "Rasmus Bremholm",
-		type: "website",
-	},
-};
-
-export default async function Home() {
+export default async function HomePage() {
 	const sections: ContentSection[] = await getAllContentSections();
 
-	const jsonLd = {
-		"@context": "https://schema.org",
-		"@type": "Person",
-		name: "Rasmus Bremholm",
-		url: "https://www.rasmusbremholm.com",
-		jobTitle: "Fullstack Developer",
-		worksFor: {
-			"@type": "Organization",
-			name: "Volvo Connected Solutions",
-		},
-		address: {
-			"@type": "PostalAddress",
-			addressLocality: "Göteborg",
-			addressCountry: "SE",
-		},
-		sameAs: ["https://github.com/rasmusbremholm", "https://linkedin.com/in/rasmusbremholm"],
-	};
-
 	return (
-		<>
-			<script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-			<Container component='main'>
-				<HomePageHeader />
-				{sections &&
-					sections.map((section) => (
-						<HomepageSection
-							key={section._id}
-							title={section.title}
-							content={section.content}
-							alignment={section.alignment}
-							order={section.order}
-							ctaLink={section.ctaLink}
-							ctaText={section.ctaText}
-						/>
-					))}
-			</Container>
-		</>
+		<Container maxWidth='lg' sx={{ py: 8 }}>
+			{sections.length === 0 && (
+				<Typography variant='body1' color='text.secondary'>
+					No homepage sections yet — add some in the Sanity Studio.
+				</Typography>
+			)}
+
+			{sections.map((section) => (
+				<Box
+					key={section._id}
+					sx={{
+						mb: 8,
+						display: "flex",
+						flexDirection: {
+							xs: "column",
+							md: section.alignment === "right" ? "row-reverse" : "row",
+						},
+						gap: 4,
+						alignItems: "flex-start",
+					}}>
+					<Box sx={{ flex: 1 }}>
+						<Typography variant='h2' gutterBottom>
+							{section.title}
+						</Typography>
+
+						<PortableText value={section.content} components={renderComponents} />
+
+						{section.ctaText && section.ctaLink && (
+							<Button
+								component={Link}
+								href={section.ctaLink}
+								variant='contained'
+								sx={{ mt: 2 }}>
+								{section.ctaText}
+							</Button>
+						)}
+					</Box>
+				</Box>
+			))}
+		</Container>
 	);
 }

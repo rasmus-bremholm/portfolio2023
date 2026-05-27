@@ -1,128 +1,115 @@
-import type { Metadata } from "next";
 import { client } from "@/sanity/lib/client";
-import { blogPostQuery } from "@/sanity/lib";
-import { Typography, Box, Container } from "@mui/material";
-import { PortableText } from "@portabletext/react"; // Use this consistently
+import { blogPostQuery, blogPostsQuery } from "@/sanity/lib/queries";
 import { renderComponents } from "@/sanity/lib/renderComponents";
-import { urlFor } from "@/sanity/lib/sanityImageUrl";
+import { PortableText } from "@portabletext/react";
+import type { PortableTextBlock } from "@portabletext/types";
+import { Box, Container, Typography, Chip, Stack, Button } from "@mui/material";
 import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 import dayjs from "dayjs";
-import BackButton from "../components/BackButton";
-import ShareButton from "../components/ShareButton";
+import type { Metadata } from "next";
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-	const { slug } = await params;
-	const post = await client.fetch(blogPostQuery, { slug });
-
-	if (!post) {
-		return {
-			title: "Post Not Found",
+// Extends the base BlogPost type to include the full image shape the query returns
+interface BlogPostFull {
+	_id: string;
+	title: string;
+	slug: { current: string };
+	excerpt?: string;
+	publishedAt: string;
+	category: string;
+	tags: string[];
+	content: PortableTextBlock[];
+	readTime?: number;
+	featuredImage?: {
+		asset: {
+			_id: string;
+			url: string;
+			metadata?: {
+				lqip?: string;
+				dimensions?: { width: number; height: number };
+			};
 		};
-	}
-
-	const ogImageUrl = post.featuredImage
-		? `/api/og/blog?title=${encodeURIComponent(post.title)}&category=${encodeURIComponent(post.category)}`
-		: "/og-image.jpg";
-
-	return {
-		title: post.title,
-		description: post.excerpt || `Read ${post.title} on Rasmus Bremholm's blog`,
-		openGraph: {
-			title: post.title,
-			description: post.excerpt,
-			url: `/blog/${slug}`,
-			siteName: "Rasmus Bremholm",
-			type: "article",
-			publishedTime: post.publishedAt,
-			authors: ["Rasmus Bremholm"],
-			images: [
-				{
-					url: ogImageUrl,
-					width: 1200,
-					height: 630,
-					alt: post.title,
-				},
-			],
-		},
-		twitter: {
-			card: "summary_large_image",
-			title: post.title,
-			description: post.excerpt,
-			images: [ogImageUrl],
-		},
+		alt?: string;
 	};
 }
 
-export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
+interface PageProps {
+	params: Promise<{ slug: string }>;
+}
+
+export async function generateStaticParams() {
+	const posts = await client.fetch(blogPostsQuery);
+	return posts.map((post: { slug: { current: string } }) => ({
+		slug: post.slug.current,
+	}));
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
 	const { slug } = await params;
-	const post = await client.fetch(blogPostQuery, { slug });
-
-	const formatDate = (dateString: string) => {
-		const date = dayjs(dateString);
-		return date.format("D MMMM YYYY");
-	};
-
-	const jsonLd = {
-		"@context": "https://schema.org",
-		"@type": "BlogPosting",
-		headline: post.title,
+	const post: BlogPostFull | null = await client.fetch(blogPostQuery, { slug });
+	if (!post) return { title: "Post not found" };
+	return {
+		title: post.title,
 		description: post.excerpt,
-		datePublished: post.publishedAt,
-		author: {
-			"@type": "Person",
-			name: "Rasmus Bremholm",
-			url: "https://www.rasmusbremholm.com",
-		},
-		publisher: {
-			"@type": "Person",
-			name: "Rasmus Bremholm",
-		},
-		url: `https://www.rasmusbremholm.com/blog/${slug}`,
-		keywords: post.category,
 	};
+}
+
+export default async function BlogPostPage({ params }: PageProps) {
+	const { slug } = await params;
+	const post: BlogPostFull | null = await client.fetch(blogPostQuery, { slug });
+
+	if (!post) notFound();
 
 	return (
-		<>
-			<script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-			<Container maxWidth='md' sx={{ py: 8 }}>
-			<Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-				<BackButton href='/blog' label='Blog' ariaLabel='Return to blog list' />
-				<ShareButton />
-			</Box>
+		<Container maxWidth='md' sx={{ py: 8 }}>
+			<Button component={Link} href='/blog' sx={{ mb: 4 }}>
+				← Back to blog
+			</Button>
 
-			{post.featuredImage && (
-				<Box sx={{ mb: 1, position: "relative", width: "100%", aspectRatio: "16/9" }}>
+			<Typography variant='caption' color='text.secondary' display='block' sx={{ mb: 1 }}>
+				{dayjs(post.publishedAt).format("MMM D, YYYY")}
+				{post.readTime ? ` · ${post.readTime} min read` : ""}
+				{post.category ? ` · ${post.category}` : ""}
+			</Typography>
+
+			<Typography variant='h1' sx={{ mb: 2 }}>
+				{post.title}
+			</Typography>
+
+			{post.tags?.length > 0 && (
+				<Stack direction='row' flexWrap='wrap' gap={0.5} sx={{ mb: 4 }}>
+					{post.tags.map((tag) => (
+						<Chip key={tag} label={tag} size='small' variant='outlined' />
+					))}
+				</Stack>
+			)}
+
+			{post.featuredImage?.asset?.url && (
+				<Box
+					sx={{
+						position: "relative",
+						aspectRatio: "16/9",
+						mb: 6,
+						borderRadius: 2,
+						overflow: "hidden",
+					}}>
 					<Image
-						src={urlFor(post.featuredImage).width(1200).url()}
+						src={post.featuredImage.asset.url}
 						alt={post.featuredImage.alt || post.title}
 						fill
+						priority
 						style={{ objectFit: "cover" }}
-						sizes='(max-width: 900px) 100vw, 900px'
-						blurDataURL={post.featuredImage.asset.metadata.lqip}
-						placeholder='blur'
+						placeholder={post.featuredImage.asset.metadata?.lqip ? "blur" : "empty"}
+						blurDataURL={post.featuredImage.asset.metadata?.lqip}
+						sizes='(max-width:900px) 100vw, 900px'
 					/>
 				</Box>
 			)}
-			<Box sx={{ display: "flex", alignItems: "center", gap: 2, justifyContent: "flex-end", color: "text.secondary" }}>
-				<Box sx={{ display: "flex", flexGrow: 1 }}>
-					<Typography variant='caption' sx={{ textTransform: "uppercase", color: "primary.main", fontWeight: 600 }}>
-						{post.category}
-					</Typography>
-				</Box>
-				<Typography variant='caption'>{formatDate(post.publishedAt)}</Typography>
-				<Typography variant='caption'>{post.readTime} min read</Typography>
-			</Box>
 
 			<Box>
-				<Typography variant='h1' sx={{ mb: 4 }}>
-					{post.title}
-				</Typography>
 				<PortableText value={post.content} components={renderComponents} />
 			</Box>
-			<Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-				<BackButton href='/blog' label='Blog' ariaLabel='Return to blog list' />
-			</Box>
 		</Container>
-		</>
 	);
 }
