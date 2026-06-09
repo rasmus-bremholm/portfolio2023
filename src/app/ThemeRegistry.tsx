@@ -7,8 +7,6 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import NextLink, { type LinkProps as NextLinkProps } from "next/link";
 import baseTheme from "@/theme";
 
-// Wraps Next.js Link so MUI can use it as its default link component.
-// Defined here (a Client Component) so no function ever crosses the RSC boundary.
 const LinkBehavior = React.forwardRef<HTMLAnchorElement, Omit<NextLinkProps, "ref">>(
 	function LinkBehavior(props, ref) {
 		return <NextLink ref={ref} {...props} />;
@@ -16,8 +14,6 @@ const LinkBehavior = React.forwardRef<HTMLAnchorElement, Omit<NextLinkProps, "re
 );
 LinkBehavior.displayName = "LinkBehavior";
 
-// Extend the base theme with the Next.js link component override so
-// any MUI component with an `href` prop uses client-side navigation automatically.
 const theme = createTheme(baseTheme, {
 	components: {
 		MuiButtonBase: {

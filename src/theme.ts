@@ -2,38 +2,35 @@
 
 import { createTheme } from "@mui/material/styles";
 
-// Neutral placeholder theme — design this however you like.
-// Palette, typography, shape, and spacing are all here to override.
 const theme = createTheme({
 	palette: {
-		mode: "light",
+		mode: "dark",
 		primary: {
-			main: "#1a1a1a",
-		},
-		secondary: {
-			main: "#666666",
+			main: "#10a37f",
 		},
 		background: {
-			default: "#ffffff",
-			paper: "#f5f5f5",
+			default: "#0a0a0a",
+			paper: "#141414",
 		},
 		text: {
-			primary: "#1a1a1a",
-			secondary: "#555555",
+			primary: "#c9c9c5",
+			secondary: "#6b6b66",
 		},
+		divider: "rgba(255,255,255,0.12)",
 	},
 	typography: {
-		fontFamily: [
-			"system-ui",
-			"-apple-system",
-			"BlinkMacSystemFont",
-			'"Segoe UI"',
-			"sans-serif",
-		].join(","),
-		h1: { fontWeight: 700 },
-		h2: { fontWeight: 700 },
-		h3: { fontWeight: 600 },
-		h4: { fontWeight: 600 },
+		fontFamily: "var(--font-inter-tight), sans-serif",
+		h1: { fontFamily: "var(--font-archivo), sans-serif", fontWeight: 800, textTransform: "uppercase", color: "#fafafa", fontSize: "200px" },
+		h2: { fontFamily: "var(--font-archivo), sans-serif", fontWeight: 800, textTransform: "uppercase", color: "#fafafa", fontSize: "56px" },
+		h3: { fontFamily: "var(--font-archivo), sans-serif", fontWeight: 800, textTransform: "uppercase", color: "#c9c9c5", fontSize: "34px" },
+		body1: { fontSize: 16, color: "#c9c9c5" },
+		body2: { fontFamily: "var(--font-jetbrains-mono), monospace", fontSize: 12, color: "#c9c9c5" },
+		overline: {
+			fontFamily: "var(--font-jetbrains-mono), monospace",
+			fontSize: "0.75rem",
+			letterSpacing: "0.1em",
+			textTransform: "uppercase",
+		},
 	},
 	shape: {
 		borderRadius: 8,
