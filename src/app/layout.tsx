@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import ThemeRegistry from "./ThemeRegistry";
 import { Archivo, Inter_Tight, JetBrains_Mono } from "next/font/google";
+import Navbar from "./components/navbar/Navbar";
+import "./global.css";
 
 export const metadata: Metadata = {
 	title: {
@@ -32,6 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			<body className={`${archivo.variable} ${interTight.variable} ${jetbrainsMono.variable}`}>
 				<ThemeRegistry>
 					{/* TODO: Add Navbar here */}
+					<Navbar />
 					<main>{children}</main>
 					{/* TODO: Add Footer here */}
 				</ThemeRegistry>
