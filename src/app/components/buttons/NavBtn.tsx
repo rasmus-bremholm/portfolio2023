@@ -18,11 +18,18 @@ export default function NavBtn({ href, label, index }: ButtonProps) {
 			<Box
 				sx={{
 					border: isActive ? "1px solid" : "none",
+					bgcolor: isActive ? "background.subtle" : "transparent",
 					borderColor: "divider",
+					px: 2,
+					py: 0.3,
 				}}>
 				<Typography variant='overline'>
-					<Box component='span'>{index}</Box>
-					{label}
+					<Box component='span' aria-hidden='true' sx={{ mr: 1, color: "divider" }}>
+						{index}
+					</Box>
+					<Typography variant='overline' sx={{ color: isActive ? "primary.main" : "text.primary" }}>
+						{label}
+					</Typography>
 				</Typography>
 			</Box>
 		</Link>

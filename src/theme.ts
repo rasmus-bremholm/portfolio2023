@@ -1,16 +1,27 @@
 "use client";
 
 import { createTheme } from "@mui/material/styles";
+import { lighten, darken } from "@mui/material/styles";
+
+declare module "@mui/material/styles" {
+	interface TypeBackground {
+		subtle: string;
+		elevated: string;
+	}
+}
 
 const theme = createTheme({
 	palette: {
 		mode: "dark",
 		primary: {
 			main: "#10a37f",
+			light: lighten("#10a37f", 0.35),
+			dark: darken("#10a37f", 0.35),
 		},
 		background: {
 			default: "#0a0a0a",
 			paper: "#141414",
+			subtle: "rgba(255,255,255,0.05)",
 		},
 		text: {
 			primary: "#c9c9c5",
