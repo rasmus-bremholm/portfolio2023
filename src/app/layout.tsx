@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import ThemeRegistry from "./ThemeRegistry";
 import { Archivo, Inter_Tight, JetBrains_Mono } from "next/font/google";
 import Navbar from "./components/navbar/Navbar";
+import Footer from "./components/footer/Footer";
 import "./global.css";
 
 export const metadata: Metadata = {
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					<Navbar />
 					<main>{children}</main>
 					{/* TODO: Add Footer here */}
+					<Footer />
 				</ThemeRegistry>
 			</body>
 		</html>
