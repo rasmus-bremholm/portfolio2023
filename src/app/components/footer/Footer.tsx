@@ -13,7 +13,11 @@ export default function Footer() {
 						alignItems: "center",
 						minHeight: "70px",
 					}}>
-					<Typography sx={{ fontSize: "0.8rem" }}>© 2026 Rasmus Bremholm</Typography>
+					<Box sx={{ gridColumn: "span 2" }}>
+						<Typography variant='overline' sx={{ display: "flex", fontSize: "0.8rem" }}>
+							© 2026 Rasmus Bremholm
+						</Typography>
+					</Box>
 				</Box>
 			</Container>
 		</Box>
