@@ -17,11 +17,14 @@ export default function NavBtn({ href, label, index }: ButtonProps) {
 		<Link href={href}>
 			<Box
 				sx={{
-					border: isActive ? "1px solid" : "none",
+					border: isActive ? "1px solid" : "1px solid",
 					bgcolor: isActive ? "background.subtle" : "transparent",
-					borderColor: "divider",
+					borderColor: isActive ? "divider" : "transparent",
 					px: 2,
 					py: 0.3,
+					"&:hover": {
+						borderColor: "divider",
+					},
 				}}>
 				<Typography variant='overline'>
 					<Box component='span' aria-hidden='true' sx={{ mr: 1, color: "divider" }}>

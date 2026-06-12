@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import NavBtn from "../buttons/NavBtn";
 import Link from "next/link";
 
@@ -7,35 +7,44 @@ export default function Navbar() {
 		<Box
 			component='nav'
 			sx={{
-				display: "flex",
-				alignItems: "center",
-				justifyContent: "space-between",
-				minHeight: "70px",
 				borderBottom: "1px solid",
 				borderColor: "divider",
-				px: 20,
+				minHeight: "70px",
 			}}>
-			<Link href={"/"}>
-				<Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-					<Box
-						aria-hidden='true'
-						sx={{
-							width: 10,
-							height: 10,
-							bgcolor: "primary.main",
-							flexShrink: 0,
-							"&:hover": { bgcolor: "primary.light" },
-						}}
-					/>
-					<Typography variant='overline'>R / BREMHOLM</Typography>
+			<Container maxWidth='lg'>
+				<Box
+					sx={{
+						display: "grid",
+						gridTemplateColumns: "repeat(6, 1fr)",
+						gap: "var(--grid-gap)",
+						alignItems: "center",
+						minHeight: "70px",
+					}}>
+					<Box sx={{ gridColumn: "span 2" }}>
+						<Link href='/'>
+							<Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+								<Box
+									aria-hidden='true'
+									sx={{
+										width: 10,
+										height: 10,
+										bgcolor: "primary.main",
+										flexShrink: 0,
+										"&:hover": { bgcolor: "primary.light" },
+									}}
+								/>
+								<Typography variant='overline'>RB / BREMHOLM</Typography>
+							</Box>
+						</Link>
+					</Box>
+					<Box sx={{ gridColumn: "span 4", display: "flex", justifyContent: "flex-end", gap: 1 }}>
+						<NavBtn label='Index' href='/' index='01' />
+						<NavBtn label='Work' href='/projects' index='02' />
+						<NavBtn label='Blog' href='/blog' index='03' />
+						<NavBtn label='Contact' href='/contact' index='04' />
+					</Box>
 				</Box>
-			</Link>
-			<Box sx={{ display: "flex", gap: 1 }}>
-				<NavBtn label='Index' href='/' index='01' />
-				<NavBtn label='Work' href='/projects' index='02' />
-				<NavBtn label='Blog' href='/blog' index='03' />
-				<NavBtn label='Contact' href='/contact' index='04' />
-			</Box>
+			</Container>
 		</Box>
 	);
 }
