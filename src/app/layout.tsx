@@ -3,6 +3,7 @@ import ThemeRegistry from "./ThemeRegistry";
 import { Archivo, Inter_Tight, JetBrains_Mono } from "next/font/google";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
+import GridOverlay from "./components/grid/GridOverlay";
 import "./global.css";
 
 export const metadata: Metadata = {
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					{/* TODO: Add Navbar here */}
 					<Navbar />
 					<main>{children}</main>
+					<GridOverlay />
 					{/* TODO: Add Footer here */}
 					<Footer />
 				</ThemeRegistry>
