@@ -31,9 +31,27 @@ const theme = createTheme({
 	},
 	typography: {
 		fontFamily: "var(--font-inter-tight), sans-serif",
-		h1: { fontFamily: "var(--font-archivo), sans-serif", fontWeight: 800, textTransform: "uppercase", color: "#fafafa", fontSize: "200px" },
-		h2: { fontFamily: "var(--font-archivo), sans-serif", fontWeight: 800, textTransform: "uppercase", color: "#fafafa", fontSize: "56px" },
-		h3: { fontFamily: "var(--font-archivo), sans-serif", fontWeight: 800, textTransform: "uppercase", color: "#c9c9c5", fontSize: "34px" },
+		h1: {
+			fontFamily: "var(--font-archivo), sans-serif",
+			fontWeight: 800,
+			textTransform: "uppercase",
+			color: "#fafafa",
+			fontSize: "clamp(60px, 12vw, 200px)",
+		},
+		h2: {
+			fontFamily: "var(--font-archivo), sans-serif",
+			fontWeight: 800,
+			textTransform: "uppercase",
+			color: "#fafafa",
+			fontSize: "clamp(30px, 4.5vw, 56px)",
+		},
+		h3: {
+			fontFamily: "var(--font-archivo), sans-serif",
+			fontWeight: 800,
+			textTransform: "uppercase",
+			color: "#c9c9c5",
+			fontSize: "clamp(30px, 2.8vw, 34px)",
+		},
 		body1: { fontSize: 16, color: "#c9c9c5" },
 		body2: { fontFamily: "var(--font-jetbrains-mono), monospace", fontSize: 12, color: "#c9c9c5" },
 		overline: {
