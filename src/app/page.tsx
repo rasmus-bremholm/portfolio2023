@@ -9,6 +9,23 @@ export default async function HomePage() {
 
 	return (
 		<Container maxWidth='lg' sx={{ py: 8 }}>
+			<Box sx={{ display: "grid", gridTemplateColumns: "repeat(8, 1fr)", gap: "var(--grid-gap)", alignItems: "center", mb: 8 }}>
+				<Box sx={{ display: "flex", flexDirection: "column", gridColumn: "span 2" }}>
+					<Typography variant='overline' sx={{ color: "text.secondary" }}>
+						Role
+					</Typography>
+					<Typography variant='overline'>Fullstack Developer</Typography>
+				</Box>
+				<Box sx={{ display: "flex", flexDirection: "column", gridColumn: "span 2" }}>
+					<Typography variant='overline' sx={{ color: "text.secondary" }}>
+						Status
+					</Typography>
+					<Typography variant='overline' sx={{ color: "primary.main" }}>
+						● Avalible Q3 2026
+					</Typography>
+				</Box>
+			</Box>
+
 			{sections.length === 0 && (
 				<Typography variant='body1' color='text.secondary'>
 					No homepage sections yet — add some in the Sanity Studio.
@@ -36,10 +53,7 @@ export default async function HomePage() {
 						<PortableText value={section.content} components={renderComponents} />
 
 						{section.ctaText && section.ctaLink && (
-							<Button
-								href={section.ctaLink}
-								variant='contained'
-								sx={{ mt: 2 }}>
+							<Button href={section.ctaLink} variant='contained' sx={{ mt: 2 }}>
 								{section.ctaText}
 							</Button>
 						)}

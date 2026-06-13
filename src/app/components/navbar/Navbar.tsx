@@ -10,6 +10,9 @@ export default function Navbar() {
 				borderBottom: "1px solid",
 				borderColor: "divider",
 				minHeight: "70px",
+				bgcolor: "background.default",
+				zIndex: 1,
+				position: "relative",
 			}}>
 			<Container maxWidth='lg'>
 				<Box
