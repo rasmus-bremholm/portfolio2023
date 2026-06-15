@@ -2,7 +2,7 @@ import { getAllContentSections } from "@/sanity/lib/client";
 import type { ContentSection } from "@/types/sanity/homepage";
 import { PortableText } from "@portabletext/react";
 import { renderComponents } from "@/sanity/lib/renderComponents";
-import { Box, Container, Typography, Button } from "@mui/material";
+import { Box, Container, Typography, Button, Divider } from "@mui/material";
 import Hero from "./components/hero/Hero";
 
 export default async function HomePage() {
@@ -11,6 +11,7 @@ export default async function HomePage() {
 	return (
 		<Container maxWidth='lg' sx={{ py: 8 }}>
 			<Hero />
+			<Divider sx={{ my: 8 }} />
 
 			{sections.map((section) => (
 				<Box
