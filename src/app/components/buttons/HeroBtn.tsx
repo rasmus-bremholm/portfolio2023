@@ -33,8 +33,12 @@ const variantStyles = {
 export default function HeroBtn({ href, label, variant }: HeroBtnProps) {
 	return (
 		<Link href={href}>
-			<Box sx={[variantStyles[variant], { px: 2.5, py: 1, transition: "all 0.25s" }]}>
-				<Typography sx={{ fontSize: "0.7rem" }} variant='overline'>
+			<Box
+				sx={[
+					variantStyles[variant],
+					{ px: 2.5, py: 1, transition: "all 0.25s", width: "10rem", display: "flex", alignItems: "center", justifyContent: "center" },
+				]}>
+				<Typography sx={{ fontSize: "0.7rem", letterSpacing: "0.12rem" }} variant='overline'>
 					{label}
 				</Typography>
 			</Box>

@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import HeroBtn from "../buttons/HeroBtn";
+import StatusSection from "./StatusSection";
 
 export default function Hero() {
 	return (
@@ -20,16 +21,24 @@ export default function Hero() {
 			</Box>
 
 			<Box sx={{ gridColumn: "span 8" }}>
-				<Typography variant='h1'>Rasmus Bremholm</Typography>
+				<Typography variant='h1'>
+					Rasmus{" "}
+					<Typography sx={{ color: "primary.main" }} variant='h1' component='span'>
+						Bremholm.
+					</Typography>
+				</Typography>
 			</Box>
 			<Box sx={{ display: "flex", gridColumn: "span 8" }}>
 				<Typography variant='h2'>Exploring Areas where tech and artistry meet</Typography>
-				<Typography variant='overline'>A Swedish Fullstack Developer specializing in creating optimized and scalable Javascript</Typography>
+				<Typography variant='overline'>
+					A Swedish Fullstack Developer specializing in creating optimized and scalable Javascript applications
+				</Typography>
 			</Box>
 			<Box sx={{ display: "flex", gridColumn: "span 8", gap: 4 }}>
 				<HeroBtn variant='filled' href='/' label='Selected work' />
 				<HeroBtn variant='outline' href='/' label='Get in touch' />
 			</Box>
+			<StatusSection />
 		</Box>
 	);
 }
