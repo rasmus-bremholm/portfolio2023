@@ -10,7 +10,7 @@ export default function SelectedWork({ items }: Props) {
 	return (
 		<Box>
 			{items?.map((item, index) => (
-				<Box key={item._id}>Yooo</Box>
+				<Box key={item._id}>{index + 1}</Box>
 			))}
 		</Box>
 	);
