@@ -13,6 +13,32 @@ export const homepageSectionsQuery = groq`
   }
 `;
 
+// Get 5 highlighted projects for the homepage
+export const selectedWorkQuery = groq`
+*[_type == "projectPost"] | order(
+  coalesce(customOrder, 9999) asc,
+  publishedAt desc
+)[0..4] {
+    _id,
+    title,
+    slug,
+    description,
+    "technologies": coalesce(technologies, []),
+    publishedAt,
+    featuredImage {
+      asset->{
+        _id,
+        url,
+        metadata {
+          lqip,
+          dimensions
+        }
+      },
+      alt
+    }
+  }
+`;
+
 // Get a single homepage section by ID
 export const homepageSectionByIdQuery = groq`
   *[_type == "homepageSection" && _id == $id][0] {
