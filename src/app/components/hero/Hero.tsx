@@ -1,4 +1,6 @@
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import HeroBtn from "../buttons/HeroBtn";
+
 export default function Hero() {
 	return (
 		<Box sx={{ display: "grid", gridTemplateColumns: "repeat(8, 1fr)", gap: "var(--grid-gap)", alignItems: "center", mb: 8 }}>
@@ -24,9 +26,9 @@ export default function Hero() {
 				<Typography variant='h2'>Exploring Areas where tech and artistry meet</Typography>
 				<Typography variant='overline'>A Swedish Fullstack Developer specializing in creating optimized and scalable Javascript</Typography>
 			</Box>
-			<Box sx={{ display: "flex", gridColumn: "span 8" }}>
-				<Button>Selected Work</Button>
-				<Button>Get In Touch</Button>
+			<Box sx={{ display: "flex", gridColumn: "span 8", gap: 4 }}>
+				<HeroBtn variant='filled' href='/' label='Selected work' />
+				<HeroBtn variant='outline' href='/' label='Get in touch' />
 			</Box>
 		</Box>
 	);

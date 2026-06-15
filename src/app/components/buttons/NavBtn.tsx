@@ -20,6 +20,7 @@ export default function NavBtn({ href, label, index }: ButtonProps) {
 					border: isActive ? "1px solid" : "1px solid",
 					bgcolor: isActive ? "background.subtle" : "transparent",
 					borderColor: isActive ? "divider" : "transparent",
+					transition: "all 0.25s",
 					px: 2,
 					py: 0.3,
 					"&:hover": {
