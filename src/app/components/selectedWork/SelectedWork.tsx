@@ -1,6 +1,6 @@
-"use client";
-import { Box } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 import type { ProjectPreview } from "@/types/sanity/projectpage";
+import SelectedWorkItem from "./SelectedWorkItem";
 
 interface Props {
 	items: ProjectPreview[];
@@ -9,8 +9,18 @@ interface Props {
 export default function SelectedWork({ items }: Props) {
 	return (
 		<Box>
+			<Box sx={{ my: 4, display: "flex", justifyContent: "space-between" }}>
+				<Typography sx={{ color: "text.secondary" }} variant='overline'>
+					Selected Work
+				</Typography>
+				<Typography sx={{ color: "text.secondary" }} variant='overline'>
+					{items.length + " Entries"}
+				</Typography>
+			</Box>
+
+			<Divider sx={{ my: 4 }}></Divider>
 			{items?.map((item, index) => (
-				<Box key={item._id}>{index + 1}</Box>
+				<SelectedWorkItem item={item} key={item._id} index={index} />
 			))}
 		</Box>
 	);
