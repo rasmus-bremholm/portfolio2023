@@ -17,17 +17,15 @@ export default function ProjectFeaturedCard({ project }: ProjectFeaturedCardProp
 					borderColor: "divider",
 					position: "relative",
 					minHeight: 400,
-					p: 4,
-					display: "flex",
-					alignItems: "center",
-					justifyContent: "center",
 				}}>
-				<Box sx={{ position: "absolute", top: 12, left: 12, border: "1px solid", borderColor: "primary.main", px: 2, py: 0.5 }}>
+				<Box sx={{ position: "absolute", top: 12, left: 12, zIndex: 1, border: "1px solid", borderColor: "primary.main", px: 2, py: 0.5 }}>
 					<Typography variant='overline' sx={{ color: "primary.main" }}>
 						{"// Featured"}
 					</Typography>
 				</Box>
-				{featuredImage && <Image src={featuredImage?.asset.url} alt={featuredImage?.alt ?? title} height={400} width={400} />}
+				{featuredImage && (
+					<Image src={featuredImage.asset.url} alt={featuredImage.alt ?? title} fill style={{ objectFit: "cover" }} />
+				)}
 			</Box>
 			<Box id='content'>Content</Box>
 		</Box>
