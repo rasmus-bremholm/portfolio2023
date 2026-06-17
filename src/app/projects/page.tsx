@@ -16,58 +16,13 @@ export default async function ProjectsPage() {
 
 	return (
 		<Container maxWidth='lg' sx={{ py: 8 }}>
-			<Typography variant='h1' sx={{ mb: 6 }}>
-				Projects
-			</Typography>
-
-			{projects.length === 0 && (
-				<Typography color='text.secondary'>No projects yet.</Typography>
-			)}
-
-			<Box
-				sx={{
-					display: "grid",
-					gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", lg: "1fr 1fr 1fr" },
-					gap: 4,
-				}}>
-				{projects.map((project) => (
-					<Link
-						key={project._id}
-						href={`/projects/${project.slug.current}`}
-						style={{ textDecoration: "none", color: "inherit" }}>
-						<Box>
-							{project.featuredImage?.asset?.url && (
-								<Box sx={{ position: "relative", aspectRatio: "16/9", mb: 2, borderRadius: 1, overflow: "hidden" }}>
-									<Image
-										src={project.featuredImage.asset.url}
-										alt={project.featuredImage.alt || project.title}
-										fill
-										style={{ objectFit: "cover" }}
-										placeholder={project.featuredImage.asset.metadata?.lqip ? "blur" : "empty"}
-										blurDataURL={project.featuredImage.asset.metadata?.lqip}
-										sizes='(max-width:600px) 100vw, (max-width:1200px) 50vw, 33vw'
-									/>
-								</Box>
-							)}
-
-							<Typography variant='h5' gutterBottom>
-								{project.title}
-							</Typography>
-
-							<Typography variant='body2' color='text.secondary' sx={{ mb: 1 }}>
-								{project.description}
-							</Typography>
-
-							{project.technologies.length > 0 && (
-								<Stack direction='row' sx={{ flexWrap: "wrap", gap: 0.5 }}>
-									{project.technologies.map((tech) => (
-										<Chip key={tech} label={tech} size='small' />
-									))}
-								</Stack>
-							)}
-						</Box>
-					</Link>
-				))}
+			<Box sx={{ display: "flex", justifyContent: "flex-start", alignItems: "flex-end" }}>
+				<Typography variant='h1' sx={{ mb: 6 }}>
+					WORK
+					<Typography component='span' variant='h1' sx={{ color: "primary.main" }}>
+						.
+					</Typography>
+				</Typography>
 			</Box>
 		</Container>
 	);
