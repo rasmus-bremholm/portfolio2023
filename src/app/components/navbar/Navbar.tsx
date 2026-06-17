@@ -10,9 +10,11 @@ export default function Navbar() {
 				borderBottom: "1px solid",
 				borderColor: "divider",
 				minHeight: "70px",
-				bgcolor: "background.default",
+				bgcolor: "rgba(10,10,10,0.85)",
+				backdropFilter: "blur(3px)",
 				zIndex: 1,
-				position: "relative",
+				position: "sticky",
+				top: 0,
 			}}>
 			<Container maxWidth='lg'>
 				<Box

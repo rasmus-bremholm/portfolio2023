@@ -91,6 +91,31 @@ export const blogPostQuery = groq`
 }
 `;
 
+export const featuredProjectQuery = groq`
+*[_type == "projectPost" && featured == true] | order(coalesce(customOrder, 9999) asc)[0] {
+  _id,
+  title,
+  slug,
+  description,
+  "technologies": coalesce(technologies, []),
+  liveUrl,
+  githubUrl,
+  publishedAt,
+  featured,
+  featuredImage {
+    asset->{
+      _id,
+      url,
+      metadata {
+        lqip,
+        dimensions
+      }
+    },
+    alt
+  }
+}
+`;
+
 export const projectsQuery = groq`
 *[_type == "projectPost"] | order(
   coalesce(customOrder, 9999) asc,

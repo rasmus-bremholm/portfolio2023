@@ -1,10 +1,9 @@
 import { client } from "@/sanity/lib/client";
-import { projectsQuery } from "@/sanity/lib/queries";
+import { featuredProjectQuery, projectsQuery } from "@/sanity/lib/queries";
 import type { ProjectPreview } from "@/types/sanity/projectpage";
-import { Box, Container, Typography, Chip, Stack } from "@mui/material";
-import Image from "next/image";
-import Link from "next/link";
+import { Box, Container, Typography } from "@mui/material";
 import type { Metadata } from "next";
+import ProjectFeaturedCard from "./components/ProjectFeaturedCard";
 
 export const metadata: Metadata = {
 	title: "Projects",
@@ -12,7 +11,8 @@ export const metadata: Metadata = {
 };
 
 export default async function ProjectsPage() {
-	const projects: ProjectPreview[] = await client.fetch(projectsQuery);
+	const featuredProject = await client.fetch<ProjectPreview | null>(featuredProjectQuery);
+	const projects = await client.fetch<ProjectPreview | null>(projectsQuery);
 
 	return (
 		<Container maxWidth='lg' sx={{ py: 8 }}>
@@ -24,6 +24,7 @@ export default async function ProjectsPage() {
 					</Typography>
 				</Typography>
 			</Box>
+			{featuredProject && <ProjectFeaturedCard project={featuredProject} />}
 		</Container>
 	);
 }
