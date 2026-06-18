@@ -1,4 +1,4 @@
-import { Box, Typography, Divider, Button } from "@mui/material";
+import { Box, Typography, Divider, Button, Stack } from "@mui/material";
 import Image from "next/image";
 import type { ProjectPreview } from "@/types/sanity/projectpage";
 
@@ -15,7 +15,7 @@ export default function ProjectFeaturedCard({ project }: ProjectFeaturedCardProp
 		{ label: "Case Study", href: `/projects/${project.slug.current}`, variant: "outlined" as const },
 	];
 	return (
-		<Box sx={{ display: "grid", gridTemplateColumns: "5fr 4fr", border: "1px solid", borderColor: "divider" }}>
+		<Box sx={{ display: "grid", gridTemplateColumns: { s: "1fr", md: "5fr 4fr" }, border: "1px solid", borderColor: "divider" }}>
 			<Box
 				id='media'
 				sx={{
@@ -51,8 +51,17 @@ export default function ProjectFeaturedCard({ project }: ProjectFeaturedCardProp
 						</Typography>
 					</Box>
 					<Typography variant='h2'>{project.title}</Typography>
-					<Divider sx={{ my: 2 }} />
+
 					<Typography variant='body1'>{project.description}</Typography>
+					<Divider sx={{ my: 2 }} />
+					<Stack direction='row' spacing={2} divider={<span>·</span>} sx={{ display: "flex", flexGrow: 1 }}>
+						{project.technologies.map((tech, index) => (
+							<Typography variant='overline' key={index}>
+								{tech}
+							</Typography>
+						))}
+					</Stack>
+					<Divider sx={{ my: 2 }} />
 				</Box>
 				<Box sx={{ my: 2, display: "flex" }}>
 					{buttons.map((btn) => (
