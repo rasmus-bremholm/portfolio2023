@@ -10,6 +10,12 @@ declare module "@mui/material/styles" {
 	}
 }
 
+const baseTheme = createTheme({
+	palette: {
+
+	}
+})
+
 const theme = createTheme({
 	palette: {
 		mode: "dark",
