@@ -38,6 +38,76 @@ const baseTheme = createTheme({
 	},
 });
 
-const theme = createTheme({});
+const theme = createTheme({
+	typography: {
+		fontFamily: "var(--font-hanken-grotesk), sans-serif",
+		allVariants: {
+			fontSize: "16px", //root size
+			color: baseTheme.palette.text.secondary, //sets the gray color implicit, but overridden in each variant.
+		},
+		h1: {
+			fontFamily: "var(--font-newsreader), serif",
+			color: baseTheme.palette.text.primary,
+			fontSize: "clamp(40px, 5.5vw, 80px)",
+			fontWeight: 400,
+			lineHeight: 1.02,
+			letterSpacing: "-0.032em",
+		},
+		h2: {
+			fontFamily: "var(--font-newsreader), serif",
+			color: baseTheme.palette.text.primary,
+			fontSize: "clamp(22px, 2.6vw, 38px)",
+			fontWeight: 400,
+			letterSpacing: "-0.025em",
+		},
+		h3: {
+			fontFamily: "var(--font-newsreader), serif",
+			color: baseTheme.palette.text.primary,
+			fontSize: "clamp(16px, 1.9vw, 27px)",
+			fontWeight: 400,
+			letterSpacing: "-0.02em",
+		},
+		body1: {
+			fontFamily: "var(--font-spectral), serif",
+		},
+		body2: {
+			fontFamily: "var(--font-hanken-grotesk), sans-serif",
+			fontSize: "14px",
+			color: baseTheme.palette.text.secondary,
+		},
+		overline: {
+			fontFamily: "var(--font-ibm), monospace",
+			letterSpacing: "0.08em",
+			textTransform: "uppercase",
+		},
+	},
+	components: {
+		MuiButton: {
+			defaultProps: {
+				disableRipple: true,
+				disableElevation: true,
+			},
+			styleOverrides: {
+				root: {
+					borderRadius: 0,
+					textTransform: "uppercase",
+					fontFamily: "var(--font-hanken-grotesk), sans-serif",
+					padding: "12px 20px",
+					backgroundColor: baseTheme.palette.background.default,
+					transition: "all 0.2s ease",
+					"&:hover": {
+						backgroundColor: baseTheme.palette.background.paper,
+					},
+				},
+				outlined: {
+					borderColor: baseTheme.palette.divider,
+					"&:hover": {
+						backgroundColor: baseTheme.palette.background.paper,
+					},
+				},
+			},
+		},
+	},
+});
 
 export default theme;
