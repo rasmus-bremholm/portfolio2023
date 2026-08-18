@@ -7,64 +7,107 @@ declare module "@mui/material/styles" {
 	interface TypeBackground {
 		subtle: string;
 		elevated: string;
+		dark: string;
+	}
+	interface TypeText {
+		tertiary: string;
+		darkText: string;
+		darkMuted: string;
 	}
 }
 
-const theme = createTheme({
+const baseTheme = createTheme({
 	palette: {
-		mode: "dark",
-		primary: {
-			main: "#10a37f",
-			light: lighten("#10a37f", 0.35),
-			dark: darken("#10a37f", 0.35),
-		},
+		mode: "light",
 		background: {
-			default: "#0a0a0a",
-			paper: "#141414",
-			subtle: "rgba(255,255,255,0.05)",
+			default: "#F1F2F0", //light cream
+			paper: "#eaece9", //hover surface
+			dark: "#23282A", // footer
 		},
 		text: {
-			primary: "#c9c9c5",
-			secondary: "#6b6b66",
+			primary: "#23282A", //titles
+			secondary: "#4C5455", //body
+			tertiary: "#8A9291", //muted labels
+			darkText: "#eef0ee", // text on dark background
+			darkMuted: "#8fa3ad", // muted text on dark background
 		},
-		divider: "rgba(255,255,255,0.12)",
+		divider: "#FAF9F5EB",
+		primary: {
+			main: "#4a6b7c",
+		},
 	},
+});
+
+const theme = createTheme({
 	typography: {
-		fontFamily: "var(--font-inter-tight), sans-serif",
+		fontFamily: "var(--font-hanken-grotesk), sans-serif",
+		allVariants: {
+			fontSize: "16px", //root size
+			color: baseTheme.palette.text.secondary, //sets the gray color implicit, but overridden in each variant.
+		},
 		h1: {
-			fontFamily: "var(--font-archivo), sans-serif",
-			fontWeight: 800,
-			textTransform: "uppercase",
-			color: "#fafafa",
-			fontSize: "clamp(60px, 12vw, 200px)",
+			fontFamily: "var(--font-newsreader), serif",
+			color: baseTheme.palette.text.primary,
+			fontSize: "clamp(40px, 5.5vw, 80px)",
+			fontWeight: 400,
+			lineHeight: 1.02,
+			letterSpacing: "-0.032em",
 		},
 		h2: {
-			fontFamily: "var(--font-archivo), sans-serif",
-			fontWeight: 800,
-			textTransform: "uppercase",
-			color: "#fafafa",
-			fontSize: "clamp(30px, 4.5vw, 56px)",
+			fontFamily: "var(--font-newsreader), serif",
+			color: baseTheme.palette.text.primary,
+			fontSize: "clamp(22px, 2.6vw, 38px)",
+			fontWeight: 400,
+			letterSpacing: "-0.025em",
 		},
 		h3: {
-			fontFamily: "var(--font-archivo), sans-serif",
-			fontWeight: 800,
-			textTransform: "uppercase",
-			color: "#c9c9c5",
-			fontSize: "clamp(30px, 2.8vw, 34px)",
+			fontFamily: "var(--font-newsreader), serif",
+			color: baseTheme.palette.text.primary,
+			fontSize: "clamp(16px, 1.9vw, 27px)",
+			fontWeight: 400,
+			letterSpacing: "-0.02em",
 		},
-		body1: { fontSize: 16, color: "#c9c9c5" },
-		body2: { fontFamily: "var(--font-jetbrains-mono), monospace", fontSize: 12, color: "#c9c9c5" },
+		body1: {
+			fontFamily: "var(--font-spectral), serif",
+		},
+		body2: {
+			fontFamily: "var(--font-hanken-grotesk), sans-serif",
+			fontSize: "14px",
+			color: baseTheme.palette.text.secondary,
+		},
 		overline: {
-			fontFamily: "var(--font-jetbrains-mono), monospace",
-			fontSize: "0.75rem",
-			letterSpacing: "0.1em",
+			fontFamily: "var(--font-ibm), monospace",
+			letterSpacing: "0.08em",
 			textTransform: "uppercase",
 		},
 	},
-	shape: {
-		borderRadius: 8,
+	components: {
+		MuiButton: {
+			defaultProps: {
+				disableRipple: true,
+				disableElevation: true,
+			},
+			styleOverrides: {
+				root: {
+					borderRadius: 0,
+					textTransform: "uppercase",
+					fontFamily: "var(--font-hanken-grotesk), sans-serif",
+					padding: "12px 20px",
+					backgroundColor: baseTheme.palette.background.default,
+					transition: "all 0.2s ease",
+					"&:hover": {
+						backgroundColor: baseTheme.palette.background.paper,
+					},
+				},
+				outlined: {
+					borderColor: baseTheme.palette.divider,
+					"&:hover": {
+						backgroundColor: baseTheme.palette.background.paper,
+					},
+				},
+			},
+		},
 	},
-	spacing: 8,
 });
 
 export default theme;
