@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import ThemeRegistry from "./ThemeRegistry";
-import { Archivo, Inter_Tight, JetBrains_Mono } from "next/font/google";
+import { Newsreader, Spectral, Hanken_Grotesk, IBM_Plex_Mono, JetBrains_Mono } from "next/font/google";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import GridOverlay from "./components/grid/GridOverlay";
@@ -14,15 +14,16 @@ export const metadata: Metadata = {
 	description: "Fullstack developer & teacher.",
 };
 
-const archivo = Archivo({
+const newsreader = Newsreader({
 	subsets: ["latin"],
-	weight: ["400", "500", "700", "800", "900"],
-	variable: "--font-archivo",
+	weight: ["400", "500", "700", "800"],
+	variable: "--font-newsreader",
 });
 
-const interTight = Inter_Tight({
+const spectral = Spectral({
 	subsets: ["latin"],
-	variable: "--font-inter-tight",
+	weight: ["200", "300", "400", "500", "700"],
+	variable: "--font-spectral",
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -30,10 +31,21 @@ const jetbrainsMono = JetBrains_Mono({
 	variable: "--font-jetbrains-mono",
 });
 
+const hanken = Hanken_Grotesk({
+	subsets: ["latin"],
+	variable: "--font-hanken-grotesk",
+});
+
+const ibm = IBM_Plex_Mono({
+	subsets: ["latin"],
+	weight: ["200", "300", "400", "500", "700"],
+	variable: "--font-ibm",
+});
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang='en'>
-			<body className={`${archivo.variable} ${interTight.variable} ${jetbrainsMono.variable}`}>
+			<body className={`${newsreader.variable} ${spectral.variable} ${jetbrainsMono.variable} ${hanken.variable} ${ibm.variable}`}>
 				<ThemeRegistry>
 					{/* TODO: Add Navbar here */}
 					<Navbar />
