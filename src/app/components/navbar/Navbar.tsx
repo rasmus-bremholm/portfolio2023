@@ -1,11 +1,6 @@
 import { Container, Box, Typography } from "@mui/material";
 import Link from "next/link";
-
-const links = [
-	{ id: 1, title: "Projects" },
-	{ id: 2, title: "Blog" },
-	{ id: 3, title: "Contact" },
-];
+import { navbarLinks } from "@/app/consts/consts";
 
 export default function Navbar() {
 	return (
@@ -19,11 +14,11 @@ export default function Navbar() {
 					</Link>
 				</Box>
 				<Box sx={{ display: "flex", gap: 2 }}>
-					{links.map((l) => (
-						<Link key={l.id} href={l.title.toLocaleLowerCase()}>
+					{navbarLinks.map((link) => (
+						<Link key={link.id} href={link.href}>
 							<Typography
 								variant='body2'
-								key={l.id}
+								key={link.id}
 								sx={{
 									position: "relative",
 
@@ -41,7 +36,7 @@ export default function Navbar() {
 										width: "100%",
 									},
 								}}>
-								{l.title}
+								{link.title}
 							</Typography>
 						</Link>
 					))}
