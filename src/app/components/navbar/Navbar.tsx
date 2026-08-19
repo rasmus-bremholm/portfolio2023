@@ -25,10 +25,20 @@ export default function Navbar() {
 								variant='body2'
 								key={l.id}
 								sx={{
-									borderBottom: "1px solid transparent",
-									transition: "all 0.3s ease",
-									"&:hover": {
-										borderBottom: "1px solid",
+									position: "relative",
+
+									"&::after": {
+										content: '""',
+										position: "absolute",
+										bottom: -4,
+										left: 0,
+										width: "0%",
+										height: "1px",
+										backgroundColor: "text.primary",
+										transition: "width 0.3s ease",
+									},
+									"&:hover::after": {
+										width: "100%",
 									},
 								}}>
 								{l.title}
