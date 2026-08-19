@@ -1,7 +1,7 @@
 "use client";
 
 import { createTheme } from "@mui/material/styles";
-import { lighten, darken } from "@mui/material/styles";
+//import { lighten, darken } from "@mui/material/styles";
 
 declare module "@mui/material/styles" {
 	interface TypeBackground {
@@ -104,6 +104,17 @@ const theme = createTheme({
 					"&:hover": {
 						backgroundColor: baseTheme.palette.background.paper,
 					},
+				},
+			},
+		},
+		MuiContainer: {
+			defaultProps: {
+				maxWidth: "lg",
+			},
+			styleOverrides: {
+				root: {
+					paddingLeft: "clamp(24px, 5vw, 72px)",
+					paddingRight: "clamp(24px, 5vw, 72px)",
 				},
 			},
 		},
