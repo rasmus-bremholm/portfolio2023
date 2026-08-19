@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import ThemeRegistry from "./ThemeRegistry";
 import { Newsreader, Spectral, Hanken_Grotesk, IBM_Plex_Mono, JetBrains_Mono } from "next/font/google";
 import "./global.css";
+import Navbar from "./components/navbar/Navbar";
 
 export const metadata: Metadata = {
 	title: {
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 		<html lang='en'>
 			<body className={`${newsreader.variable} ${spectral.variable} ${jetbrainsMono.variable} ${hanken.variable} ${ibm.variable}`}>
 				<ThemeRegistry>
+					<Navbar />
 					{/* TODO: Add Navbar here */}
 					<main>{children}</main>
 					{/* TODO: Add Footer here */}
