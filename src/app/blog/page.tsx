@@ -1,63 +1,8 @@
 import { client } from "@/sanity/lib/client";
 import { blogPostsQuery } from "@/sanity/lib/queries";
 import type { BlogPostPreview } from "@/types/sanity/blogpage";
-import { Box, Container, Typography, Chip, Stack } from "@mui/material";
-import Link from "next/link";
-import dayjs from "dayjs";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-	title: "Blog",
-	description: "Thoughts on development, teaching, and tech.",
-};
+import { Container } from "@mui/material";
 
 export default async function BlogPage() {
-	const posts: BlogPostPreview[] = await client.fetch(blogPostsQuery);
-
-	return (
-		<Container maxWidth='md' sx={{ py: 8 }}>
-			<Typography variant='h1' sx={{ mb: 6 }}>
-				Blog
-			</Typography>
-
-			{posts.length === 0 && (
-				<Typography color='text.secondary'>No posts yet.</Typography>
-			)}
-
-			<Stack sx={{ gap: 6 }}>
-				{posts.map((post) => (
-					<Link
-						key={post._id}
-						href={`/blog/${post.slug.current}`}
-						style={{ textDecoration: "none", color: "inherit" }}>
-						<Box>
-							<Typography variant='caption' color='text.secondary'>
-								{dayjs(post.publishedAt).format("MMM D, YYYY")}
-								{post.readTime ? ` · ${post.readTime} min read` : ""}
-								{post.category ? ` · ${post.category}` : ""}
-							</Typography>
-
-							<Typography variant='h4' sx={{ mt: 0.5, mb: 1 }}>
-								{post.title}
-							</Typography>
-
-							{post.excerpt && (
-								<Typography variant='body2' color='text.secondary' sx={{ mb: 1.5 }}>
-									{post.excerpt}
-								</Typography>
-							)}
-
-							{post.tags?.length > 0 && (
-								<Stack direction='row' sx={{ flexWrap: "wrap", gap: 0.5 }}>
-									{post.tags.map((tag) => (
-										<Chip key={tag} label={tag} size='small' variant='outlined' />
-									))}
-								</Stack>
-							)}
-						</Box>
-					</Link>
-				))}
-			</Stack>
-		</Container>
-	);
+	return <Container></Container>;
 }
