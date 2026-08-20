@@ -45,7 +45,7 @@ export default function Footer() {
 					</a>
 					<Box>
 						<IconButton
-							href=''
+							href='/'
 							color='inherit'
 							sx={{
 								transition: "all 0.2s ease",
@@ -56,7 +56,7 @@ export default function Footer() {
 							<GitHub />
 						</IconButton>
 						<IconButton
-							href=''
+							href='/'
 							color='inherit'
 							sx={{
 								transition: "all 0.2s ease",
