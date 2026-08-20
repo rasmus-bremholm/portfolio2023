@@ -1,6 +1,6 @@
 import { Box, Container, Typography, IconButton, Button } from "@mui/material";
 import { GitHub, LinkedIn } from "@mui/icons-material";
-import packageJson from "@/package.json";
+import packageJson from "@root/package.json";
 import Link from "next/link";
 
 export default function Footer() {
@@ -10,6 +10,8 @@ export default function Footer() {
 				<Box>
 					<Typography variant='body2'>CONTACT</Typography>
 					<Typography variant='h3'>Tell me what you are building.</Typography>
+					<Typography variant='overline'>v.{packageJson.version}</Typography>
+					<Typography variant='overline'>© 2026 Rasmus Bremholm</Typography>
 				</Box>
 				<Box>
 					<a href='mailto:rasmusbremholm@gmail.com'>
