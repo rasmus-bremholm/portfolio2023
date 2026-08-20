@@ -1,0 +1,33 @@
+import { Box, Container, Typography, IconButton, Button } from "@mui/material";
+import { GitHub, LinkedIn } from "@mui/icons-material";
+import packageJson from "@/package.json";
+import Link from "next/link";
+
+export default function Footer() {
+	return (
+		<Box component='footer'>
+			<Container maxWidth='lg' sx={{ display: "flex" }}>
+				<Box>
+					<Typography variant='body2'>CONTACT</Typography>
+					<Typography variant='h3'>Tell me what you are building.</Typography>
+				</Box>
+				<Box>
+					<a href='mailto:rasmusbremholm@gmail.com'>
+						<Typography variant='body2'>rasmusbremholm@gmail.com</Typography>
+					</a>
+					<Box>
+						<IconButton href=''>
+							<GitHub />
+						</IconButton>
+						<IconButton href=''>
+							<LinkedIn />
+						</IconButton>
+					</Box>
+					<Button LinkComponent={Link} href='/contact'>
+						Get in touch
+					</Button>
+				</Box>
+			</Container>
+		</Box>
+	);
+}
