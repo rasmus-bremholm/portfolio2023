@@ -38,7 +38,7 @@ const baseTheme = createTheme({
 	},
 });
 
-const theme = createTheme({
+const theme = createTheme(baseTheme, {
 	typography: {
 		fontFamily: "var(--font-hanken-grotesk), sans-serif",
 		allVariants: {

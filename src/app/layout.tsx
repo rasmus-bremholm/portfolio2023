@@ -3,6 +3,7 @@ import ThemeRegistry from "./ThemeRegistry";
 import { Newsreader, Spectral, Hanken_Grotesk, IBM_Plex_Mono, JetBrains_Mono } from "next/font/google";
 import "./global.css";
 import Navbar from "./components/navbar/Navbar";
+import Footer from "./components/footer/Footer";
 
 export const metadata: Metadata = {
 	title: {
@@ -46,9 +47,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			<body className={`${newsreader.variable} ${spectral.variable} ${jetbrainsMono.variable} ${hanken.variable} ${ibm.variable}`}>
 				<ThemeRegistry>
 					<Navbar />
-					{/* TODO: Add Navbar here */}
 					<main>{children}</main>
-					{/* TODO: Add Footer here */}
+					<Footer />
 				</ThemeRegistry>
 			</body>
 		</html>
