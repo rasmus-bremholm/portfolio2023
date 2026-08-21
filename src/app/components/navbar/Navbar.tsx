@@ -4,7 +4,7 @@ import { navbarLinks } from "@/app/consts/consts";
 
 export default function Navbar() {
 	return (
-		<Box sx={{ borderBottom: "1px solid", position: "sticky", top: 0 }}>
+		<Box sx={{ borderBottom: "1px solid", position: "sticky", top: 0, bgcolor: "background.default" }}>
 			<Container component='nav' sx={{ py: "22px", display: "flex", justifyContent: "space-between" }}>
 				<Box>
 					<Link href={"/"}>

@@ -2,6 +2,7 @@ import { fetchHomepageSections, fetchSelectedWork } from "@/sanity/lib/client";
 import { Container, Divider } from "@mui/material";
 import Hero from "./components/hero/Hero";
 import StatusBar from "./components/status/StatusBar";
+import SelectedWork from "./components/selectedWork/SelectedWork";
 
 export default async function HomePage() {
 	const [sections, selectedWork] = await Promise.all([fetchHomepageSections(), fetchSelectedWork()]);
@@ -12,6 +13,7 @@ export default async function HomePage() {
 				<Hero />
 			</Container>
 			<StatusBar />
+			<SelectedWork />
 		</>
 	);
 }
