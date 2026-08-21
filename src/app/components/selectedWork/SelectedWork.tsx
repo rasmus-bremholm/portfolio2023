@@ -1,5 +1,7 @@
-import { fetchFeaturedProject, fetchHomepageSections, fetchSelectedWork } from "@/sanity/lib/client";
+import { fetchFeaturedProject } from "@/sanity/lib/client";
+import Link from "next/link";
 import { Container, Box, Typography } from "@mui/material";
+import { GitHub } from "@mui/icons-material";
 
 export default async function SelectedWork() {
 	const featuredProject = await fetchFeaturedProject();
@@ -20,7 +22,7 @@ export default async function SelectedWork() {
 							mb: "26px",
 						}}
 					/>
-					<Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "minmax(0, 500px) 300px" } }}>
+					<Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "minmax(0, 1fr) 300px" } }}>
 						<Box>
 							<Typography variant='overline'>
 								{new Date(`${featuredProject.publishedAt}`).toLocaleDateString("sv-SE", {
@@ -40,6 +42,51 @@ export default async function SelectedWork() {
 										<span key={index}> {tech} </span>
 									))}
 								</Typography>
+							</Box>
+							<Box sx={{ display: "flex", justifyContent: "space-between", pb: "10px", borderBottom: "1px solid", borderColor: "#d5d8d5" }}>
+								<Typography variant='body2'>Repository</Typography>
+								<a href={featuredProject.githubUrl}>
+									<Typography
+										sx={{
+											display: "inline-flex",
+											gap: 1,
+											alignItems: "center",
+											fontWeight: 500,
+											transition: "color 0.2s ease",
+											"&:hover": {
+												color: "text.darkMuted",
+											},
+										}}
+										variant='body2'>
+										Github <GitHub />
+									</Typography>
+								</a>
+							</Box>
+							{featuredProject.liveUrl && (
+								<Box sx={{ display: "flex", justifyContent: "space-between", pb: "10px", borderBottom: "1px solid", borderColor: "#d5d8d5" }}>
+									<Typography variant='body2'>Deployed</Typography>
+									<a href={featuredProject.liveUrl}>
+										<Typography
+											sx={{
+												display: "inline-flex",
+												gap: 1,
+												alignItems: "center",
+												fontWeight: 500,
+												transition: "color 0.2s ease",
+												"&:hover": {
+													color: "text.darkMuted",
+												},
+											}}
+											variant='body2'>
+											Live URL
+										</Typography>
+									</a>
+								</Box>
+							)}
+							<Box sx={{ pt: "auto" }}>
+								<Link href={`/projects/${featuredProject.slug.current}`}>
+									<Typography variant='overline'>Read the case study</Typography>
+								</Link>
 							</Box>
 						</Box>
 					</Box>
