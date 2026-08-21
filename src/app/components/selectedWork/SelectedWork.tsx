@@ -74,7 +74,7 @@ export default async function SelectedWork() {
 												fontWeight: 500,
 												transition: "color 0.2s ease",
 												"&:hover": {
-													color: "text.darkMuted",
+													color: "text.tertiary",
 												},
 											}}
 											variant='body2'>
@@ -83,9 +83,21 @@ export default async function SelectedWork() {
 									</a>
 								</Box>
 							)}
-							<Box sx={{ pt: "auto" }}>
+							<Box sx={{ display: "flex", alignItems: "flex-end", justifyContent: "flex-end" }}>
 								<Link href={`/projects/${featuredProject.slug.current}`}>
-									<Typography variant='overline'>Read the case study</Typography>
+									<Typography
+										variant='overline'
+										sx={{
+											fontWeight: 600,
+											fontSize: "0.9rem",
+											transition: "all 0.2s ease",
+											color: "text.tertiary",
+											"&:hover": {
+												color: "text.primary",
+											},
+										}}>
+										Read the case study
+									</Typography>
 								</Link>
 							</Box>
 						</Box>
