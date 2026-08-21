@@ -35,7 +35,11 @@ export default async function SelectedWork() {
 						<Box sx={{ display: "flex", flexDirection: "column", gap: "12px" }}>
 							<Box sx={{ display: "flex", justifyContent: "space-between", pb: "10px", borderBottom: "1px solid", borderColor: "#d5d8d5" }}>
 								<Typography variant='body2'>Stack</Typography>
-								<Typography variant='body2'>{featuredProject.technologies}</Typography>
+								<Typography variant='body2'>
+									{featuredProject.technologies.map((tech, index) => (
+										<span key={index}> {tech} </span>
+									))}
+								</Typography>
 							</Box>
 						</Box>
 					</Box>
