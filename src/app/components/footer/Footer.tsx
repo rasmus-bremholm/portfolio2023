@@ -4,7 +4,6 @@ import { Box, Container, Typography, IconButton, Button } from "@mui/material";
 import { GitHub, LinkedIn } from "@mui/icons-material";
 import packageJson from "@root/package.json";
 import Link from "next/link";
-import { backgroundBlurriness } from "three/tsl";
 
 export default function Footer() {
 	return (

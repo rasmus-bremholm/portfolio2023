@@ -2,6 +2,7 @@ import { createClient } from "next-sanity";
 import {
 	blogPostQuery,
 	blogPostsQuery,
+	featuredProjectQuery,
 	homepageSectionsQuery,
 	projectPostQuery,
 	projectsQuery,
@@ -24,6 +25,10 @@ export function fetchHomepageSections(): Promise<ContentSection[]> {
 
 export function fetchSelectedWork(): Promise<ProjectPreview[]> {
 	return client.fetch(selectedWorkQuery);
+}
+
+export function fetchFeaturedProject(): Promise<ProjectPreview | null> {
+	return client.fetch(featuredProjectQuery);
 }
 
 export function fetchProjects(): Promise<ProjectPreview[]> {
