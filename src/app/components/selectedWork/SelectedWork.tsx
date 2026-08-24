@@ -89,7 +89,7 @@ export default async function SelectedWork() {
 										variant='overline'
 										sx={{
 											fontWeight: 600,
-											fontSize: "0.9rem",
+											fontSize: "13px",
 											transition: "all 0.2s ease",
 											color: "text.tertiary",
 											"&:hover": {
