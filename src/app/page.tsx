@@ -2,6 +2,7 @@ import { Container } from "@mui/material";
 import Hero from "./components/hero/Hero";
 import StatusBar from "./components/status/StatusBar";
 import SelectedWork from "./components/selectedWork/SelectedWork";
+import ProjectList from "./components/projectList/ProjectList";
 
 export default async function HomePage() {
 	return (
@@ -11,6 +12,7 @@ export default async function HomePage() {
 			</Container>
 			<StatusBar />
 			<SelectedWork />
+			<ProjectList />
 		</>
 	);
 }
