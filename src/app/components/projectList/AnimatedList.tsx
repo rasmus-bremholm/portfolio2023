@@ -53,6 +53,8 @@ export default function AnimatedList({ projects }: AnimatedListProps) {
 							alignItems: "center",
 							borderBottom: "1px solid",
 							borderColor: "#d5d8d5",
+							transition: "all 0.2s ease",
+							bgcolor: "transparent",
 							"&:hover": {
 								bgcolor: "#eaece9",
 							},

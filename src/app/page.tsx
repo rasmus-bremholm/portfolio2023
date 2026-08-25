@@ -3,6 +3,7 @@ import Hero from "./components/hero/Hero";
 import StatusBar from "./components/status/StatusBar";
 import SelectedWork from "./components/selectedWork/SelectedWork";
 import ProjectList from "./components/projectList/ProjectList";
+import Skills from "./components/skills/Skills";
 
 export default async function HomePage() {
 	return (
@@ -13,6 +14,7 @@ export default async function HomePage() {
 			<StatusBar />
 			<SelectedWork />
 			<ProjectList />
+			<Skills />
 		</>
 	);
 }
