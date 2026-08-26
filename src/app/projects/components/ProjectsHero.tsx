@@ -6,7 +6,7 @@ export default function ProjectsHero({ projectCount }: { projectCount: number | 
 			component='header'
 			sx={{
 				display: "grid",
-				gridTemplateColumns: "1fr 300px",
+				gridTemplateColumns: { xs: "1fr", sm: "1fr 300px" },
 				gap: "80px",
 				alignItems: "end",
 				pb: "36px",

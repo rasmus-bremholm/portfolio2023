@@ -24,8 +24,8 @@ export default async function ProjectsPage() {
 
 					borderTop: "1px solid",
 					borderLeft: "1px solid",
-					border: "1px solid",
 					borderColor: "divider",
+					mt: "26px",
 				}}>
 				{projects?.map((project) => (
 					<Box
