@@ -31,7 +31,7 @@ const baseTheme = createTheme({
 			darkText: "#eef0ee", // text on dark background
 			darkMuted: "#8fa3ad", // muted text on dark background
 		},
-		divider: "#FAF9F5EB",
+		divider: "#d5d8d5", // note to self, this has probably been hardcoded in places.
 		primary: {
 			main: "#4a6b7c",
 		},
