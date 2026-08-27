@@ -4,6 +4,7 @@ import Link from "next/link";
 import { createImageUrlBuilder } from "@sanity/image-url";
 import Image from "next/image";
 import { createClient } from "next-sanity";
+import { codeToHtml } from "shiki";
 
 const imageClient = createClient({
 	projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
@@ -17,7 +18,7 @@ const builder = createImageUrlBuilder(imageClient);
 export const renderComponents: PortableTextComponents = {
 	block: {
 		normal: ({ children }) => (
-			<Typography component='div' sx={{ mb: 2 }}>
+			<Typography component='div' sx={{ fontSize: "17px", mb: 2, fontFamily: "var(--font-spectral), serif" }}>
 				{children}
 			</Typography>
 		),
@@ -64,13 +65,19 @@ export const renderComponents: PortableTextComponents = {
 				</figure>
 			);
 		},
-		codeBlock: ({ value }) => {
+		codeBlock: async ({ value }) => {
+			const html = await codeToHtml(value.code, {
+				lang: value.language || "typescript",
+				theme: "github-dark",
+			});
+
 			return (
 				<Box sx={{ my: 2 }}>
 					{value.filename && <Typography sx={{ mb: 1, opacity: 0.7 }}>{value.filename}</Typography>}
-					<pre style={{ background: "#1e1e1e", padding: "1rem", borderRadius: "4px", overflow: "auto" }}>
-						<code>{value.code}</code>
-					</pre>
+					<Box
+						sx={{ "& pre": { borderRadius: "4px", padding: "1rem", overflow: "auto", fontSize: "0.875rem" } }}
+						dangerouslySetInnerHTML={{ __html: html }}
+					/>
 				</Box>
 			);
 		},

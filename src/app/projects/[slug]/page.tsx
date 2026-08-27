@@ -1,9 +1,11 @@
 import { Container, Box, Typography } from "@mui/material";
 import { notFound } from "next/navigation";
-import { fetchProjectBySlug } from "@/sanity/lib/client";
+import { fetchProjectBySlug, fetchRelatedProjects } from "@/sanity/lib/client";
 import formatDate from "@/app/lib/formatDate";
 import { PortableText } from "next-sanity";
 import { renderComponents } from "@/sanity/lib/renderComponents";
+import { ProjectPreview } from "@/types/sanity/projectpage";
+import Link from "next/link";
 
 type Props = {
 	params: Promise<{ slug: string }>;
@@ -12,6 +14,7 @@ type Props = {
 export default async function ProjectPage({ params }: Props) {
 	const { slug } = await params;
 	const project = await fetchProjectBySlug(slug);
+	const relatedProjects = await fetchRelatedProjects(slug, 3);
 
 	if (!project) {
 		notFound();
@@ -41,6 +44,34 @@ export default async function ProjectPage({ params }: Props) {
 				</Typography>
 				<Box>
 					<PortableText value={project.content} components={renderComponents} />
+				</Box>
+				<Box sx={{ py: "20px", borderTop: "1px solid", borderColor: "divider" }}>
+					<Typography variant='h3'>Keep reading</Typography>
+					<Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "repeat(3, 1fr)" }, gap: 3 }}>
+						{relatedProjects.map((relProject) => (
+							<Link
+								key={relProject._id}
+								href={`/projects/${relProject.slug.current}`}
+								style={{ textDecoration: "none", color: "inherit", display: "block" }}>
+								<Box
+									sx={{
+										border: "1px solid",
+										display: "flex",
+										flexDirection: "column",
+										borderColor: "divider",
+										p: 3,
+										"&:hover .related-title": { color: "primary.main" },
+									}}>
+									<Typography variant='overline' sx={{ color: "text.secondary", display: "block", mb: 1 }}>
+										{formatDate(relProject.publishedAt)}
+									</Typography>
+									<Typography variant='h2' component='h4' className='related-title' sx={{ transition: "color 0.2s ease" }}>
+										{relProject.title}
+									</Typography>
+								</Box>
+							</Link>
+						))}
+					</Box>
 				</Box>
 			</Box>
 			{/* TOC GOES HERE */}

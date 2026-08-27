@@ -7,6 +7,7 @@ import {
 	projectPostQuery,
 	projectsQuery,
 	selectedWorkQuery,
+	relatedProjectsQuery,
 } from "./queries";
 import type { ContentSection } from "@/types/sanity/homepage";
 import type { BlogPost, BlogPostPreview } from "@/types/sanity/blogpage";
@@ -45,6 +46,20 @@ export function fetchBlogPosts(): Promise<BlogPostPreview[]> {
 
 export function fetchBlogPostBySlug(slug: string): Promise<BlogPost | null> {
 	return client.fetch(blogPostQuery, { slug });
+}
+
+function shuffle<T>(array: T[]): T[] {
+	const result = [...array];
+	for (let i = result.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[result[i], result[j]] = [result[j], result[i]];
+	}
+	return result;
+}
+
+export async function fetchRelatedProjects(currentSlug: string, count = 3): Promise<ProjectPreview[]> {
+	const projects = await client.fetch<ProjectPreview[]>(relatedProjectsQuery, { slug: currentSlug });
+	return shuffle(projects).slice(0, count);
 }
 
 export default client;
