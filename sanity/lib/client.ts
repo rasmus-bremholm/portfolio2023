@@ -31,8 +31,8 @@ export function fetchFeaturedProject(): Promise<ProjectPreview | null> {
 	return client.fetch(featuredProjectQuery);
 }
 
-export function fetchProjects(): Promise<ProjectPreview[]> {
-	return client.fetch(projectsQuery);
+export function fetchProjects(excludeFeatured = false): Promise<ProjectPreview[]> {
+	return client.fetch(projectsQuery, {excludeFeatured});
 }
 
 export function fetchProjectBySlug(slug: string): Promise<Project | null> {
