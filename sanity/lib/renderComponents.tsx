@@ -21,6 +21,16 @@ export const renderComponents: PortableTextComponents = {
 				{children}
 			</Typography>
 		),
+		h2: ({ children }) => (
+			<Typography variant='h2' sx={{ mt: 6, mb: 2 }}>
+				{children}
+			</Typography>
+		),
+		h3: ({ children }) => (
+			<Typography variant='h3' sx={{ mt: 2, mb: 2 }}>
+				{children}
+			</Typography>
+		),
 	},
 	marks: {
 		strong: ({ children }) => <strong>{children}</strong>,
@@ -34,17 +44,20 @@ export const renderComponents: PortableTextComponents = {
 	types: {
 		imageBlock: ({ value }) => {
 			if (!value?.asset) return null;
+			const dimensions = value.asset.metadata?.dimensions;
+			const width = dimensions?.width || 800;
+			const height = dimensions?.height || 600;
 			return (
 				<figure style={{ margin: "2rem 0" }}>
 					<Image
 						src={builder.image(value).width(800).url()}
 						alt={value.alt || ""}
-						width={800}
-						height={600}
+						width={width}
+						height={height}
 						style={{ width: "100%", height: "auto" }}
 					/>
 					{value.caption && (
-						<Typography component='figcaption' sx={{ mt: 1, fontStyle: "italic", textAlign: "center" }}>
+						<Typography variant='overline' component='figcaption' sx={{ mt: 1, display: "block", color: "text.secondary" }}>
 							{value.caption}
 						</Typography>
 					)}
@@ -63,24 +76,25 @@ export const renderComponents: PortableTextComponents = {
 		},
 		blockquote: ({ value }) => {
 			return (
-				<blockquote
-					style={{
+				<Box
+					component='blockquote'
+					sx={{
 						margin: "2rem 0",
 						padding: "1rem 1.5rem",
 						borderLeft: "4px solid",
-						fontStyle: "italic",
-						background: "rgba(255,255,255,0,05)",
+						borderColor: "divider",
+						background: "rgba(255,255,255,0.05)",
 					}}>
-					<Typography component='p' sx={{ mb: 1 }}>
-						&quot;{value.quote}&quot;
+					<Typography variant='h6' component='p' sx={{ mb: 1, fontWeight: 400, color: "text.primary" }}>
+						{value.quote}
 					</Typography>
 					{value.author && (
-						<Typography component='cite' sx={{ fontSize: "0.9rem", opacity: 0.8, fontStyle: "normal" }}>
+						<Typography component='cite' sx={{ fontSize: "0.9rem", opacity: 0.8, color: "text.secondary" }}>
 							- {value.author}
 							{value.source && `, ${value.source}`}
 						</Typography>
 					)}
-				</blockquote>
+				</Box>
 			);
 		},
 		youtube: ({ value }) => {
@@ -121,7 +135,7 @@ export const renderComponents: PortableTextComponents = {
 						/>
 					</div>
 					{value.caption && (
-						<Typography component='figcaption' sx={{ mt: 1, fontStyle: "italic", textAlign: "center" }}>
+						<Typography variant='overline' component='figcaption' sx={{ mt: 1, display: "block", color: "text.secondary" }}>
 							{value.caption}
 						</Typography>
 					)}
