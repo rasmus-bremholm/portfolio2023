@@ -46,8 +46,10 @@ export default async function ProjectPage({ params }: Props) {
 					<PortableText value={project.content} components={renderComponents} />
 				</Box>
 				<Box sx={{ py: "20px", borderTop: "1px solid", borderColor: "divider" }}>
-					<Typography variant='h3'>Keep reading</Typography>
-					<Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "repeat(3, 1fr)" }, gap: 3 }}>
+					<Typography variant='h3' sx={{ py: "26px" }}>
+						Keep reading
+					</Typography>
+					<Box sx={{ display: "grid", gridColumn: "1 / -1", gridTemplateColumns: { xs: "1fr", sm: "repeat(3, 1fr)" } }}>
 						{relatedProjects.map((relProject) => (
 							<Link
 								key={relProject._id}
@@ -65,7 +67,7 @@ export default async function ProjectPage({ params }: Props) {
 									<Typography variant='overline' sx={{ color: "text.secondary", display: "block", mb: 1 }}>
 										{formatDate(relProject.publishedAt)}
 									</Typography>
-									<Typography variant='h2' component='h4' className='related-title' sx={{ transition: "color 0.2s ease" }}>
+									<Typography variant='h3' component='h4' className='related-title' sx={{ transition: "color 0.2s ease" }}>
 										{relProject.title}
 									</Typography>
 								</Box>
