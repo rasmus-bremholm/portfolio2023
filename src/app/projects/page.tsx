@@ -1,6 +1,6 @@
 import { fetchProjects } from "@/sanity/lib/client";
 import type { ProjectPreview } from "@/types/sanity/projectpage";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import type { Metadata } from "next";
 import ProjectsHero from "./components/ProjectsHero";
 import ProjectCard from "./components/ProjectCard";

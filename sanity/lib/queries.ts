@@ -169,3 +169,12 @@ export const projectPostQuery = groq`
   }
 }
 `;
+
+export const relatedProjectsQuery = groq`
+*[_type == "projectPost" && slug.current != $slug] {
+  _id,
+  title,
+  slug,
+  publishedAt
+}
+`;
