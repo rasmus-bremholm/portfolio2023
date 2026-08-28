@@ -24,7 +24,14 @@ export default async function ProjectPage({ params }: Props) {
 	return (
 		<Container
 			maxWidth='lg'
-			sx={{ py: 8, display: "grid", gap: "clamp(3rem, 5vw, 5rem)", alignItems: "start", gridTemplateColumns: { xs: "1fr", md: "1fr 240px" } }}>
+			sx={{
+				position: "relative",
+				py: 8,
+				display: "grid",
+				gap: "clamp(3rem, 5vw, 5rem)",
+				alignItems: "start",
+				gridTemplateColumns: { xs: "1fr", md: "1fr 240px" },
+			}}>
 			<Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
 				<Typography variant='overline'>
 					{project.technologies[0]} {formatDate(project.publishedAt)}
@@ -47,7 +54,10 @@ export default async function ProjectPage({ params }: Props) {
 					<PortableText value={project.content} components={renderComponents} />
 				</Box>
 			</Box>
-			<TableofContent headings={headings} />
+			<Box sx={{ position: "sticky", top: 100 }}>
+				<TableofContent headings={headings} />
+			</Box>
+
 			<KeepReading slug={slug} />
 		</Container>
 	);

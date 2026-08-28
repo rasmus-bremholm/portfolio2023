@@ -4,7 +4,15 @@ import { navbarLinks } from "@/app/consts/consts";
 
 export default function Navbar() {
 	return (
-		<Box sx={{ borderBottom: "1px solid", position: "sticky", top: 0, bgcolor: "background.default" }}>
+		<Box
+			sx={{
+				borderBottom: "1px solid",
+				position: "sticky",
+				top: 0,
+				zIndex: "appBar",
+				backdropFilter: "blur(6px)",
+				bgcolor: "rgba(241, 242, 240, 0.7)", // background.default @ 0.7 — translucent so backdrop-filter shows
+			}}>
 			<Container component='nav' sx={{ py: "22px", display: "flex", justifyContent: "space-between" }}>
 				<Box>
 					<Link href={"/"}>
