@@ -117,7 +117,7 @@ export const featuredProjectQuery = groq`
 `;
 
 export const projectsQuery = groq`
-*[_type == "projectPost"] | order(
+*[_type == "projectPost" && (!$excludeFeatured || featured != true)] | order(
   coalesce(customOrder, 9999) asc,
   publishedAt desc
 ) {

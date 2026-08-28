@@ -1,5 +1,4 @@
-import { client } from "@/sanity/lib/client";
-import { projectsQuery } from "@/sanity/lib/queries";
+import { fetchProjects } from "@/sanity/lib/client";
 import type { ProjectPreview } from "@/types/sanity/projectpage";
 import { Box, Container } from "@mui/material";
 import type { Metadata } from "next";
@@ -12,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ProjectsPage() {
-	const projects = await client.fetch<ProjectPreview[] | null>(projectsQuery);
+	const projects: ProjectPreview[] = await fetchProjects(false);
 
 	return (
 		<Container maxWidth='lg' sx={{ py: 8 }}>
