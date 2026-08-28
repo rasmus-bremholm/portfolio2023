@@ -1,11 +1,10 @@
 import { Container, Box, Typography } from "@mui/material";
 import { notFound } from "next/navigation";
-import { fetchProjectBySlug, fetchRelatedProjects } from "@/sanity/lib/client";
+import { fetchProjectBySlug } from "@/sanity/lib/client";
 import formatDate from "@/app/lib/formatDate";
 import { PortableText } from "next-sanity";
 import { renderComponents } from "@/sanity/lib/renderComponents";
-import { ProjectPreview } from "@/types/sanity/projectpage";
-import Link from "next/link";
+import KeepReading from "../components/KeepReading";
 
 type Props = {
 	params: Promise<{ slug: string }>;
@@ -14,7 +13,6 @@ type Props = {
 export default async function ProjectPage({ params }: Props) {
 	const { slug } = await params;
 	const project = await fetchProjectBySlug(slug);
-	const relatedProjects = await fetchRelatedProjects(slug, 3);
 
 	if (!project) {
 		notFound();
@@ -45,39 +43,12 @@ export default async function ProjectPage({ params }: Props) {
 				<Box>
 					<PortableText value={project.content} components={renderComponents} />
 				</Box>
-				<Box sx={{ py: "20px", borderTop: "1px solid", borderColor: "divider" }}>
-					<Typography variant='h3' sx={{ py: "26px" }}>
-						Keep reading
-					</Typography>
-					<Box sx={{ display: "grid", gridColumn: "1 / -1", gridTemplateColumns: { xs: "1fr", sm: "repeat(3, 1fr)" } }}>
-						{relatedProjects.map((relProject) => (
-							<Link
-								key={relProject._id}
-								href={`/projects/${relProject.slug.current}`}
-								style={{ textDecoration: "none", color: "inherit", display: "block" }}>
-								<Box
-									sx={{
-										border: "1px solid",
-										display: "flex",
-										flexDirection: "column",
-										borderColor: "divider",
-										p: 3,
-										"&:hover .related-title": { color: "primary.main" },
-									}}>
-									<Typography variant='overline' sx={{ color: "text.secondary", display: "block", mb: 1 }}>
-										{formatDate(relProject.publishedAt)}
-									</Typography>
-									<Typography variant='h3' component='h4' className='related-title' sx={{ transition: "color 0.2s ease" }}>
-										{relProject.title}
-									</Typography>
-								</Box>
-							</Link>
-						))}
-					</Box>
-				</Box>
 			</Box>
+
 			{/* TOC GOES HERE */}
 			<Box>TOC Here</Box>
+
+			<KeepReading slug={slug} />
 		</Container>
 	);
 }
