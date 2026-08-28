@@ -23,7 +23,8 @@ export default async function KeepReading({ slug }: { slug: string }) {
 								flexDirection: "column",
 								borderColor: "divider",
 								p: 3,
-								"&:hover .related-title": { color: "primary.main" },
+								transition: "all 0.2s ease",
+								"&:hover": { bgcolor: "#eaece9" },
 							}}>
 							<Typography variant='overline' sx={{ color: "text.secondary", display: "block", mb: 1 }}>
 								{formatDate(relProject.publishedAt)}

@@ -4,6 +4,8 @@ import { fetchProjectBySlug } from "@/sanity/lib/client";
 import formatDate from "@/app/lib/formatDate";
 import { PortableText } from "next-sanity";
 import { renderComponents } from "@/sanity/lib/renderComponents";
+import { extractHeadings } from "@/app/lib/extractHeadings";
+import TableofContent from "../components/TableofContent";
 import KeepReading from "../components/KeepReading";
 
 type Props = {
@@ -13,6 +15,7 @@ type Props = {
 export default async function ProjectPage({ params }: Props) {
 	const { slug } = await params;
 	const project = await fetchProjectBySlug(slug);
+	const headings = await extractHeadings(project?.content);
 
 	if (!project) {
 		notFound();
@@ -44,10 +47,7 @@ export default async function ProjectPage({ params }: Props) {
 					<PortableText value={project.content} components={renderComponents} />
 				</Box>
 			</Box>
-
-			{/* TOC GOES HERE */}
-			<Box>TOC Here</Box>
-
+			<TableofContent headings={headings} />
 			<KeepReading slug={slug} />
 		</Container>
 	);
