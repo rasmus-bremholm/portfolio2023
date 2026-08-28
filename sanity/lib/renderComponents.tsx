@@ -41,6 +41,20 @@ export const renderComponents: PortableTextComponents = {
 				{children}
 			</Link>
 		),
+		code: ({ children }) => (
+			<Box
+				component='code'
+				sx={{
+					backgroundColor: "#24292e",
+					color: "#e1e4e8",
+					borderRadius: "4px",
+					padding: "0.15em 0.4em",
+					fontSize: "0.875em",
+					fontFamily: "monospace",
+				}}>
+				{children}
+			</Box>
+		),
 	},
 	types: {
 		imageBlock: ({ value }) => {
