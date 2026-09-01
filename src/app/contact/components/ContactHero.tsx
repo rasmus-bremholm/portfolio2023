@@ -10,8 +10,7 @@ export default function ContactHero() {
 				gap: "80px",
 				alignItems: "end",
 				pb: "36px",
-				borderBottom: "1px solid",
-				borderColor: "divider",
+				
 			}}>
 			<Box sx={{ display: "flex", flexDirection: "column", justifyContent: "space-around" }}>
 				<Typography
