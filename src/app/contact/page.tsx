@@ -1,5 +1,6 @@
 import { Container } from "@mui/material";
 import type { Metadata } from "next";
+import ContactHero from "./components/ContactHero";
 
 export const metadata: Metadata = {
 	title: "Contact",
@@ -7,5 +8,10 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-	return <Container></Container>;
+	return (
+		<Container maxWidth='lg' sx={{ py: 8 }}>
+			<ContactHero />
+		</Container>
+		
+	);
 }
