@@ -11,3 +11,4 @@ export const experiences = [
 	{ id: 4, title: "Focus", text: "Next.js - SEO - Ecommerce", showStatus: false },
 	{ id: 5, title: "Status", text: "Avalible 2026", showStatus: true },
 ];
+
