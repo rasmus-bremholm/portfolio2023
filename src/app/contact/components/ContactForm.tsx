@@ -79,7 +79,7 @@ export default function ContactForm() {
 							margin: 0,
 							border: "1px solid",
 							borderColor: "divider",
-							borderRadius: "4px !important",
+							borderRadius: "2px !important",
 							textTransform: "none",
 						},
 						"& .Mui-selected": {
