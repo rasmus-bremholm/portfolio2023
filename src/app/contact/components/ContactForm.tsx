@@ -37,6 +37,8 @@ export default function ContactForm() {
 	const [status, setStatus] = useState<"idle" | "sending" | "sucess" | "error">("idle");
 	const [error, setError] = useState("");
 
+	const canSubmit = name.trim() && email.trim() && message.trim();
+
 	async function handleSubmit(e: React.FormEvent) {
 		e.preventDefault();
 		setStatus("sending");
@@ -48,8 +50,16 @@ export default function ContactForm() {
 			setError(result.error ?? "Something went wrong.");
 		}
 	}
+
+	if (status === "sucess") {
+		return <Typography>Thank you - I'll reply within two working days.</Typography>;
+	}
+
 	return (
-		<Box component='form' onSubmit={handleSubmit} sx={{ py: 2, borderTop: "1px solid", borderColor: "text.primary" }}>
+		<Box
+			component='form'
+			onSubmit={handleSubmit}
+			sx={{ py: 2, borderTop: "1px solid", borderColor: "text.primary", display: "flex", flexDirection: "column", gap: 5 }}>
 			<Box sx={{ display: "flex", gap: 2 }}>
 				<TextField variant='standard' placeholder='Your name' label='Name' value={name} onChange={(e) => setName(e.target.value)} fullWidth />
 				<TextField variant='standard' placeholder='you@company.com' label='Email' value={email} onChange={(e) => setEmail(e.target.value)} fullWidth />
@@ -59,7 +69,24 @@ export default function ContactForm() {
 				<Typography variant='overline' component='label' sx={{ display: "block", mb: 1 }}>
 					What is this about?
 				</Typography>
-				<ToggleButtonGroup exclusive value={category} onChange={(_, v) => v && setCategory(v)}>
+				<ToggleButtonGroup
+					exclusive
+					value={category}
+					onChange={(_, v) => v && setCategory(v)}
+					sx={{
+						gap: 1,
+						"& .MuiToggleButtonGroup-grouped": {
+							margin: 0,
+							border: "1px solid",
+							borderColor: "divider",
+							borderRadius: "4px !important",
+							textTransform: "none",
+						},
+						"& .Mui-selected": {
+							bgcolor: "grey.200",
+							borderColor: "text.primary !important",
+						},
+					}}>
 					{Object.entries(CATEGORIES).map(([value, { label }]) => (
 						<ToggleButton key={value} value={value}>
 							{label}
@@ -72,14 +99,26 @@ export default function ContactForm() {
 				<Typography variant='overline' component='label' sx={{ display: "block", mb: 1 }}>
 					Message
 				</Typography>
-				<TextField placeholder={CATEGORIES[category].placeholder} value={message} onChange={(e) => setMessage(e.target.value)} multiline minRows={4} />
+				<TextField
+					sx={{ "& textarea": { resize: "vertical" } }}
+					placeholder={CATEGORIES[category].placeholder}
+					value={message}
+					onChange={(e) => setMessage(e.target.value)}
+					multiline
+					fullWidth
+					variant='standard'
+					minRows={4}
+				/>
 			</Box>
 
 			{status === "error" && <Typography color='error'>{error}</Typography>}
 
-			<Button type='submit' variant='contained' disabled={status === "sending"}>
+			<Button type='submit' variant='contained' disabled={!canSubmit || status === "sending"}>
 				<Typography>{status === "sending" ? "Sending…" : "Send message"}</Typography>
 			</Button>
+			<Typography variant='body2' color='text.secondary'>
+				Email and a short message, and you&apos;re done.
+			</Typography>
 		</Box>
 	);
 }
