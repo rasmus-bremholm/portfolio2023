@@ -52,7 +52,7 @@ export default function ContactForm() {
 	}
 
 	if (status === "sucess") {
-		return <Typography>Thank you - I'll reply within two working days.</Typography>;
+		return <Typography>Thank you - I&apos;ll reply within two working days.</Typography>;
 	}
 
 	return (
