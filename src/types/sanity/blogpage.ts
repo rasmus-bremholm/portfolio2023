@@ -1,4 +1,5 @@
 import type { PortableTextBlock } from "@portabletext/types";
+import type { SeoOverride } from "./seo";
 
 export interface BlogPost {
 	_id: string;
@@ -21,6 +22,7 @@ export interface BlogPost {
 	};
 	content: PortableTextBlock[];
 	readTime?: number;
+	seo?: SeoOverride;
 }
 
 export interface BlogPostPreview {
