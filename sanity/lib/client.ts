@@ -45,9 +45,9 @@ export function fetchBlogPosts(): Promise<BlogPostPreview[]> {
 	return client.fetch(blogPostsQuery);
 }
 
-export function fetchBlogPostBySlug(slug: string): Promise<BlogPost | null> {
+export const fetchBlogPostBySlug = cache((slug: string): Promise<BlogPost | null> => {
 	return client.fetch(blogPostQuery, { slug });
-}
+});
 
 function shuffle<T>(array: T[]): T[] {
 	const result = [...array];

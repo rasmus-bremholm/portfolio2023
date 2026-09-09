@@ -72,6 +72,7 @@ export const blogPostQuery = groq`
   _id,
   title,
   slug,
+  excerpt,
   content,
   publishedAt,
   tags,

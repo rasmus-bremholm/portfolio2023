@@ -1,4 +1,5 @@
 import type { Project } from "@/types/sanity/projectpage";
+import type { BlogPost } from "@/types/sanity/blogpage";
 import { SITE_URL, SITE_NAME, JOB_TITLE, EMPLOYER, ADDRESS_LOCALITY, ADDRESS_COUNTRY, SAME_AS } from "./site";
 
 export function personJsonLd() {
@@ -24,6 +25,20 @@ export function projectJsonLd(project: Project) {
 		datePublished: project.publishedAt,
 		keywords: project.technologies?.join(", "),
 		image: project.featuredImage?.asset.url,
+		author: { "@type": "Person", name: SITE_NAME, url: SITE_URL },
+	};
+}
+
+export function blogPostJsonLd(post: BlogPost) {
+	return {
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		headline: post.title,
+		description: post.excerpt,
+		url: `${SITE_URL}/blog/${post.slug.current}`,
+		datePublished: post.publishedAt,
+		keywords: post.tags?.join(", "),
+		image: post.featuredImage?.asset.url,
 		author: { "@type": "Person", name: SITE_NAME, url: SITE_URL },
 	};
 }
