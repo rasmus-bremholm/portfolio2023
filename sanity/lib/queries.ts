@@ -1,18 +1,5 @@
 import { groq } from "next-sanity";
 
-// Get all homepage sections ordered by display order
-export const homepageSectionsQuery = groq`
-  *[_type == "homepageSection"] | order(order asc) {
-    _id,
-    title,
-    content,
-    alignment,
-    order,
-    ctaLink,
-    ctaText,
-  }
-`;
-
 // Get 5 highlighted projects for the homepage
 export const selectedWorkQuery = groq`
 *[_type == "projectPost"] | order(
