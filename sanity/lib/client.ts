@@ -4,13 +4,12 @@ import {
 	blogPostQuery,
 	blogPostsQuery,
 	featuredProjectQuery,
-	homepageSectionsQuery,
 	projectPostQuery,
 	projectsQuery,
 	selectedWorkQuery,
 	relatedProjectsQuery,
 } from "./queries";
-import type { ContentSection } from "@/types/sanity/homepage";
+
 import type { BlogPost, BlogPostPreview } from "@/types/sanity/blogpage";
 import type { Project, ProjectPreview } from "@/types/sanity/projectpage";
 
@@ -21,10 +20,6 @@ export const client = createClient({
 	useCdn: process.env.NODE_ENV === "production",
 });
 
-export function fetchHomepageSections(): Promise<ContentSection[]> {
-	return client.fetch(homepageSectionsQuery);
-}
-
 export function fetchSelectedWork(): Promise<ProjectPreview[]> {
 	return client.fetch(selectedWorkQuery);
 }
@@ -34,7 +29,7 @@ export function fetchFeaturedProject(): Promise<ProjectPreview | null> {
 }
 
 export function fetchProjects(excludeFeatured = false): Promise<ProjectPreview[]> {
-	return client.fetch(projectsQuery, {excludeFeatured});
+	return client.fetch(projectsQuery, { excludeFeatured });
 }
 
 export const fetchProjectBySlug = cache((slug: string): Promise<Project | null> => {

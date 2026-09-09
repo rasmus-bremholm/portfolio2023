@@ -39,19 +39,6 @@ export const selectedWorkQuery = groq`
   }
 `;
 
-// Get a single homepage section by ID
-export const homepageSectionByIdQuery = groq`
-  *[_type == "homepageSection" && _id == $id][0] {
-    _id,
-    title,
-    content,
-    alignment,
-    order,
-    ctaLink,
-    ctaText,
-  }
-`;
-
 // Get Blog Posts
 export const blogPostsQuery = groq`
 *[_type == "blogPost"] | order(publishedAt desc) {
