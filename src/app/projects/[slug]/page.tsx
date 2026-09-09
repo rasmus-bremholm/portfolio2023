@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Container, Box, Typography } from "@mui/material";
 import { notFound } from "next/navigation";
 import { fetchProjectBySlug } from "@/sanity/lib/client";
@@ -7,10 +8,34 @@ import { renderComponents } from "@/sanity/lib/renderComponents";
 import { extractHeadings } from "@/app/lib/extractHeadings";
 import TableofContent from "../components/TableofContent";
 import KeepReading from "../components/KeepReading";
+import JsonLd from "@/components/JsonLd";
+import { projectJsonLd } from "@/lib/seo/jsonld";
+import { buildMetadata, projectOgImageUrl } from "@/lib/seo/metadata";
+import { DEFAULT_OG_IMAGE } from "@/lib/seo/site";
 
 type Props = {
 	params: Promise<{ slug: string }>;
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+	const { slug } = await params;
+	const project = await fetchProjectBySlug(slug);
+
+	if (!project) {
+		return { title: "Project Not Found" };
+	}
+
+	const image = project.featuredImage ? projectOgImageUrl(project.title, project.technologies) : DEFAULT_OG_IMAGE;
+
+	return buildMetadata({
+		title: project.title,
+		description: project.description || `View ${project.title} project by Rasmus Bremholm`,
+		path: `/projects/${slug}`,
+		image,
+		type: "article",
+		publishedTime: project.publishedAt,
+	});
+}
 
 export default async function ProjectPage({ params }: Props) {
 	const { slug } = await params;
@@ -32,6 +57,7 @@ export default async function ProjectPage({ params }: Props) {
 				alignItems: "start",
 				gridTemplateColumns: { xs: "1fr", md: "1fr 240px" },
 			}}>
+			<JsonLd data={projectJsonLd(project)} />
 			<Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
 				<Typography variant='overline'>
 					{project.technologies[0]} {formatDate(project.publishedAt)}

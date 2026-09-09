@@ -10,7 +10,12 @@ export interface BlogPost {
 	tags: string[];
 	featuredImage?: {
 		asset: {
-			_ref: string;
+			_id: string;
+			url: string;
+			metadata?: {
+				lqip?: string;
+				dimensions?: { width: number; height: number };
+			};
 		};
 		alt?: string;
 	};

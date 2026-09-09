@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { createClient } from "next-sanity";
 import {
 	blogPostQuery,
@@ -36,17 +37,17 @@ export function fetchProjects(excludeFeatured = false): Promise<ProjectPreview[]
 	return client.fetch(projectsQuery, {excludeFeatured});
 }
 
-export function fetchProjectBySlug(slug: string): Promise<Project | null> {
+export const fetchProjectBySlug = cache((slug: string): Promise<Project | null> => {
 	return client.fetch(projectPostQuery, { slug });
-}
+});
 
 export function fetchBlogPosts(): Promise<BlogPostPreview[]> {
 	return client.fetch(blogPostsQuery);
 }
 
-export function fetchBlogPostBySlug(slug: string): Promise<BlogPost | null> {
+export const fetchBlogPostBySlug = cache((slug: string): Promise<BlogPost | null> => {
 	return client.fetch(blogPostQuery, { slug });
-}
+});
 
 function shuffle<T>(array: T[]): T[] {
 	const result = [...array];
