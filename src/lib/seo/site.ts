@@ -1,0 +1,9 @@
+export const SITE_URL = "https://www.rasmusbremholm.com";
+export const SITE_NAME = "Rasmus Bremholm";
+export const SITE_DESCRIPTION = "Fullstack developer & teacher.";
+export const JOB_TITLE = "Educator";
+export const EMPLOYER = "Tetiko";
+export const ADDRESS_LOCALITY = "Göteborg";
+export const ADDRESS_COUNTRY = "SE";
+export const SAME_AS = ["https://github.com/rasmusbremholm", "https://linkedin.com/in/rasmusbremholm"];
+export const DEFAULT_OG_IMAGE = "/og-image.jpg";

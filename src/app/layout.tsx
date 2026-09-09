@@ -4,13 +4,15 @@ import { Newsreader, Spectral, Hanken_Grotesk, IBM_Plex_Mono, JetBrains_Mono } f
 import "./global.css";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
+import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/seo/site";
 
 export const metadata: Metadata = {
+	metadataBase: new URL(SITE_URL),
 	title: {
-		default: "Rasmus Bremholm",
-		template: "%s | Rasmus Bremholm",
+		default: SITE_NAME,
+		template: `%s | ${SITE_NAME}`,
 	},
-	description: "Fullstack developer & teacher.",
+	description: SITE_DESCRIPTION,
 };
 
 const newsreader = Newsreader({
