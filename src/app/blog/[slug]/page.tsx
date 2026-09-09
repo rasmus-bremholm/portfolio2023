@@ -25,12 +25,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 	}
 
 	return buildMetadata({
-		title: post.title,
-		description: post.excerpt || `Read ${post.title} on Rasmus Bremholm's blog`,
+		title: post.seo?.title || post.title,
+		description: post.seo?.description || post.excerpt || `Read ${post.title} on Rasmus Bremholm's blog`,
 		path: `/blog/${slug}`,
-		image: post.featuredImage?.asset.url || DEFAULT_OG_IMAGE,
+		image: post.seo?.image?.asset.url || post.featuredImage?.asset.url || DEFAULT_OG_IMAGE,
 		type: "article",
 		publishedTime: post.publishedAt,
+		noIndex: post.seo?.noIndex,
 	});
 }
 

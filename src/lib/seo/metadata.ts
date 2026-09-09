@@ -9,6 +9,8 @@ type BuildMetadataArgs = {
 	image?: string;
 	type?: "website" | "article";
 	publishedTime?: string;
+	/** Sanity's `seo.noIndex` override — hides the page from search engines when true. */
+	noIndex?: boolean;
 };
 
 export function buildMetadata({
@@ -18,6 +20,7 @@ export function buildMetadata({
 	image = DEFAULT_OG_IMAGE,
 	type = "website",
 	publishedTime,
+	noIndex,
 }: BuildMetadataArgs): Metadata {
 	const url = `${SITE_URL}${path}`;
 	const ogTitle = title ?? SITE_NAME;
@@ -26,6 +29,7 @@ export function buildMetadata({
 	return {
 		...(title ? { title } : {}),
 		description,
+		...(noIndex ? { robots: { index: false, follow: false } } : {}),
 		openGraph:
 			type === "article"
 				? { title: ogTitle, description, url, siteName: SITE_NAME, type: "article" as const, publishedTime, images }

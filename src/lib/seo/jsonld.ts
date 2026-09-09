@@ -19,12 +19,12 @@ export function projectJsonLd(project: Project) {
 	return {
 		"@context": "https://schema.org",
 		"@type": "CreativeWork",
-		name: project.title,
-		description: project.description,
+		name: project.seo?.title || project.title,
+		description: project.seo?.description || project.description,
 		url: `${SITE_URL}/projects/${project.slug.current}`,
 		datePublished: project.publishedAt,
 		keywords: project.technologies?.join(", "),
-		image: project.featuredImage?.asset.url,
+		image: project.seo?.image?.asset.url || project.featuredImage?.asset.url,
 		author: { "@type": "Person", name: SITE_NAME, url: SITE_URL },
 	};
 }
@@ -33,12 +33,12 @@ export function blogPostJsonLd(post: BlogPost) {
 	return {
 		"@context": "https://schema.org",
 		"@type": "BlogPosting",
-		headline: post.title,
-		description: post.excerpt,
+		headline: post.seo?.title || post.title,
+		description: post.seo?.description || post.excerpt,
 		url: `${SITE_URL}/blog/${post.slug.current}`,
 		datePublished: post.publishedAt,
 		keywords: post.tags?.join(", "),
-		image: post.featuredImage?.asset.url,
+		image: post.seo?.image?.asset.url || post.featuredImage?.asset.url,
 		author: { "@type": "Person", name: SITE_NAME, url: SITE_URL },
 	};
 }
