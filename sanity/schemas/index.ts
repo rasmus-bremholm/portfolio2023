@@ -1,4 +1,4 @@
-import homepageSection from "./documents/homepageSection";
+import siteSettings from "./documents/siteSettings";
 import blogPost from "./documents/blogPost";
 import codeBlock from "./objects/codeBlock";
 import youtubeVideo from "./objects/youtubeVideo";
@@ -9,7 +9,7 @@ import projectPost from "./documents/projectsPosts";
 
 export const schemaTypes = [
 	//Documents
-	homepageSection,
+	siteSettings,
 	blogPost,
 	projectPost,
 
