@@ -63,6 +63,21 @@ export const blogPostQuery = groq`
     alt,
   },
   "readTime": round(length(pt::text(content)) / 5 / 200),
+  seo {
+    title,
+    description,
+    image {
+      asset->{
+        _id,
+        url,
+        metadata {
+          lqip,
+          dimensions
+        }
+      }
+    },
+    noIndex
+  }
 }
 `;
 
@@ -141,6 +156,21 @@ export const projectPostQuery = groq`
       }
     },
     alt
+  },
+  seo {
+    title,
+    description,
+    image {
+      asset->{
+        _id,
+        url,
+        metadata {
+          lqip,
+          dimensions
+        }
+      }
+    },
+    noIndex
   }
 }
 `;

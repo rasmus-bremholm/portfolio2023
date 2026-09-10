@@ -1,4 +1,5 @@
 import type { PortableTextBlock } from "@portabletext/types";
+import type { SeoOverride } from "./seo";
 
 export interface ProjectPreview {
 	_id: string;
@@ -26,4 +27,5 @@ export interface ProjectPreview {
 
 export interface Project extends ProjectPreview {
 	content: PortableTextBlock[];
+	seo?: SeoOverride;
 }

@@ -25,15 +25,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 		return { title: "Project Not Found" };
 	}
 
-	const image = project.featuredImage ? projectOgImageUrl(project.title, project.technologies) : DEFAULT_OG_IMAGE;
+	const image =
+		project.seo?.image?.asset.url ||
+		(project.featuredImage ? projectOgImageUrl(project.title, project.technologies) : DEFAULT_OG_IMAGE);
 
 	return buildMetadata({
-		title: project.title,
-		description: project.description || `View ${project.title} project by Rasmus Bremholm`,
+		title: project.seo?.title || project.title,
+		description: project.seo?.description || project.description || `View ${project.title} project by Rasmus Bremholm`,
 		path: `/projects/${slug}`,
 		image,
 		type: "article",
 		publishedTime: project.publishedAt,
+		noIndex: project.seo?.noIndex,
 	});
 }
 
