@@ -18,6 +18,10 @@ export default defineType({
 			name: "status",
 			title: "Status information",
 		},
+		{
+			name: "faq",
+			title: "FAQ",
+		},
 	],
 	fields: [
 		//Fieldsets
@@ -129,6 +133,37 @@ export default defineType({
 					description: "Two-letter country code, e.g. 'SE'",
 					type: "string",
 					validation: (Rule) => Rule.required().length(2),
+				}),
+			],
+		}),
+
+		// FAQ
+		defineField({
+			name: "faqs",
+			title: "Frequently Asked Questions",
+			type: "array",
+			fieldset: "faq",
+			of: [
+				defineField({
+					name: "faq",
+					type: "object",
+					fields: [
+						defineField({
+							name: "question",
+							title: "Question",
+							type: "string",
+							validation: (Rule) => Rule.required(),
+						}),
+						defineField({
+							name: "answer",
+							title: "Answer",
+							type: "text",
+							validation: (Rule) => Rule.required(),
+						}),
+					],
+					preview: {
+						select: { title: "question", subtitle: "answer" },
+					},
 				}),
 			],
 		}),

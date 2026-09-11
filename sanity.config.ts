@@ -8,6 +8,7 @@ export default defineConfig({
 	title: "Portfolio 2023",
 	projectId: "e11pfexb",
 	dataset: "production",
+	basePath: "/studio",
 	plugins: [
 		structureTool({
 			structure: (S) =>

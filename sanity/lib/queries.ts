@@ -1,5 +1,22 @@
 import { groq } from "next-sanity";
 
+// Get the site settings singleton
+export const siteSettingsQuery = groq`
+*[_type == "siteSettings"][0] {
+  email,
+  githubUrl,
+  linkedinUrl,
+  employer,
+  jobTitle,
+  previous,
+  experience,
+  focus,
+  status,
+  address,
+  faqs
+}
+`;
+
 // Get 5 highlighted projects for the homepage
 export const selectedWorkQuery = groq`
 *[_type == "projectPost"] | order(
