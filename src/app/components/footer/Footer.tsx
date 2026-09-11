@@ -46,6 +46,7 @@ export default async function Footer() {
 						<IconButton
 							href={settings.githubUrl}
 							target='_blank'
+							rel='noopener noreferrer'
 							color='inherit'
 							aria-label="Github"
 							sx={{
@@ -59,6 +60,7 @@ export default async function Footer() {
 						<IconButton
 							href={settings.linkedinUrl}
 							target='_blank'
+							rel='noopener noreferrer'
 							color='inherit'
 							aria-label="Linkedin"
 							sx={{

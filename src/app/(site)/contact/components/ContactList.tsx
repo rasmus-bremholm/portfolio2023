@@ -21,12 +21,12 @@ export default async function ContactList() {
 				<Typography variant='overline' sx={{ textTransform: "uppercase", color: "text.tertiary" }}>
 					elsewhere
 				</Typography>
-				<a href={settings.githubUrl} target='_blank'>
+				<a href={settings.githubUrl} target='_blank' rel='noopener noreferrer'>
 					<Typography variant='overline' sx={{ display: "inline-flex", alignItems: "center", gap: 2, "&:hover": { color: "text.secondary" } }}>
 						<GitHub fontSize='small' /> Github
 					</Typography>
 				</a>
-				<a href={settings.linkedinUrl} target='_blank'>
+				<a href={settings.linkedinUrl} target='_blank' rel='noopener noreferrer'>
 					<Typography variant='overline' sx={{ display: "inline-flex", alignItems: "center", gap: 2, "&:hover": { color: "text.secondary" } }}>
 						<LinkedIn fontSize='small' /> Linkedin
 					</Typography>
