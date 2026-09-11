@@ -27,7 +27,7 @@ const baseTheme = createTheme({
 		text: {
 			primary: "#23282A", //titles
 			secondary: "#4C5455", //body
-			tertiary: "#8A9291", //muted labels
+			tertiary: "#5E6363", //muted labels
 			darkText: "#eef0ee", // text on dark background
 			darkMuted: "#8fa3ad", // muted text on dark background
 		},
