@@ -1,35 +1,19 @@
 import { Box, Typography, Divider } from "@mui/material";
 import { GitHub, LinkedIn } from "@mui/icons-material";
 import Link from "next/link";
+import { fetchSiteSettings } from "@/sanity/lib/client";
 
-const faqs = [
-	{
-		question: "Are you available?",
-		answer: "Open to new opportunities starting Q4 2026.",
-	},
-	{
-		question: "How fast do you reply?",
-		answer: "Within two working days.",
-	},
-	{
-		question: "Do you take on smaller jobs?",
-		answer: "I'm mainly looking for full-time positions, but always open to collaborations on smaller stuff too.",
-	},
-	{
-		question: "Remote or onsite?",
-		answer: "Remote across Europe, on site in Göteborg when it genuinely helps.",
-	},
-];
+export default async function ContactList() {
+	const settings = await fetchSiteSettings();
 
-export default function ContactList() {
 	return (
 		<Box sx={{ py: 2, borderTop: "1px solid", borderColor: "text.primary", display: "flex", flexDirection: "column" }}>
 			<Box sx={{ display: "flex", flexDirection: "column", py: 2 }}>
 				<Typography variant='overline' sx={{ textTransform: "uppercase", color: "text.tertiary" }}>
 					direct
 				</Typography>
-				<a href='mailto: rasmusbremholm@gmail.com'>
-					<Typography variant='overline'>rasmusbremholm@gmail.com</Typography>
+				<a href={`mailto:${settings.email}`}>
+					<Typography variant='overline'>{settings.email}</Typography>
 				</a>
 			</Box>
 			<Divider />
@@ -37,12 +21,12 @@ export default function ContactList() {
 				<Typography variant='overline' sx={{ textTransform: "uppercase", color: "text.tertiary" }}>
 					elsewhere
 				</Typography>
-				<a href='www.github.com' target='_blank'>
+				<a href={settings.githubUrl} target='_blank'>
 					<Typography variant='overline' sx={{ display: "inline-flex", alignItems: "center", gap: 2, "&:hover": { color: "text.secondary" } }}>
 						<GitHub fontSize='small' /> Github
 					</Typography>
 				</a>
-				<a href='www.linkedin.com' target='_blank'>
+				<a href={settings.linkedinUrl} target='_blank'>
 					<Typography variant='overline' sx={{ display: "inline-flex", alignItems: "center", gap: 2, "&:hover": { color: "text.secondary" } }}>
 						<LinkedIn fontSize='small' /> Linkedin
 					</Typography>
@@ -78,7 +62,7 @@ export default function ContactList() {
 				<Typography variant='overline' sx={{ textTransform: "uppercase", color: "text.tertiary", fontFamily: "var(--font-hanken-grotesk)" }}>
 					before you write
 				</Typography>
-				{faqs.map((faq) => (
+				{settings.faqs.map((faq) => (
 					<Box key={faq.question} sx={{ display: "flex", flexDirection: "column", gap: 0.3 }}>
 						<Typography variant='body2' sx={{ fontWeight: 600, fontFamily: "var(--font-hanken-grotesk)" }}>
 							{faq.question}

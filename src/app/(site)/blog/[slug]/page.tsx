@@ -6,7 +6,7 @@ import formatDate from "@/app/lib/formatDate";
 import { PortableText } from "next-sanity";
 import { renderComponents } from "@/sanity/lib/renderComponents";
 import { extractHeadings } from "@/app/lib/extractHeadings";
-import TableofContent from "@/app/projects/components/TableofContent";
+import TableofContent from "@/app/(site)/projects/components/TableofContent";
 import JsonLd from "@/components/JsonLd";
 import { blogPostJsonLd } from "@/lib/seo/jsonld";
 import { buildMetadata } from "@/lib/seo/metadata";

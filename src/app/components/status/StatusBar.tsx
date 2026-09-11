@@ -1,6 +1,17 @@
 import { Box, Typography, Container } from "@mui/material";
-import { experiences } from "@/app/consts/consts";
-export default function StatusBar() {
+import { fetchSiteSettings } from "@/sanity/lib/client";
+
+export default async function StatusBar() {
+	const settings = await fetchSiteSettings();
+
+	const experiences = [
+		{ id: 1, title: "Now", text: `${settings.jobTitle} - ${settings.employer}`, showStatus: false },
+		{ id: 2, title: "Previous", text: settings.previous, showStatus: false },
+		{ id: 3, title: "Experience", text: settings.experience, showStatus: false },
+		{ id: 4, title: "Focus", text: settings.focus, showStatus: false },
+		{ id: 5, title: "Status", text: settings.status.label, showStatus: settings.status.isActive },
+	];
+
 	return (
 		<Box
 			sx={{
