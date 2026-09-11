@@ -5,6 +5,12 @@ import { createImageUrlBuilder } from "@sanity/image-url";
 import Image from "next/image";
 import { createClient } from "next-sanity";
 import { codeToHtml } from "shiki";
+import { slugify } from "@/app/lib/slugify";
+
+function headingId(value: { children?: { _type: string; text?: string }[] }): string {
+	const text = value.children?.filter((child) => child._type === "span").map((child) => child.text).join("") ?? "";
+	return slugify(text);
+}
 
 const imageClient = createClient({
 	projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
@@ -22,13 +28,13 @@ export const renderComponents: PortableTextComponents = {
 				{children}
 			</Typography>
 		),
-		h2: ({ children }) => (
-			<Typography variant='h2' sx={{ mt: 6, mb: 2 }}>
+		h2: ({ children, value }) => (
+			<Typography id={headingId(value)} variant='h2' sx={{ mt: 6, mb: 2 }}>
 				{children}
 			</Typography>
 		),
-		h3: ({ children }) => (
-			<Typography variant='h3' sx={{ mt: 2, mb: 2 }}>
+		h3: ({ children, value }) => (
+			<Typography id={headingId(value)} variant='h3' sx={{ mt: 2, mb: 2 }}>
 				{children}
 			</Typography>
 		),
