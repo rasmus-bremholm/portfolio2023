@@ -71,6 +71,7 @@ export default function ContactForm() {
 				</Typography>
 				<ToggleButtonGroup
 					exclusive
+					aria-label='What is this about?'
 					value={category}
 					onChange={(_, v) => v && setCategory(v)}
 					sx={{
@@ -96,7 +97,7 @@ export default function ContactForm() {
 			</Box>
 
 			<Box>
-				<Typography variant='overline' component='label' sx={{ display: "block", mb: 1 }}>
+				<Typography variant='overline' component='label' id="contact-message" sx={{ display: "block", mb: 1 }}>
 					Message
 				</Typography>
 				<TextField
@@ -108,6 +109,8 @@ export default function ContactForm() {
 					fullWidth
 					variant='standard'
 					minRows={4}
+					slotProps={{ htmlInput: { "aria-labelledby": "contact-message" } }}
+					
 				/>
 			</Box>
 

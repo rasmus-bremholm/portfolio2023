@@ -47,6 +47,7 @@ export default async function Footer() {
 							href={settings.githubUrl}
 							target='_blank'
 							color='inherit'
+							aria-label="Github"
 							sx={{
 								transition: "all 0.2s ease",
 								"&:hover": {
@@ -59,6 +60,7 @@ export default async function Footer() {
 							href={settings.linkedinUrl}
 							target='_blank'
 							color='inherit'
+							aria-label="Linkedin"
 							sx={{
 								transition: "all 0.2s ease",
 								"&:hover": {
