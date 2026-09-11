@@ -8,10 +8,12 @@ import {
 	projectsQuery,
 	selectedWorkQuery,
 	relatedProjectsQuery,
+	siteSettingsQuery,
 } from "./queries";
 
 import type { BlogPost, BlogPostPreview } from "@/types/sanity/blogpage";
 import type { Project, ProjectPreview } from "@/types/sanity/projectpage";
+import type { SiteSettings } from "@/types/sanity/sitesettings";
 
 export const client = createClient({
 	projectId: process.env.SANITY_PROJECT_ID,
@@ -57,5 +59,9 @@ export async function fetchRelatedProjects(currentSlug: string, count = 3): Prom
 	const projects = await client.fetch<ProjectPreview[]>(relatedProjectsQuery, { slug: currentSlug });
 	return shuffle(projects).slice(0, count);
 }
+
+export const fetchSiteSettings = cache((): Promise<SiteSettings> => {
+	return client.fetch(siteSettingsQuery);
+});
 
 export default client;

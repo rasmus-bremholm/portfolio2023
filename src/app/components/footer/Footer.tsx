@@ -1,11 +1,11 @@
-"use client";
-
 import { Box, Container, Typography, IconButton, Button } from "@mui/material";
 import { GitHub, LinkedIn } from "@mui/icons-material";
 import packageJson from "@root/package.json";
-import Link from "next/link";
+import { fetchSiteSettings } from "@/sanity/lib/client";
 
-export default function Footer() {
+export default async function Footer() {
+	const settings = await fetchSiteSettings();
+
 	return (
 		<Box
 			component='footer'
@@ -37,14 +37,15 @@ export default function Footer() {
 					</Typography>
 				</Box>
 				<Box sx={{ display: "flex", flexDirection: "column", gap: 2, justifyContent: "flex-start" }}>
-					<a href='mailto:rasmusbremholm@gmail.com'>
+					<a href={`mailto:${settings.email}`}>
 						<Typography sx={{ color: "text.darkMuted" }} variant='body2'>
-							rasmusbremholm@gmail.com
+							{settings.email}
 						</Typography>
 					</a>
 					<Box>
 						<IconButton
-							href='/'
+							href={settings.githubUrl}
+							target='_blank'
 							color='inherit'
 							sx={{
 								transition: "all 0.2s ease",
@@ -55,7 +56,8 @@ export default function Footer() {
 							<GitHub />
 						</IconButton>
 						<IconButton
-							href='/'
+							href={settings.linkedinUrl}
+							target='_blank'
 							color='inherit'
 							sx={{
 								transition: "all 0.2s ease",
@@ -66,9 +68,7 @@ export default function Footer() {
 							<LinkedIn />
 						</IconButton>
 					</Box>
-					<Button LinkComponent={Link} href='/contact'>
-						Get in touch
-					</Button>
+					<Button href='/contact'>Get in touch</Button>
 				</Box>
 			</Container>
 		</Box>
