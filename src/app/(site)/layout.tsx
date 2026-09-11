@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import ThemeRegistry from "./ThemeRegistry";
 import { Newsreader, Spectral, Hanken_Grotesk, IBM_Plex_Mono, JetBrains_Mono } from "next/font/google";
-import "./global.css";
-import Navbar from "./components/navbar/Navbar";
-import Footer from "./components/footer/Footer";
+import "@/app/global.css";
+import Navbar from "@/app/components/navbar/Navbar";
+import Footer from "@/app/components/footer/Footer";
 import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/seo/site";
 
 export const metadata: Metadata = {
