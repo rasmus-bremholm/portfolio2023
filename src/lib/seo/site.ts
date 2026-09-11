@@ -5,5 +5,5 @@ export const JOB_TITLE = "Educator";
 export const EMPLOYER = "Tetiko";
 export const ADDRESS_LOCALITY = "Göteborg";
 export const ADDRESS_COUNTRY = "SE";
-export const SAME_AS = ["https://github.com/rasmusbremholm", "https://linkedin.com/in/rasmusbremholm"];
+export const SAME_AS = ["https://github.com/rasmus-bremholm", "https://www.linkedin.com/in/rasmus-bremholm/"];
 export const DEFAULT_OG_IMAGE = "/og-image.jpg";
