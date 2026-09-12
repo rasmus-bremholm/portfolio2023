@@ -46,9 +46,8 @@ export default function AnimatedList({ projects }: AnimatedListProps) {
 						whileHover='hover'
 						sx={{
 							py: "26px",
-
 							display: "grid",
-							gridTemplateColumns: "80px 1fr 230px 60px",
+							gridTemplateColumns: { xs: "1fr 60px", sm: "80px 1fr 60px", md: "80px 1fr 230px 60px" },
 							gap: "30px",
 							alignItems: "center",
 							borderBottom: "1px solid",
@@ -59,16 +58,16 @@ export default function AnimatedList({ projects }: AnimatedListProps) {
 								bgcolor: "#eaece9",
 							},
 						}}>
-						<Typography>
+						<Typography sx={{ display: { xs: "none", sm: "block" } }}>
 							{new Date(`${project.publishedAt}`).toLocaleDateString("sv-SE", {
 								year: "numeric",
 							})}
 						</Typography>
 						<Box sx={{ display: "flex", flexDirection: "column", maxWidth: "560px" }}>
-							<Typography variant='h3'>{project.title}</Typography>
+							<Typography variant='h3' component='h2'>{project.title}</Typography>
 							<Typography variant='body2'>{project.description}</Typography>
 						</Box>
-						<Box>
+						<Box sx={{ display: { xs: "none", md: "block" } }}>
 							<Typography variant='body2' sx={{ textTransform: "capitalize" }}>
 								{project.technologies.map((tech, index) => (
 									<span key={index}> {tech} </span>
