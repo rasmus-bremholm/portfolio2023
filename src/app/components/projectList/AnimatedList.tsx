@@ -65,7 +65,7 @@ export default function AnimatedList({ projects }: AnimatedListProps) {
 							})}
 						</Typography>
 						<Box sx={{ display: "flex", flexDirection: "column", maxWidth: "560px" }}>
-							<Typography variant='h3'>{project.title}</Typography>
+							<Typography variant='h3' component='h2'>{project.title}</Typography>
 							<Typography variant='body2'>{project.description}</Typography>
 						</Box>
 						<Box>
