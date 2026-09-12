@@ -60,7 +60,7 @@ export default function ContactForm() {
 			component='form'
 			onSubmit={handleSubmit}
 			sx={{ py: 2, borderTop: "1px solid", borderColor: "text.primary", display: "flex", flexDirection: "column", gap: 5 }}>
-			<Box sx={{ display: "flex", gap: 2 }}>
+			<Box sx={{ display: "flex", gap: 2, border: "1px solid", borderColor: "divider", p: 2 }}>
 				<TextField variant='standard' placeholder='Your name' label='Name' value={name} onChange={(e) => setName(e.target.value)} fullWidth />
 				<TextField variant='standard' placeholder='you@company.com' label='Email' value={email} onChange={(e) => setEmail(e.target.value)} fullWidth />
 			</Box>
@@ -116,12 +116,14 @@ export default function ContactForm() {
 
 			{status === "error" && <Typography color='error'>{error}</Typography>}
 
-			<Button type='submit' variant='contained' disabled={!canSubmit || status === "sending"}>
-				<Typography>{status === "sending" ? "Sending…" : "Send message"}</Typography>
-			</Button>
-			<Typography variant='body2' color='text.secondary'>
-				Email and a short message, and you&apos;re done.
-			</Typography>
+			<Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
+				<Button type='submit' variant='contained' disabled={!canSubmit || status === "sending"}>
+					<Typography>{status === "sending" ? "Sending…" : "Send message"}</Typography>
+				</Button>
+				<Typography variant='body2' color='text.secondary'>
+					Email and a short message, and you&apos;re done.
+				</Typography>
+			</Box>
 		</Box>
 	);
 }
