@@ -3,3 +3,18 @@ a {
 	text-decoration: none;
 	color: inherit;
 }
+
+.skip-link {
+	position: absolute;
+	top: -100%;
+	left: 0;
+	z-index: 9999;
+	padding: 8px 16px;
+	background: #23282A;
+	color: #eef0ee;
+	font-size: 14px;
+}
+
+.skip-link:focus {
+	top: 0;
+}

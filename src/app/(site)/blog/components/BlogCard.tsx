@@ -7,7 +7,7 @@ export default function BlogCard({ post }: { post: BlogPostPreview }) {
 		<Link href={`/blog/${post.slug.current}`}>
 			<Box sx={{ display: "flex", gap: 1, flexDirection: "column", height: "100%" }}>
 				<Box sx={{ background: "repeating-linear-gradient(90deg,#e2e5e3 0 7px,#eaece9 7px 14px)", height: "180px", display: "flex" }} />
-				<Typography variant='overline' sx={{ color: "#8A9291" }}>
+				<Typography variant='overline' sx={{ color: "text.tertiary" }}>
 					{new Date(`${post.publishedAt}`).toLocaleDateString("sv-SE", {
 						year: "numeric",
 						month: "long",

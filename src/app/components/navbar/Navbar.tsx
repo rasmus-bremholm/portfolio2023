@@ -13,7 +13,7 @@ export default function Navbar() {
 				backdropFilter: "blur(6px)",
 				bgcolor: "rgba(241, 242, 240, 0.7)", // background.default @ 0.7 — translucent so backdrop-filter shows
 			}}>
-			<Container component='nav' sx={{ py: "22px", display: "flex", justifyContent: "space-between" }}>
+			<Container component='nav' aria-label='Main navigation' sx={{ py: "22px", display: "flex", justifyContent: "space-between" }}>
 				<Box>
 					<Link href={"/"}>
 						<Typography variant='body2' sx={{ textTransform: "uppercase", letterSpacing: "0.24em", fontSize: "11px" }}>

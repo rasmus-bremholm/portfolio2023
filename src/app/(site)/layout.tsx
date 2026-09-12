@@ -48,8 +48,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 		<html lang='en'>
 			<body className={`${newsreader.variable} ${spectral.variable} ${jetbrainsMono.variable} ${hanken.variable} ${ibm.variable}`}>
 				<ThemeRegistry>
+					<a href='#main-content' className='skip-link'>Skip to main content</a>
 					<Navbar />
-					<main>{children}</main>
+					<main id='main-content'>{children}</main>
 					<Footer />
 				</ThemeRegistry>
 			</body>
