@@ -9,7 +9,9 @@ export default async function SelectedWork() {
 	return (
 		<Container maxWidth='lg' sx={{ py: "60px" }}>
 			<Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", mb: "26px" }}>
-				<Typography variant='h3' component='h2'>Selected Work</Typography>
+				<Typography variant='h3' component='h2'>
+					Selected Work
+				</Typography>
 				<Typography variant='overline'>highlighted projects</Typography>
 			</Box>
 			{featuredProject && (
@@ -31,13 +33,25 @@ export default async function SelectedWork() {
 									day: "numeric",
 								})}
 							</Typography>
-							<Typography variant='h2' component='h3'>{featuredProject.title}</Typography>
+							<Typography variant='h2' component='h3'>
+								{featuredProject.title}
+							</Typography>
 							<Typography variant='body1'>{featuredProject.description}</Typography>
 						</Box>
 						<Box sx={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-							<Box sx={{ display: "flex", justifyContent: "space-between", pb: "10px", borderBottom: "1px solid", borderColor: "#d5d8d5" }}>
-								<Typography variant='body2'>Stack</Typography>
-								<Typography variant='body2'>
+							<Box
+								sx={{
+									display: "flex",
+									justifyContent: "space-between",
+									gap: 2,
+									pb: "10px",
+									borderBottom: "1px solid",
+									borderColor: "#d5d8d5",
+								}}>
+								<Typography variant='body2' sx={{ flexShrink: 0 }}>
+									Stack
+								</Typography>
+								<Typography variant='body2' sx={{ textAlign: "right" }}>
 									{featuredProject.technologies.map((tech, index) => (
 										<span key={index}> {tech} </span>
 									))}
