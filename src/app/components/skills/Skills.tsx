@@ -55,7 +55,7 @@ export default function Skills() {
 				</Box>
 
 				<Box sx={{ position: "relative", width: "100%", height: { xs: 300, md: "auto" }, minHeight: 400 }}>
-					<Canvas aria-hidden='true'>
+					<Canvas aria-hidden='true' camera={{ fov: 20 }}>
 						<ambientLight intensity={0.6} />
 						<directionalLight position={[3, 3, 3]} />
 						<SkillsCanvas hoveredSection={hoveredSection} />
