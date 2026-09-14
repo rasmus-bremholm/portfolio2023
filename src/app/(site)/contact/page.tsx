@@ -3,11 +3,13 @@ import type { Metadata } from "next";
 import ContactHero from "./components/ContactHero";
 import ContactList from "./components/ContactList";
 import ContactForm from "./components/ContactForm";
+import { buildMetadata } from "@/lib/seo/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
 	title: "Contact",
 	description: "Get in touch.",
-};
+	path: "/contact",
+});
 
 export default function ContactPage() {
 	return (

@@ -4,11 +4,13 @@ import { Box, Container } from "@mui/material";
 import type { Metadata } from "next";
 import ProjectsHero from "./components/ProjectsHero";
 import ProjectCard from "./components/ProjectCard";
+import { buildMetadata } from "@/lib/seo/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
 	title: "Projects",
 	description: "Things I have built.",
-};
+	path: "/projects",
+});
 
 export default async function ProjectsPage() {
 	const projects: ProjectPreview[] = await fetchProjects(false);

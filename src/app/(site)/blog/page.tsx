@@ -4,11 +4,13 @@ import { Box, Container } from "@mui/material";
 import type { Metadata } from "next";
 import BlogHero from "./components/BlogHero";
 import BlogCard from "./components/BlogCard";
+import { buildMetadata } from "@/lib/seo/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
 	title: "Blog",
 	description: "Writing on web development, education, and building things.",
-};
+	path: "/blog",
+});
 
 export default async function BlogPage() {
 	const posts: BlogPostPreview[] = await fetchBlogPosts();

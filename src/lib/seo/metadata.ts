@@ -29,6 +29,7 @@ export function buildMetadata({
 	return {
 		...(title ? { title } : {}),
 		description,
+		alternates: { canonical: url },
 		...(noIndex ? { robots: { index: false, follow: false } } : {}),
 		openGraph:
 			type === "article"
@@ -41,4 +42,10 @@ export function buildMetadata({
 export function projectOgImageUrl(title: string, technologies: string[] = []): string {
 	const params = new URLSearchParams({ title, tech: technologies.slice(0, 3).join(", ") });
 	return `/api/og/project?${params.toString()}`;
+}
+
+export function blogOgImageUrl(title: string, category?: string, readTime?: number): string {
+	const meta = [category, readTime ? `${readTime} min read` : ""].filter(Boolean).join(" · ");
+	const params = new URLSearchParams({ title, meta });
+	return `/api/og/blog?${params.toString()}`;
 }
