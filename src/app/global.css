@@ -1,4 +1,8 @@
 
+html {
+	overscroll-behavior-y: none;
+}
+
 a {
 	text-decoration: none;
 	color: inherit;

@@ -27,10 +27,10 @@ export default function Skills() {
 					{SECTIONS.map((skill) => (
 						<Box
 							onMouseEnter={() => setHoveredSection(skill.id)}
-							onMouseLeave={() => setHoveredSection(null)}
 							key={skill.id}
 							sx={{
 								display: "grid",
+								cursor: "pointer",
 								gridTemplateColumns: "minmax(0,96px) minmax(0,1fr)",
 								gap: "20px",
 								py: "26px",
@@ -43,7 +43,7 @@ export default function Skills() {
 							<Typography variant='body2' sx={{ textTransform: "uppercase", fontSize: "10px", color: "#4a6b7c", letterSpacing: ".2em" }}>
 								{skill.title}
 							</Typography>
-							<Box sx={{ display: "flex", gap: 1 }}>
+							<Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
 								{skill.tech.map((tech, index) => (
 									<Typography key={index} variant='body2'>
 										{tech}
