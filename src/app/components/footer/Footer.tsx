@@ -1,0 +1,80 @@
+import { Box, Container, Typography, IconButton, Button } from "@mui/material";
+import { GitHub, LinkedIn } from "@mui/icons-material";
+import packageJson from "@root/package.json";
+import { fetchSiteSettings } from "@/sanity/lib/client";
+
+export default async function Footer() {
+	const settings = await fetchSiteSettings();
+
+	return (
+		<Box
+			component='footer'
+			sx={{
+				color: "text.darkText",
+				bgcolor: "background.dark",
+				py: "clamp(32px, 3.9vw, 56px)",
+			}}>
+			<Container
+				maxWidth='lg'
+				sx={{
+					display: "grid",
+					gridTemplateColumns: { xs: "1fr", md: "minmax(0, 500px) 300px" },
+					gap: "clamp(32px, 4vw, 60px)",
+					alignItems: "start",
+				}}>
+				<Box sx={{ display: "flex", flexDirection: "column", gap: 2, justifyContent: "flex-start" }}>
+					<Typography variant='body2' sx={{ color: "text.darkMuted" }}>
+						CONTACT
+					</Typography>
+					<Typography sx={{ color: "inherit" }} variant='h2'>
+						Tell me what you are building.
+					</Typography>
+					<Typography sx={{ color: "inherit" }} variant='overline'>
+						v.{packageJson.version}
+					</Typography>
+					<Typography sx={{ color: "text.darkMuted" }} variant='overline'>
+						© 2026 Rasmus Bremholm
+					</Typography>
+				</Box>
+				<Box sx={{ display: "flex", flexDirection: "column", gap: 2, justifyContent: "flex-start" }}>
+					<a href={`mailto:${settings.email}`}>
+						<Typography sx={{ color: "text.darkMuted" }} variant='body2'>
+							{settings.email}
+						</Typography>
+					</a>
+					<Box>
+						<IconButton
+							href={settings.githubUrl}
+							target='_blank'
+							rel='noopener noreferrer'
+							color='inherit'
+							aria-label="Github"
+							sx={{
+								transition: "all 0.2s ease",
+								"&:hover": {
+									color: "text.darkMuted",
+								},
+							}}>
+							<GitHub />
+						</IconButton>
+						<IconButton
+							href={settings.linkedinUrl}
+							target='_blank'
+							rel='noopener noreferrer'
+							color='inherit'
+							aria-label="Linkedin"
+							sx={{
+								transition: "all 0.2s ease",
+								"&:hover": {
+									color: "text.darkMuted",
+								},
+							}}>
+							<LinkedIn />
+						</IconButton>
+					</Box>
+					<Button href='/contact'>Get in touch</Button>
+				</Box>
+			</Container>
+		</Box>
+	);
+}

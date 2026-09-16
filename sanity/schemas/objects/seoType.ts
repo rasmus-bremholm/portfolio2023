@@ -1,4 +1,3 @@
-import { object } from "framer-motion/client";
 import { defineField, defineType } from "sanity";
 
 export const seoType = defineType({

@@ -1,17 +1,67 @@
+import { cache } from "react";
 import { createClient } from "next-sanity";
-import { homepageSectionsQuery } from "./queries";
-import type { ContentSection } from "@/types/sanity/homepage";
+import {
+	blogPostQuery,
+	blogPostsQuery,
+	featuredProjectQuery,
+	projectPostQuery,
+	projectsQuery,
+	selectedWorkQuery,
+	relatedProjectsQuery,
+	siteSettingsQuery,
+} from "./queries";
+
+import type { BlogPost, BlogPostPreview } from "@/types/sanity/blogpage";
+import type { Project, ProjectPreview } from "@/types/sanity/projectpage";
+import type { SiteSettings } from "@/types/sanity/sitesettings";
 
 export const client = createClient({
 	projectId: process.env.SANITY_PROJECT_ID,
 	dataset: process.env.SANITY_DATASET,
 	apiVersion: "2023-05-03",
-	//useCdn: false, // Set to true in production for better performance
 	useCdn: process.env.NODE_ENV === "production",
 });
 
-export async function getAllContentSections(): Promise<ContentSection[]> {
-	return client.fetch(homepageSectionsQuery);
+export function fetchSelectedWork(): Promise<ProjectPreview[]> {
+	return client.fetch(selectedWorkQuery);
 }
+
+export function fetchFeaturedProject(): Promise<ProjectPreview | null> {
+	return client.fetch(featuredProjectQuery);
+}
+
+export function fetchProjects(excludeFeatured = false): Promise<ProjectPreview[]> {
+	return client.fetch(projectsQuery, { excludeFeatured });
+}
+
+export const fetchProjectBySlug = cache((slug: string): Promise<Project | null> => {
+	return client.fetch(projectPostQuery, { slug });
+});
+
+export function fetchBlogPosts(): Promise<BlogPostPreview[]> {
+	return client.fetch(blogPostsQuery);
+}
+
+export const fetchBlogPostBySlug = cache((slug: string): Promise<BlogPost | null> => {
+	return client.fetch(blogPostQuery, { slug });
+});
+
+function shuffle<T>(array: T[]): T[] {
+	const result = [...array];
+	for (let i = result.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[result[i], result[j]] = [result[j], result[i]];
+	}
+	return result;
+}
+
+export async function fetchRelatedProjects(currentSlug: string, count = 3): Promise<ProjectPreview[]> {
+	const projects = await client.fetch<ProjectPreview[]>(relatedProjectsQuery, { slug: currentSlug });
+	return shuffle(projects).slice(0, count);
+}
+
+export const fetchSiteSettings = cache((): Promise<SiteSettings> => {
+	return client.fetch(siteSettingsQuery);
+});
 
 export default client;

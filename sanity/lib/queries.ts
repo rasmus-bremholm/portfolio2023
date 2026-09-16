@@ -1,28 +1,45 @@
 import { groq } from "next-sanity";
 
-// Get all homepage sections ordered by display order
-export const homepageSectionsQuery = groq`
-  *[_type == "homepageSection"] | order(order asc) {
-    _id,
-    title,
-    content,
-    alignment,
-    order,
-    ctaLink,
-    ctaText,
-  }
+// Get the site settings singleton
+export const siteSettingsQuery = groq`
+*[_type == "siteSettings"][0] {
+  email,
+  githubUrl,
+  linkedinUrl,
+  employer,
+  jobTitle,
+  previous,
+  experience,
+  focus,
+  status,
+  address,
+  faqs
+}
 `;
 
-// Get a single homepage section by ID
-export const homepageSectionByIdQuery = groq`
-  *[_type == "homepageSection" && _id == $id][0] {
+// Get 5 highlighted projects for the homepage
+export const selectedWorkQuery = groq`
+*[_type == "projectPost"] | order(
+  coalesce(customOrder, 9999) asc,
+  publishedAt desc
+)[0..4] {
     _id,
     title,
-    content,
-    alignment,
-    order,
-    ctaLink,
-    ctaText,
+    slug,
+    description,
+    "technologies": coalesce(technologies, []),
+    publishedAt,
+    featuredImage {
+      asset->{
+        _id,
+        url,
+        metadata {
+          lqip,
+          dimensions
+        }
+      },
+      alt
+    }
   }
 `;
 
@@ -46,6 +63,7 @@ export const blogPostQuery = groq`
   _id,
   title,
   slug,
+  excerpt,
   content,
   publishedAt,
   tags,
@@ -62,11 +80,51 @@ export const blogPostQuery = groq`
     alt,
   },
   "readTime": round(length(pt::text(content)) / 5 / 200),
+  seo {
+    title,
+    description,
+    image {
+      asset->{
+        _id,
+        url,
+        metadata {
+          lqip,
+          dimensions
+        }
+      }
+    },
+    noIndex
+  }
+}
+`;
+
+export const featuredProjectQuery = groq`
+*[_type == "projectPost" && featured == true] | order(coalesce(customOrder, 9999) asc)[0] {
+  _id,
+  title,
+  slug,
+  description,
+  "technologies": coalesce(technologies, []),
+  liveUrl,
+  githubUrl,
+  publishedAt,
+  featured,
+  featuredImage {
+    asset->{
+      _id,
+      url,
+      metadata {
+        lqip,
+        dimensions
+      }
+    },
+    alt
+  }
 }
 `;
 
 export const projectsQuery = groq`
-*[_type == "projectPost"] | order(
+*[_type == "projectPost" && (!$excludeFeatured || featured != true)] | order(
   coalesce(customOrder, 9999) asc,
   publishedAt desc
 ) {
@@ -115,6 +173,30 @@ export const projectPostQuery = groq`
       }
     },
     alt
+  },
+  seo {
+    title,
+    description,
+    image {
+      asset->{
+        _id,
+        url,
+        metadata {
+          lqip,
+          dimensions
+        }
+      }
+    },
+    noIndex
   }
+}
+`;
+
+export const relatedProjectsQuery = groq`
+*[_type == "projectPost" && slug.current != $slug] {
+  _id,
+  title,
+  slug,
+  publishedAt
 }
 `;

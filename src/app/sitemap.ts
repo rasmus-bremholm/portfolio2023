@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
 import { client } from "@/sanity/lib/client";
 import { groq } from "next-sanity";
+import { SITE_URL } from "@/lib/seo/site";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-	const baseUrl = "https://www.rasmusbremholm.com";
+	const baseUrl = SITE_URL;
 
 	// Static pages
 	const staticPages: MetadataRoute.Sitemap = [

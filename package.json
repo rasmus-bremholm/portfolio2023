@@ -1,44 +1,45 @@
 {
-  "name": "portfolio2025",
-  "version": "2.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@emotion/cache": "^11.14.0",
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.1",
-    "@mui/icons-material": "^7.3.2",
-    "@mui/material": "^7.3.5",
-    "@mui/material-nextjs": "^7.3.5",
-    "@react-three/drei": "^10.7.6",
-    "@react-three/fiber": "^9.3.0",
-    "@sanity/image-url": "^1.2.0",
-    "@sanity/vision": "^4.8.1",
-    "@types/three": "^0.180.0",
-    "@vercel/analytics": "^1.6.1",
-    "@vercel/og": "^0.8.5",
-    "dayjs": "^1.11.19",
-    "framer-motion": "^12.23.24",
-    "next": "15.5.9",
-    "next-sanity": "^11.1.1",
-    "next-sanity-image": "^6.2.0",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "sanity": "^4.8.1",
-    "three": "^0.180.0"
-  },
-  "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "15.5.7",
-    "typescript": "^5"
-  }
+	"name": "portfolio2026",
+	"version": "3.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "next dev --turbopack",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"@emotion/cache": "^11.14.0",
+		"@emotion/react": "^11.14.0",
+		"@emotion/styled": "^11.14.1",
+		"@mui/icons-material": "^9.1.1",
+		"@mui/material": "^9.1.1",
+		"@mui/material-nextjs": "^9.0.1",
+		"@react-three/drei": "^10.7.6",
+		"@react-three/fiber": "^9.3.0",
+		"@sanity/image-url": "^2.1.1",
+		"@sanity/vision": "^5.27.0",
+		"@types/three": "^0.180.0",
+		"@vercel/analytics": "^1.6.1",
+		"@vercel/og": "^0.8.5",
+		"dayjs": "^1.11.19",
+		"framer-motion": "^12.23.24",
+		"next": "^16.3.1",
+		"next-sanity": "^13.0.4",
+		"react": "^19.2.6",
+		"react-dom": "^19.2.6",
+		"resend": "^6.25.0",
+		"sanity": "^5.27.0",
+		"shiki": "^4.4.3",
+		"three": "^0.180.0"
+	},
+	"devDependencies": {
+		"@eslint/eslintrc": "^3",
+		"@types/node": "^20",
+		"@types/react": "^19",
+		"@types/react-dom": "^19",
+		"eslint": "^9",
+		"eslint-config-next": "15.5.7",
+		"typescript": "^5"
+	}
 }

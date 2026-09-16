@@ -1,91 +1,124 @@
 "use client";
-import { Bebas_Neue, Lato } from "next/font/google";
-import { createTheme, Components } from "@mui/material/styles";
 
-export const bebasNeue = Bebas_Neue({
-	subsets: ["latin"],
-	weight: "400",
-	display: "swap",
+import { createTheme } from "@mui/material/styles";
+//import { lighten, darken } from "@mui/material/styles";
+
+declare module "@mui/material/styles" {
+	interface TypeBackground {
+		subtle: string;
+		elevated: string;
+		dark: string;
+	}
+	interface TypeText {
+		tertiary: string;
+		darkText: string;
+		darkMuted: string;
+	}
+}
+
+const baseTheme = createTheme({
+	palette: {
+		mode: "light",
+		background: {
+			default: "#F1F2F0", //light cream
+			paper: "#eaece9", //hover surface
+			dark: "#23282A", // footer
+		},
+		text: {
+			primary: "#23282A", //titles
+			secondary: "#4C5455", //body
+			tertiary: "#5E6363", //muted labels
+			darkText: "#eef0ee", // text on dark background
+			darkMuted: "#8fa3ad", // muted text on dark background
+		},
+		divider: "#d5d8d5", // note to self, this has probably been hardcoded in places.
+		primary: {
+			main: "#4a6b7c",
+		},
+	},
 });
 
-export const lato = Lato({
-	subsets: ["latin"],
-	weight: ["300", "400", "700"],
-	display: "swap",
-});
-
-const typography = {
-	fontFamily: lato.style.fontFamily,
-	body1: {
-		color: "#898989", // text.secondary value
+const theme = createTheme(baseTheme, {
+	typography: {
+		fontFamily: "var(--font-hanken-grotesk), sans-serif",
+		allVariants: {
+			fontSize: "16px", //root size
+			color: baseTheme.palette.text.secondary, //sets the gray color implicit, but overridden in each variant.
+		},
+		h1: {
+			fontFamily: "var(--font-newsreader), serif",
+			color: baseTheme.palette.text.primary,
+			fontSize: "clamp(40px, 5.5vw, 80px)",
+			fontWeight: 400,
+			lineHeight: 1.02,
+			letterSpacing: "-0.032em",
+		},
+		h2: {
+			fontFamily: "var(--font-newsreader), serif",
+			color: baseTheme.palette.text.primary,
+			fontSize: "clamp(22px, 2.6vw, 38px)",
+			fontWeight: 400,
+			letterSpacing: "-0.025em",
+		},
+		h3: {
+			fontFamily: "var(--font-newsreader), serif",
+			color: baseTheme.palette.text.primary,
+			fontSize: "clamp(16px, 1.9vw, 27px)",
+			fontWeight: 400,
+			letterSpacing: "-0.02em",
+		},
+		body1: {
+			fontFamily: "var(--font-spectral), serif",
+		},
+		body2: {
+			fontFamily: "var(--font-hanken-grotesk), sans-serif",
+			fontSize: "14px",
+			color: baseTheme.palette.text.secondary,
+		},
+		overline: {
+			fontFamily: "var(--font-ibm), monospace",
+			letterSpacing: "0.08em",
+			textTransform: "uppercase",
+		},
 	},
-	body2: {
-		color: "#898989",
-	},
-	h1: {
-		fontFamily: bebasNeue.style.fontFamily,
-		color: "#FAFAFA",
-	},
-	h2: {
-		fontFamily: bebasNeue.style.fontFamily,
-	},
-	h3: {
-		fontFamily: bebasNeue.style.fontFamily,
-	},
-	h4: {
-		fontFamily: bebasNeue.style.fontFamily,
-	},
-	h5: {
-		fontFamily: bebasNeue.style.fontFamily,
-	},
-	h6: {
-		fontFamily: bebasNeue.style.fontFamily,
-	},
-};
-
-const components: Components = {
-	MuiButton: {
-		styleOverrides: {
-			root: {
-				textTransform: "none",
+	components: {
+		MuiButton: {
+			defaultProps: {
+				disableRipple: true,
+				disableElevation: true,
+			},
+			styleOverrides: {
+				root: {
+					borderRadius: 0,
+					textTransform: "uppercase",
+					fontFamily: "var(--font-hanken-grotesk), sans-serif",
+					padding: "12px 20px",
+					backgroundColor: baseTheme.palette.background.default,
+					transition: "all 0.2s ease",
+					"&:hover": {
+						backgroundColor: baseTheme.palette.background.paper,
+					},
+				},
+				outlined: {
+					borderColor: baseTheme.palette.divider,
+					"&:hover": {
+						backgroundColor: baseTheme.palette.background.paper,
+					},
+				},
+			},
+		},
+		MuiContainer: {
+			defaultProps: {
+				maxWidth: "lg",
+			},
+			styleOverrides: {
+				root: {
+					paddingLeft: "clamp(24px, 5vw, 72px)",
+					paddingRight: "clamp(24px, 5vw, 72px)",
+				},
 			},
 		},
 	},
-};
-
-const theme = createTheme({
-	typography,
-	palette: {
-		mode: "dark",
-		primary: {
-			main: "#03a678",
-		},
-		secondary: {
-			main: "#1c6bba",
-		},
-		error: {
-			main: "#bf2012",
-		},
-		warning: {
-			main: "#ffa200",
-		},
-		success: {
-			main: "#1a6b31",
-		},
-		info: {
-			main: "#0b66d5",
-		},
-		background: {
-			default: "#121212",
-			paper: "#171717",
-		},
-		text: {
-			primary: "#fafafa",
-			secondary: "#898989",
-		},
-		divider: "rgba(255, 255, 255, 0.12)",
-	},
-	components,
 });
 
 export default theme;

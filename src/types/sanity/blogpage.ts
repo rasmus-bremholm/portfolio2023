@@ -1,4 +1,5 @@
 import type { PortableTextBlock } from "@portabletext/types";
+import type { SeoOverride } from "./seo";
 
 export interface BlogPost {
 	_id: string;
@@ -10,12 +11,18 @@ export interface BlogPost {
 	tags: string[];
 	featuredImage?: {
 		asset: {
-			_ref: string;
+			_id: string;
+			url: string;
+			metadata?: {
+				lqip?: string;
+				dimensions?: { width: number; height: number };
+			};
 		};
 		alt?: string;
 	};
 	content: PortableTextBlock[];
 	readTime?: number;
+	seo?: SeoOverride;
 }
 
 export interface BlogPostPreview {

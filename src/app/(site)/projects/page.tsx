@@ -1,0 +1,50 @@
+import { fetchProjects } from "@/sanity/lib/client";
+import type { ProjectPreview } from "@/types/sanity/projectpage";
+import { Box, Container } from "@mui/material";
+import type { Metadata } from "next";
+import ProjectsHero from "./components/ProjectsHero";
+import ProjectCard from "./components/ProjectCard";
+import { buildMetadata } from "@/lib/seo/metadata";
+
+export const metadata: Metadata = buildMetadata({
+	title: "Projects",
+	description: "Things I have built.",
+	path: "/projects",
+});
+
+export default async function ProjectsPage() {
+	const projects: ProjectPreview[] = await fetchProjects(false);
+
+	return (
+		<Container maxWidth='lg' sx={{ py: 8 }}>
+			<ProjectsHero projectCount={projects?.length} />
+			<Box
+				sx={{
+					display: "grid",
+					gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+
+					borderTop: "1px solid",
+					borderLeft: "1px solid",
+					borderColor: "divider",
+					mt: "26px",
+				}}>
+				{projects?.map((project) => (
+					<Box
+						key={project._id}
+						sx={{
+							borderRight: "1px solid",
+							p: "24px",
+							borderBottom: "1px solid",
+							borderColor: "divider",
+							transition: "all 0.2s ease",
+							"&:hover": {
+								bgcolor: "#eaece9",
+							},
+						}}>
+						<ProjectCard project={project} />
+					</Box>
+				))}
+			</Box>
+		</Container>
+	);
+}
