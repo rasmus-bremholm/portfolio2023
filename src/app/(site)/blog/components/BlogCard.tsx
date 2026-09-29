@@ -1,12 +1,13 @@
 import type { BlogPostPreview } from "@/types/sanity/blogpage";
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
+import CoverImage from "@/app/components/coverImage/CoverImage";
 
 export default function BlogCard({ post }: { post: BlogPostPreview }) {
 	return (
 		<Link href={`/blog/${post.slug.current}`}>
 			<Box sx={{ display: "flex", gap: 1, flexDirection: "column", height: "100%" }}>
-				<Box sx={{ background: "repeating-linear-gradient(90deg,#e2e5e3 0 7px,#eaece9 7px 14px)", height: "180px", display: "flex" }} />
+				<CoverImage image={post.featuredImage} height="180px" sizes="(max-width: 700px) 100vw, 400px" />
 				<Typography variant='overline' sx={{ color: "text.tertiary" }}>
 					{new Date(`${post.publishedAt}`).toLocaleDateString("sv-SE", {
 						year: "numeric",

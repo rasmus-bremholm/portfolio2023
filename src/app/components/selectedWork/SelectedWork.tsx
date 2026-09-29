@@ -2,6 +2,7 @@ import { fetchFeaturedProject } from "@/sanity/lib/client";
 import Link from "next/link";
 import { Container, Box, Typography } from "@mui/material";
 import { GitHub } from "@mui/icons-material";
+import CoverImage from "../coverImage/CoverImage";
 
 export default async function SelectedWork() {
 	const featuredProject = await fetchFeaturedProject();
@@ -16,14 +17,9 @@ export default async function SelectedWork() {
 			</Box>
 			{featuredProject && (
 				<Box>
-					<Box
-						sx={{
-							height: "400px",
-							background: "repeating-linear-gradient(90deg,#e2e5e3 0 7px,#eaece9 7px 14px)",
-							display: "flex",
-							mb: "26px",
-						}}
-					/>
+					<Box sx={{ mb: "26px" }}>
+						<CoverImage image={featuredProject.featuredImage} height="400px" sizes="(max-width: 1200px) 100vw, 1200px" />
+					</Box>
 					<Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "minmax(0, 1fr) 300px" } }}>
 						<Box>
 							<Typography variant='overline'>

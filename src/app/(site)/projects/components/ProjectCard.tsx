@@ -1,12 +1,13 @@
 import type { ProjectPreview } from "@/types/sanity/projectpage";
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
+import CoverImage from "@/app/components/coverImage/CoverImage";
 
 export default function ProjectCard({ project }: { project: ProjectPreview }) {
 	return (
 		<Link href={`/projects/${project.slug.current}`}>
 			<Box sx={{ display: "flex", gap: 1, flexDirection: "column", height: "100%" }}>
-				<Box sx={{ background: "repeating-linear-gradient(90deg,#e2e5e3 0 7px,#eaece9 7px 14px)", height: "180px", display: "flex" }} />
+				<CoverImage image={project.featuredImage} height="180px" sizes="(max-width: 700px) 100vw, 400px" />
 				<Typography variant='overline' sx={{ color: "text.tertiary" }}>
 					{new Date(`${project.publishedAt}`).toLocaleDateString("sv-SE", {
 						year: "numeric",

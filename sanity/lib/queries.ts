@@ -53,6 +53,17 @@ export const blogPostsQuery = groq`
   publishedAt,
   tags,
   category,
+  featuredImage {
+    asset->{
+      _id,
+      url,
+      metadata {
+        lqip,
+        dimensions
+      }
+    },
+    alt
+  },
   "readTime": round(length(pt::text(content)) / 5 / 200)
 }
 `;
