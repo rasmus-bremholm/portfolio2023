@@ -7,7 +7,17 @@ export default function CoverImage({ image, height, sizes }: { image?: ProjectPr
 	const lqip = image?.asset?.metadata?.lqip;
 
 	return (
-		<Box sx={{ position: "relative", height, overflow: "hidden", background: "repeating-linear-gradient(90deg,#e2e5e3 0 7px,#eaece9 7px 14px)" }}>
+		<Box
+			sx={{
+				position: "relative",
+				height,
+				overflow: "hidden",
+				background: "repeating-linear-gradient(90deg,#e2e5e3 0 7px,#eaece9 7px 14px)",
+				"& img": { transition: "transform 0.5s ease" },
+				// Zoom on hovering the image itself or the card link around it
+				"&:hover img, a:hover & img": { transform: "scale(1.04)" },
+				"@media (prefers-reduced-motion: reduce)": { "& img": { transition: "none" } },
+			}}>
 			{image?.asset?.url && (
 				<Image
 					src={image.asset.url}
