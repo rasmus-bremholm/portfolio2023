@@ -34,4 +34,5 @@ export interface BlogPostPreview {
 	category: string;
 	tags: string[];
 	readTime?: number;
+	featuredImage?: BlogPost["featuredImage"];
 }
