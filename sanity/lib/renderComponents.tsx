@@ -6,6 +6,8 @@ import Image from "next/image";
 import { createClient } from "next-sanity";
 import { codeToHtml } from "shiki";
 import { slugify } from "@/app/lib/slugify";
+import { extractYoutubeId } from "@/app/lib/youtube";
+import YouTubeEmbed from "@/components/YouTubeEmbed";
 
 function headingId(value: { children?: { _type: string; text?: string }[] }): string {
 	const text = value.children?.filter((child) => child._type === "span").map((child) => child.text).join("") ?? "";
@@ -125,42 +127,12 @@ export const renderComponents: PortableTextComponents = {
 			);
 		},
 		youtube: ({ value }) => {
-			if (!value?.url) return null;
-
-			const getVideoId = (url: string) => {
-				if (url.includes("youtu.be/")) {
-					return url.split("youtu.be/")[1].split("?")[0];
-				}
-				const match = url.match(/[?&]v=([^&]+)/);
-				return match ? match[1] : null;
-			};
-			const videoId = getVideoId(value.url);
+			const videoId = value?.url && extractYoutubeId(value.url);
 			if (!videoId) return null;
 
 			return (
 				<figure style={{ margin: "2rem 0" }}>
-					<div
-						style={{
-							position: "relative",
-							paddingBottom: "56.25%", // 16:9 aspect ratio
-							height: 0,
-							overflow: "hidden",
-						}}>
-						<iframe
-							src={`https://www.youtube-nocookie.com/embed/${videoId}`}
-							title='YouTube video'
-							allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-							allowFullScreen
-							style={{
-								position: "absolute",
-								top: 0,
-								left: 0,
-								width: "100%",
-								height: "100%",
-								border: 0,
-							}}
-						/>
-					</div>
+					<YouTubeEmbed id={videoId} title={value.caption || "YouTube video"} />
 					{value.caption && (
 						<Typography variant='overline' component='figcaption' sx={{ mt: 1, display: "block", color: "text.secondary" }}>
 							{value.caption}

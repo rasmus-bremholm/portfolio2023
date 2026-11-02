@@ -1,8 +1,9 @@
 import type { Project } from "@/types/sanity/projectpage";
 import type { BlogPost } from "@/types/sanity/blogpage";
+import { extractYoutubeId } from "@/app/lib/youtube";
 import { SITE_URL, SITE_NAME, JOB_TITLE, EMPLOYER, ADDRESS_LOCALITY, ADDRESS_COUNTRY, SAME_AS } from "./site";
 
-export function personJsonLd() {
+export function personJsonLd(youtubeUrl?: string) {
 	return {
 		"@context": "https://schema.org",
 		"@type": "Person",
@@ -11,7 +12,7 @@ export function personJsonLd() {
 		jobTitle: JOB_TITLE,
 		worksFor: { "@type": "Organization", name: EMPLOYER },
 		address: { "@type": "PostalAddress", addressLocality: ADDRESS_LOCALITY, addressCountry: ADDRESS_COUNTRY },
-		sameAs: SAME_AS,
+		sameAs: youtubeUrl ? [...SAME_AS, youtubeUrl] : SAME_AS,
 	};
 }
 
@@ -40,5 +41,21 @@ export function blogPostJsonLd(post: BlogPost) {
 		keywords: post.tags?.join(", "),
 		image: post.seo?.image?.asset.url || post.featuredImage?.asset.url,
 		author: { "@type": "Person", name: SITE_NAME, url: SITE_URL },
+	};
+}
+
+export function videoJsonLd(post: BlogPost) {
+	const id = post.video?.url && extractYoutubeId(post.video.url);
+	if (!post.video || !id) return null;
+	return {
+		"@context": "https://schema.org",
+		"@type": "VideoObject",
+		name: post.title,
+		description: post.excerpt || post.title,
+		thumbnailUrl: `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`,
+		uploadDate: post.video.uploadDate || post.publishedAt,
+		duration: post.video.durationSeconds ? `PT${post.video.durationSeconds}S` : undefined,
+		embedUrl: `https://www.youtube.com/embed/${id}`,
+		contentUrl: `https://www.youtube.com/watch?v=${id}`,
 	};
 }

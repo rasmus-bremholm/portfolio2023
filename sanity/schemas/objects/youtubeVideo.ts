@@ -1,4 +1,8 @@
 import { defineType } from "sanity";
+import { extractYoutubeId } from "../../../src/app/lib/youtube";
+
+// Only the post-level companion video (blogPost.video) needs VideoObject metadata
+const hiddenOutsideVideo = ({ path }: { path: (string | number | object)[] }) => path[0] !== "video";
 
 export default defineType({
 	name: "youtube",
@@ -16,8 +20,7 @@ export default defineType({
 					})
 					.custom((url: string) => {
 						if (!url) return true;
-						const isYoutube = url.includes("youtube.com") || url.includes("youtu.be");
-						return isYoutube || "Must be a YouTube URL";
+						return extractYoutubeId(url) ? true : "Must be a YouTube video URL";
 					}),
 		},
 		{
@@ -25,13 +28,27 @@ export default defineType({
 			type: "string",
 			title: "Caption (optional)",
 		},
+		{
+			name: "uploadDate",
+			type: "date",
+			title: "Upload date",
+			description: "When the video was published on YouTube. Falls back to the post date.",
+			hidden: hiddenOutsideVideo,
+		},
+		{
+			name: "durationSeconds",
+			type: "number",
+			title: "Duration (seconds)",
+			validation: (Rule: any) => Rule.integer().positive(),
+			hidden: hiddenOutsideVideo,
+		},
 	],
 	preview: {
 		select: {
 			url: "url",
 		},
 		prepare({ url }) {
-			const videoId = url?.includes("youtu.be") ? url.split("youtu.be/")[1]?.split("?")[0] : url?.split("v=")[1]?.split("&")[0];
+			const videoId = url ? extractYoutubeId(url) : null;
 
 			return {
 				title: "YouTube Video",

@@ -31,6 +31,11 @@ export default function BlogCard({ post }: { post: BlogPostPreview }) {
 							{post.readTime} min read
 						</Typography>
 					)}
+					{post.hasVideo && (
+						<Typography component='li' variant='body2' sx={{ fontWeight: 500 }}>
+							Video guide
+						</Typography>
+					)}
 				</Typography>
 			</Box>
 		</Link>

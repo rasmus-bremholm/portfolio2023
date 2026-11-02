@@ -42,6 +42,12 @@ export default defineType({
 			description: "Short summary for blog lists and SEO description fallback",
 		}),
 		defineField({
+			name: "video",
+			title: "Companion Video",
+			type: "youtube",
+			description: "The tutorial video this post is a guide for. Shown at the top of the post and marked up as VideoObject.",
+		}),
+		defineField({
 			name: "content",
 			title: "Blog Post Content",
 			type: "array",

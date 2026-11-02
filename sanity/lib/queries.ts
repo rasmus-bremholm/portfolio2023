@@ -6,6 +6,7 @@ export const siteSettingsQuery = groq`
   email,
   githubUrl,
   linkedinUrl,
+  youtubeUrl,
   employer,
   jobTitle,
   previous,
@@ -64,7 +65,8 @@ export const blogPostsQuery = groq`
     },
     alt
   },
-  "readTime": round(length(pt::text(content)) / 5 / 200)
+  "readTime": round(length(pt::text(content)) / 5 / 200),
+  "hasVideo": defined(video.url)
 }
 `;
 
@@ -76,6 +78,7 @@ export const blogPostQuery = groq`
   slug,
   excerpt,
   content,
+  video { url, caption, uploadDate, durationSeconds },
   publishedAt,
   tags,
   category,

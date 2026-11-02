@@ -24,6 +24,7 @@
 		"@vercel/og": "^0.8.5",
 		"dayjs": "^1.11.19",
 		"framer-motion": "^12.23.24",
+		"lite-youtube-embed": "^0.3.4",
 		"next": "^16.3.1",
 		"next-sanity": "^13.0.4",
 		"react": "^19.2.6",

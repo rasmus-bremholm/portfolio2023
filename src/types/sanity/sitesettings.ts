@@ -2,6 +2,7 @@ export interface SiteSettings {
 	email: string;
 	githubUrl: string;
 	linkedinUrl: string;
+	youtubeUrl?: string;
 	employer: string;
 	jobTitle: string;
 	previous: string;

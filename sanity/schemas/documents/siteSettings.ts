@@ -50,6 +50,13 @@ export default defineType({
 			validation: (Rule) => Rule.required(),
 			fieldset: "contact",
 		}),
+		defineField({
+			name: "youtubeUrl",
+			title: "YouTube Channel Url",
+			type: "url",
+			description: "Url to my YouTube channel",
+			fieldset: "contact",
+		}),
 		// The rest
 		defineField({
 			name: "employer",

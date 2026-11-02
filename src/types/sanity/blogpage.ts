@@ -21,6 +21,12 @@ export interface BlogPost {
 		alt?: string;
 	};
 	content: PortableTextBlock[];
+	video?: {
+		url: string;
+		caption?: string;
+		uploadDate?: string;
+		durationSeconds?: number;
+	};
 	readTime?: number;
 	seo?: SeoOverride;
 }
@@ -34,5 +40,6 @@ export interface BlogPostPreview {
 	category: string;
 	tags: string[];
 	readTime?: number;
+	hasVideo?: boolean;
 	featuredImage?: BlogPost["featuredImage"];
 }
