@@ -8,7 +8,9 @@ import { renderComponents } from "@/sanity/lib/renderComponents";
 import { extractHeadings } from "@/app/lib/extractHeadings";
 import TableofContent from "@/app/(site)/projects/components/TableofContent";
 import JsonLd from "@/components/JsonLd";
-import { blogPostJsonLd } from "@/lib/seo/jsonld";
+import { blogPostJsonLd, videoJsonLd } from "@/lib/seo/jsonld";
+import { extractYoutubeId } from "@/app/lib/youtube";
+import YouTubeEmbed from "@/components/YouTubeEmbed";
 import { buildMetadata, blogOgImageUrl } from "@/lib/seo/metadata";
 import { DEFAULT_OG_IMAGE } from "@/lib/seo/site";
 
@@ -46,6 +48,9 @@ export default async function BlogPostPage({ params }: PageProps) {
 		notFound();
 	}
 
+	const videoId = post.video?.url && extractYoutubeId(post.video.url);
+	const video = videoJsonLd(post);
+
 	return (
 		<Container
 			maxWidth='lg'
@@ -58,6 +63,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 				gridTemplateColumns: { xs: "1fr", md: "1fr 240px" },
 			}}>
 			<JsonLd data={blogPostJsonLd(post)} />
+			{video && <JsonLd data={video} />}
 			<Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
 				<Typography variant='overline'>
 					{post.category} · {formatDate(post.publishedAt)}
@@ -77,6 +83,16 @@ export default async function BlogPostPage({ params }: PageProps) {
 						}}>
 						{post.excerpt}
 					</Typography>
+				)}
+				{videoId && (
+					<figure style={{ margin: "1rem 0" }}>
+						<YouTubeEmbed id={videoId} title={post.title} />
+						{post.video?.caption && (
+							<Typography variant='overline' component='figcaption' sx={{ mt: 1, display: "block", color: "text.secondary" }}>
+								{post.video.caption}
+							</Typography>
+						)}
+					</figure>
 				)}
 				<Box>
 					<PortableText value={post.content} components={renderComponents} />
